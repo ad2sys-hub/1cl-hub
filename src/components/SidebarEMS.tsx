@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useSovereign } from '../context/SovereignContext';
+import { useSovereign } from '../hooks/useSovereign';
 import { supabase } from '../lib/supabaseClient';
 
 export default function SidebarEMS({ openContractForge }: { openContractForge: () => void }) {
-  const { isSidebarOpen, toggleSidebar, toggleGlobalLoupe, setMediaHubOpen, isAdminAuthenticated } = useSovereign();
+  const { isSidebarOpen, toggleSidebar, toggleGlobalLoupe, setMediaHubOpen, isAdminAuthenticated, language, t } = useSovereign();
   const [clock, setClock] = useState("--:--:--");
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -12,7 +12,7 @@ export default function SidebarEMS({ openContractForge }: { openContractForge: (
   const [isLoading, setIsLoading] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
 
-  const [auditLogs, setAuditLogs] = useState<string[]>([]);
+
 
   useEffect(() => {
     const timer = setInterval(() => setClock(new Date().toLocaleTimeString()), 1000);
@@ -32,7 +32,7 @@ export default function SidebarEMS({ openContractForge }: { openContractForge: (
        if (error) {
           setAuthError(error.message);
        } else {
-          alert("Registration request sent! Check your email for verification.");
+          alert(language === 'en' ? "Registration request sent! Check your email for verification." : "Demande d'inscription envoyée ! Vérifiez vos e-mails pour la validation.");
           setIsSignUp(false);
        }
     } else {
@@ -49,30 +49,6 @@ export default function SidebarEMS({ openContractForge }: { openContractForge: (
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
-  };
-
-  const handleForceSync = async () => {
-    setIsLoading(true);
-    const addLog = (msg: string) => setAuditLogs(prev => [`[${new Date().toLocaleTimeString()}] ${msg}`, ...prev].slice(0, 10));
-    
-    addLog("INITIALIZING SOVEREIGN LINK...");
-    try {
-      addLog("CONTACTING SUPABASE EDGE...");
-      const { data, error } = await supabase.functions.invoke('mongodb-bridge', {
-         body: { collection: "AdminSync", document: { action: "sync_request", initiator: email } }
-      });
-      
-      if (error) {
-        addLog(`ERROR: ${error.message}`);
-        throw error;
-      }
-      
-      addLog("MONGODB HANDSHAKE SUCCESSFUL.");
-      addLog(`RECORD_ID: ${data.mongodb_record?.insertedId || 'SIMULATED_SUCCESS'}`);
-    } catch (e: any) {
-      addLog(`SYNC FAILED: ${e.message}`);
-    }
-    setIsLoading(false);
   };
 
   return (
@@ -95,7 +71,7 @@ export default function SidebarEMS({ openContractForge }: { openContractForge: (
             {/* Header */}
             <div className="flex justify-between items-center mb-8 border-b border-white/5 pb-4">
                <div>
-                  <h3 className="text-clGold text-sm tracking-widest font-bold uppercase">{isAdminAuthenticated ? 'EMS DASHBOARD' : 'IAM SECURITY PORTAL'}</h3>
+                  <h3 className="text-clGold text-sm tracking-widest font-bold uppercase">{isAdminAuthenticated ? t('admin.dashboard') : t('admin.iamPortal')}</h3>
                   <span className="text-[10px] text-gray-500 font-mono">{clock}</span>
                </div>
                <button onClick={toggleSidebar} className="text-gray-400 hover:text-white transition-colors text-xl">✕</button>
@@ -109,47 +85,47 @@ export default function SidebarEMS({ openContractForge }: { openContractForge: (
                       <div className="w-10 h-10 border-2 border-clGold border-t-transparent rounded-full animate-spin" />
                    </div>
                  )}
-                 <h2 className="text-2xl font-serif text-white mb-2 text-center">ACCESS RESTRICTED</h2>
-                 <p className="text-gray-500 text-xs tracking-widest uppercase text-center mb-8">Identify context via Supabase IAM</p>
+                 <h2 className="text-2xl font-serif text-white mb-2 text-center">{t('auth.restricted')}</h2>
+                 <p className="text-gray-500 text-[10px] tracking-widest uppercase text-center mb-8">{t('auth.identify')}</p>
                  
                  {authError && (
-                   <div className="bg-red-500/10 border border-red-500/50 p-3 mb-6 text-red-500 text-xs text-center uppercase tracking-widest">
+                   <div className="bg-red-500/10 border border-red-500/50 p-3 mb-6 text-red-500 text-[10px] text-center uppercase tracking-widest leading-tight">
                      {authError}
                    </div>
                  )}
                  
                  <form onSubmit={handleAuth} className="space-y-6">
                     <div className="flex flex-col gap-2">
-                       <label className="text-[10px] text-clGold uppercase tracking-widest font-bold">Identity (Email)</label>
+                       <label className="text-[10px] text-clGold uppercase tracking-widest font-bold">{t('auth.email')}</label>
                        <input 
                          type="email" 
                          required
                          value={email}
                          onChange={(e) => setEmail(e.target.value)}
-                         className="w-full bg-black/50 border border-white/10 text-white p-3 text-sm focus:outline-none focus:border-clGold/50 transition-colors"
+                         className="w-full bg-black/50 border border-white/10 text-white p-3 text-xs focus:outline-none focus:border-clGold/50 transition-colors"
                          placeholder="admin@1cl.com"
                        />
                     </div>
                     <div className="flex flex-col gap-2">
-                       <label className="text-[10px] text-clGold uppercase tracking-widest font-bold">KeyPhrase (Password)</label>
+                       <label className="text-[10px] text-clGold uppercase tracking-widest font-bold">{t('auth.password')}</label>
                        <input 
                          type="password" 
                          required
                          value={password}
                          onChange={(e) => setPassword(e.target.value)}
-                         className="w-full bg-black/50 border border-white/10 text-white p-3 text-sm focus:outline-none focus:border-clGold/50 transition-colors"
+                         className="w-full bg-black/50 border border-white/10 text-white p-3 text-xs focus:outline-none focus:border-clGold/50 transition-colors"
                          placeholder="••••••••"
                        />
                     </div>
-                    <button type="submit" className="w-full bg-clGold text-black font-bold py-4 uppercase tracking-widest text-sm hover:bg-white transition-colors mt-4 shadow-[0_0_15px_rgba(212,175,55,0.2)] hover:shadow-[0_0_30px_rgba(212,175,55,0.6)]">
-                      {isSignUp ? "INITIALIZE SECURITY CONTEXT" : "VERIFY PROTOCOL"}
+                    <button type="submit" className="w-full bg-clGold text-black font-bold py-4 uppercase tracking-widest text-[10px] lg:text-xs hover:bg-white transition-colors mt-4 shadow-[0_0_15px_rgba(212,175,55,0.2)] hover:shadow-[0_0_30px_rgba(212,175,55,0.6)]">
+                      {isSignUp ? t('auth.signup') : t('auth.verify')}
                     </button>
                     <button 
                        type="button"
                        onClick={() => setIsSignUp(!isSignUp)}
                        className="w-full text-[10px] text-gray-500 hover:text-clGold transition-colors tracking-widest uppercase mt-2"
                     >
-                       {isSignUp ? "Already identified? Back to Login" : "No Identity? Create Admin Portal"}
+                       {isSignUp ? t('auth.hasAccount') : t('auth.noAccount')}
                     </button>
                  </form>
               </div>
@@ -164,82 +140,73 @@ export default function SidebarEMS({ openContractForge }: { openContractForge: (
                   )}
                   {/* KPIs */}
                   <div className="grid grid-cols-2 gap-2 mb-6">
-                    <div className="bg-black/50 border border-white/5 p-3 rounded">
-                      <span className="block text-[9px] text-gray-500 uppercase tracking-widest">Global Stock</span>
-                      <b className="text-white text-sm">12,450 pcs</b>
+                    <div className="bg-black/50 border border-white/5 p-3 rounded text-center">
+                      <span className="block text-[8px] text-gray-500 uppercase tracking-widest">{language === 'en' ? 'Global Stock' : 'Stock Global'}</span>
+                      <b className="text-white text-xs">12,450 pcs</b>
                     </div>
-                    <div className="bg-black/50 border border-white/5 p-3 rounded">
-                      <span className="block text-[9px] text-gray-500 uppercase tracking-widest">Forecast Q2</span>
-                      <b className="text-clGold text-sm">+28% ROI</b>
+                    <div className="bg-black/50 border border-white/5 p-3 rounded text-center">
+                      <span className="block text-[8px] text-gray-500 uppercase tracking-widest">{language === 'en' ? 'Forecast Q2' : 'Prévisions Q2'}</span>
+                      <b className="text-clGold text-xs">+28% ROI</b>
                     </div>
-                    <div className="bg-black/50 border border-white/5 p-3 rounded">
-                      <span className="block text-[9px] text-gray-500 uppercase tracking-widest">Active Flows</span>
-                      <b className="text-white text-sm">14 Synced</b>
+                    <div className="bg-black/50 border border-white/5 p-3 rounded text-center">
+                      <span className="block text-[8px] text-gray-500 uppercase tracking-widest">{language === 'en' ? 'Active Flows' : 'Flux Actifs'}</span>
+                      <b className="text-white text-xs">14 Synced</b>
                     </div>
-                    <div className="bg-black/50 border border-white/5 p-3 rounded">
-                      <span className="block text-[9px] text-gray-500 uppercase tracking-widest">Lead Time</span>
-                      <b className="text-white text-sm">22 Days</b>
+                    <div className="bg-black/50 border border-white/5 p-3 rounded text-center">
+                      <span className="block text-[8px] text-gray-500 uppercase tracking-widest">{language === 'en' ? 'Lead Time' : 'Délai Livr.'}</span>
+                      <b className="text-white text-xs">22 Days</b>
                     </div>
                   </div>
 
                   {/* Contract Forge */}
                   <div className="mb-6 bg-black/30 border border-white/10 p-4 rounded">
-                     <h4 className="text-xs text-clChrome uppercase tracking-widest mb-3 border-b border-white/5 pb-2">Forge Contracts (PDF)</h4>
-                     <input type="text" placeholder="Partie B (Client/Fournisseur)" className="w-full bg-black/50 border border-white/10 text-white text-xs p-2 mb-2 focus:outline-none focus:border-clGold/50" />
-                     <select className="w-full bg-black/50 border border-white/10 text-white text-xs p-2 mb-3 focus:outline-none focus:border-clGold/50">
-                        <option value="client">Contrat Client Final</option>
-                        <option value="supplier">Contrat Fournisseur</option>
-                        <option value="transporter">Contrat Transporteur</option>
+                     <h4 className="text-[10px] text-clChrome uppercase tracking-widest mb-3 border-b border-white/5 pb-2">{language === 'en' ? 'Forge Contracts (PDF)' : 'Forge Contrats (PDF)'}</h4>
+                     <input type="text" placeholder={language === 'en' ? "Party B (Client/Supplier)" : "Partie B (Client/Fournisseur)"} className="w-full bg-black/50 border border-white/10 text-white text-[10px] p-2 mb-2 focus:outline-none focus:border-clGold/50" />
+                     <select title="Contract Type" className="w-full bg-black/50 border border-white/10 text-white text-[10px] p-2 mb-3 focus:outline-none focus:border-clGold/50">
+                        <option value="client">{language === 'en' ? 'Final Client Contract' : 'Contrat Client Final'}</option>
+                        <option value="supplier">{language === 'en' ? 'Supplier Contract' : 'Contrat Fournisseur'}</option>
+                        <option value="transporter">{language === 'en' ? 'Transporter Contract' : 'Contrat Transporteur'}</option>
                      </select>
-                     <button onClick={() => { toggleSidebar(); openContractForge(); }} className="w-full bg-clGold text-black text-[10px] font-bold py-2 uppercase tracking-widest hover:bg-white transition-colors">
-                        Generer Contrat
+                     <button onClick={() => { toggleSidebar(); openContractForge(); }} className="w-full bg-clGold text-black text-[9px] font-bold py-2 uppercase tracking-widest hover:bg-white transition-colors">
+                        {language === 'en' ? 'Generate Contract' : 'Générer Contrat'}
                      </button>
                   </div>
 
                   {/* Logistics Map SVG */}
-                  <div className="mb-6 bg-black/30 border border-white/10 p-4 rounded">
-                     <h4 className="text-xs text-clChrome uppercase tracking-widest mb-3">Live Logistics Flow</h4>
+                  <div className="mb-6 bg-black/30 border border-white/10 p-4 rounded text-center">
+                     <h4 className="text-[10px] text-clChrome uppercase tracking-widest mb-3">{language === 'en' ? 'Live Logistics Flow' : 'Flux Logistique Live'}</h4>
                      <svg viewBox="0 0 800 400" className="w-full h-auto bg-black rounded border border-white/5 p-2">
                           <path d="M150,150 Q400,100 650,150" fill="none" stroke="rgba(212,175,55,0.8)" strokeWidth="2" strokeDasharray="5,5" />
                           <circle cx="150" cy="150" r="10" fill="#C0C0C0" />
                           <circle cx="650" cy="150" r="10" fill="#D4AF37" />
-                          <text x="130" y="180" fill="white" fontSize="24">Milan</text>
-                          <text x="630" y="180" fill="white" fontSize="24">Hub 1CL</text>
+                          <text x="130" y="210" fill="white" fontSize="40">Milan</text>
+                          <text x="610" y="210" fill="white" fontSize="40">Hub 1CL</text>
                      </svg>
-                     <div className="mt-2 text-[10px] text-clGold tracking-widest uppercase">BATCH #102: IN TRANSIT (92%)</div>
+                     <div className="mt-2 text-[9px] text-clGold tracking-widest uppercase">BATCH #102: IN TRANSIT (92%)</div>
                   </div>
 
                   {/* Visual Overrides */}
                   <div className="mb-6">
-                     <h4 className="text-xs text-clChrome uppercase tracking-widest mb-3">Visual Overrides</h4>
+                     <h4 className="text-[10px] text-clChrome uppercase tracking-widest mb-3">{language === 'en' ? 'Visual Overrides' : 'Surplomb Visuel'}</h4>
                      <div className="grid grid-cols-1 gap-2">
-                        <button onClick={toggleGlobalLoupe} className="border border-clGold/30 text-clGold text-[10px] uppercase tracking-widest py-2 hover:bg-clGold/10 transition-colors">
-                          Master Magnifier (x3)
+                        <button onClick={toggleGlobalLoupe} className="border border-clGold/30 text-clGold text-[9px] uppercase tracking-widest py-2 hover:bg-clGold/10 transition-colors">
+                          {language === 'en' ? 'Master Magnifier (x3)' : 'Loupe Maître (x3)'}
                         </button>
-                        <button onClick={() => setMediaHubOpen(true)} className="border border-white/10 text-gray-400 text-[10px] uppercase tracking-widest py-2 hover:bg-white/10 hover:text-white transition-colors">
-                          Compact Media HUD
+                        <button onClick={() => setMediaHubOpen(true)} className="border border-white/10 text-gray-400 text-[9px] uppercase tracking-widest py-2 hover:bg-white/10 hover:text-white transition-colors">
+                          {language === 'en' ? 'Compact Media HUD' : 'HUD Média Compact'}
                         </button>
                      </div>
                   </div>
 
-                  <button onClick={handleForceSync} className="w-full bg-white/5 border border-white/10 text-white text-[10px] font-bold py-3 mb-2 uppercase tracking-widest hover:bg-white hover:text-black transition-colors flex items-center justify-center gap-2">
-                      Force Global Sync (MongoDB)
-                  </button>
+                  <div className="w-full bg-black/50 border border-clGold/20 text-clGold text-[10px] font-bold py-3 mb-2 uppercase tracking-[0.2em] flex items-center justify-center gap-2">
+                      <div className="w-2 h-2 bg-clGold rounded-full animate-pulse shadow-[0_0_8px_rgba(212,175,55,1)]" />
+                      {language === 'en' ? 'SOVEREIGN LINK: AUTOMATED' : 'SOVEREIGN LINK : AUTOMATISÉ'}
+                  </div>
 
-                  {/* Audit Log Terminal */}
-                  {auditLogs.length > 0 && (
-                    <div className="mt-4 bg-black p-3 border border-clGold/20 font-mono text-[9px] text-clGold/80 max-h-32 overflow-y-auto space-y-1">
-                       <p className="text-clChrome mb-2 border-b border-white/5 pb-1">-- SYSTEM AUDIT LOG --</p>
-                       {auditLogs.map((log, i) => (
-                         <p key={i} className={log.includes('ERROR') || log.includes('FAILED') ? 'text-red-500' : ''}>
-                           {log}
-                         </p>
-                       ))}
-                    </div>
-                  )}
+
 
                   <button onClick={handleLogout} className="w-full bg-red-500/10 border border-red-500/30 text-red-500 text-[10px] font-bold py-3 mt-4 uppercase tracking-widest hover:bg-red-500 hover:text-white transition-colors">
-                      Disconnect Session
+                      {t('admin.disconnect')}
                   </button>
                 </motion.div>
               </AnimatePresence>

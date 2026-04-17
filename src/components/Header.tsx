@@ -2,19 +2,20 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useSovereign } from '../context/SovereignContext';
+import { useSovereign } from '../hooks/useSovereign';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
-  const { toggleSidebar, isVoiceConsoleActive, setVoiceConsoleActive } = useSovereign();
+  const { toggleSidebar, isVoiceConsoleActive, setVoiceConsoleActive, language, setLanguage, t } = useSovereign();
   
   const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'Collections', path: '/collections' },
-    { name: 'Philosophy', path: '/philosophy' },
-    { name: 'Sponsors', path: '/sponsors' },
-    { name: 'EMS@Path 4D', path: '/map' }
+    { name: t('nav.home'), path: '/' },
+    { name: t('nav.collections'), path: '/collections' },
+    { name: t('nav.philosophy'), path: '/philosophy' },
+    { name: t('nav.sponsors'), path: '/sponsors' },
+    { name: t('nav.map'), path: '/map' },
+    { name: t('nav.faq'), path: '/faq' }
   ];
 
   return (
@@ -31,12 +32,12 @@ export default function Header() {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex space-x-8">
+          <nav className="hidden md:flex space-x-6 lg:space-x-8">
             {navLinks.map((link) => (
               <Link 
-                key={link.name}
+                key={link.path}
                 to={link.path}
-                className={`text-sm tracking-widest uppercase transition-all duration-300 ${location.pathname === link.path ? 'text-clGold text-shadow-gold' : 'text-gray-400 hover:text-white'}`}
+                className={`text-[10px] lg:text-xs tracking-widest uppercase transition-all duration-300 ${location.pathname === link.path ? 'text-clGold text-shadow-gold' : 'text-gray-400 hover:text-white'}`}
               >
                 {link.name}
               </Link>
@@ -44,15 +45,31 @@ export default function Header() {
           </nav>
 
           <div className="hidden md:flex items-center gap-4">
+            {/* Language Selector */}
+            <div className="flex items-center bg-black/30 border border-white/10 rounded-sm overflow-hidden text-[9px] font-mono tracking-tighter">
+               <button 
+                 onClick={() => setLanguage('en')}
+                 className={`px-2 py-1 transition-colors ${language === 'en' ? 'bg-clGold text-black' : 'text-gray-500 hover:text-white'}`}
+               >
+                 EN
+               </button>
+               <button 
+                 onClick={() => setLanguage('fr')}
+                 className={`px-2 py-1 transition-colors ${language === 'fr' ? 'bg-clGold text-black' : 'text-gray-500 hover:text-white'}`}
+               >
+                 FR
+               </button>
+            </div>
+
             <button 
                onClick={toggleSidebar} 
-               className="border border-clGold/50 text-clGold hover:bg-clGold hover:text-black transition-colors px-4 py-1 text-xs tracking-widest uppercase font-bold"
+               className="border border-clGold/50 text-clGold hover:bg-clGold hover:text-black transition-colors px-3 py-1 text-[10px] tracking-widest uppercase font-bold"
             >
-              Gestion / Admin
+              {t('nav.admin')}
             </button>
             <button 
                onClick={() => setVoiceConsoleActive(!isVoiceConsoleActive)} 
-               className={`text-xl transition-colors ${isVoiceConsoleActive ? 'text-clGold animate-pulse' : 'text-gray-500 hover:text-white'}`}
+               className={`text-lg transition-colors ${isVoiceConsoleActive ? 'text-clGold animate-pulse' : 'text-gray-500 hover:text-white'}`}
                title="Toggle Voice Commands"
             >
               🎙
@@ -61,6 +78,10 @@ export default function Header() {
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center gap-4">
+            <div className="flex items-center bg-black/30 border border-white/10 rounded-sm overflow-hidden text-[9px]">
+               <button onClick={() => setLanguage('en')} className={`px-2 py-1 ${language === 'en' ? 'bg-clGold text-black' : 'text-gray-500'}`}>EN</button>
+               <button onClick={() => setLanguage('fr')} className={`px-2 py-1 ${language === 'fr' ? 'bg-clGold text-black' : 'text-gray-500'}`}>FR</button>
+            </div>
             <button 
                onClick={() => setVoiceConsoleActive(!isVoiceConsoleActive)} 
                className={`text-xl transition-colors ${isVoiceConsoleActive ? 'text-clGold animate-pulse' : 'text-gray-500 hover:text-white'}`}
@@ -86,7 +107,7 @@ export default function Header() {
             <div className="px-4 pt-4 pb-6 space-y-4 flex flex-col">
               {navLinks.map((link) => (
                 <Link
-                  key={link.name}
+                  key={link.path}
                   to={link.path}
                   onClick={() => setIsOpen(false)}
                   className="text-base uppercase tracking-widest text-center py-3 border-b border-white/5 active:bg-white/5"
@@ -94,6 +115,12 @@ export default function Header() {
                   <span className={location.pathname === link.path ? 'text-clGold' : 'text-gray-300'}>{link.name}</span>
                 </Link>
               ))}
+              <button 
+                onClick={() => { toggleSidebar(); setIsOpen(false); }}
+                className="text-clGold uppercase tracking-[0.2em] text-sm py-3 font-bold"
+              >
+                {t('nav.admin')}
+              </button>
             </div>
           </motion.div>
         )}

@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useSovereign } from '../hooks/useSovereign';
 import ProductCard from '../components/ProductCard';
 
 export default function CollectionsPage() {
+  const { t } = useSovereign();
   const [products, setProducts] = useState<any[]>([]);
   const [activeCollection, setActiveCollection] = useState('All');
   const [activeGender, setActiveGender] = useState('All');
@@ -10,7 +12,12 @@ export default function CollectionsPage() {
   const [loading, setLoading] = useState(true);
 
   const collections = ['All', 'Essentials', 'Heritage', 'Workshop Edition'];
-  const genders = ['All', 'Homme', 'Femme', 'Unisex'];
+  const genders = [
+    { id: 'All', label: t('catalog.all') },
+    { id: 'Homme', label: t('catalog.men') },
+    { id: 'Femme', label: t('catalog.women') },
+    { id: 'Unisex', label: t('catalog.unisex') }
+  ];
   const types = ['all', 'tshirt', 'pull', 'jogger', 'jacket'];
 
   useEffect(() => {
@@ -34,17 +41,17 @@ export default function CollectionsPage() {
   });
 
   return (
-    <div className="pt-28 pb-20 px-4 min-h-screen">
+    <div className="pt-24 pb-20 px-4 min-h-screen">
       <div className="max-w-7xl mx-auto">
         
         {/* Header */}
-        <div className="mb-16 text-center">
-          <h1 className="text-4xl md:text-5xl font-serif text-shadow-gold mb-4">THE ARCHIVE</h1>
-          <p className="text-gray-400 tracking-[0.2em] uppercase text-sm">Explore the 1CL Ecosystem</p>
+        <div className="mb-10 text-center">
+          <h1 className="text-4xl md:text-5xl font-serif text-shadow-gold mb-2 tracking-tighter uppercase italic">{t('catalog.title')}</h1>
+          <p className="text-gray-400 tracking-[0.2em] uppercase text-[10px] md:text-xs">{t('catalog.subtitle')}</p>
         </div>
 
         {/* Filters */}
-        <div className="flex flex-col gap-6 mb-12 border-b border-white/10 pb-8">
+        <div className="flex flex-col gap-4 mb-8 border-b border-white/10 pb-6">
           
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             {/* Collection Tabs */}
@@ -53,9 +60,9 @@ export default function CollectionsPage() {
                 <button
                   key={col}
                   onClick={() => setActiveCollection(col)}
-                  className={`whitespace-nowrap uppercase tracking-widest text-xs transition-colors pb-2 border-b-2 ${activeCollection === col ? 'border-clGold text-white' : 'border-transparent text-gray-500 hover:text-gray-300'}`}
+                  className={`whitespace-nowrap uppercase tracking-widest text-[10px] transition-colors pb-2 border-b-2 ${activeCollection === col ? 'border-clGold text-white' : 'border-transparent text-gray-500 hover:text-gray-300'}`}
                 >
-                  {col}
+                  {col === 'All' ? t('catalog.all') : col}
                 </button>
               ))}
             </div>
@@ -64,11 +71,11 @@ export default function CollectionsPage() {
             <div className="flex space-x-4">
               {genders.map(gender => (
                 <button
-                  key={gender}
-                  onClick={() => setActiveGender(gender)}
-                  className={`uppercase tracking-widest text-xs transition-colors ${activeGender === gender ? 'text-clGold font-bold' : 'text-gray-500 hover:text-white'}`}
+                  key={gender.id}
+                  onClick={() => setActiveGender(gender.id)}
+                  className={`uppercase tracking-widest text-[10px] transition-colors ${activeGender === gender.id ? 'text-clGold font-bold' : 'text-gray-500 hover:text-white'}`}
                 >
-                  {gender}
+                  {gender.label}
                 </button>
               ))}
             </div>
@@ -82,7 +89,7 @@ export default function CollectionsPage() {
                 onClick={() => setActiveType(type)}
                 className={`uppercase tracking-widest text-[10px] px-4 py-2 rounded-full border transition-all ${activeType === type ? 'border-clChrome bg-clChrome/10 text-white' : 'border-gray-800 text-gray-500 hover:border-gray-600'}`}
               >
-                {type}
+                {t(`catalog.types.${type}`)}
               </button>
             ))}
           </div>
@@ -111,8 +118,8 @@ export default function CollectionsPage() {
             </AnimatePresence>
             
             {filteredProducts.length === 0 && (
-              <div className="col-span-full text-center py-20 text-gray-500 tracking-widest uppercase">
-                No items found for the selected filters.
+              <div className="col-span-full text-center py-20 text-gray-500 tracking-widest uppercase text-xs">
+                {t('catalog.noResults')}
               </div>
             )}
           </motion.div>

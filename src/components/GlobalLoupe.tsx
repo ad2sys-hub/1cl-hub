@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { useSovereign } from '../context/SovereignContext';
+import { useSovereign } from '../hooks/useSovereign';
 
 export default function GlobalLoupe() {
   const { isGlobalLoupeActive, toggleGlobalLoupe } = useSovereign();
@@ -67,8 +67,7 @@ export default function GlobalLoupe() {
     <div 
       id="global-loupe-container"
       ref={loupeRef}
-      className="fixed pointer-events-none z-[9999] w-72 h-72 rounded-full overflow-hidden border-2 border-clGold shadow-[0_0_50px_rgba(212,175,55,0.5)] bg-clDarkGrey"
-      style={{ left: '-999px', top: '-999px' }}
+      className="fixed pointer-events-none z-[9999] w-72 h-72 rounded-full overflow-hidden border-2 border-clGold shadow-[0_0_50px_rgba(212,175,55,0.5)] bg-clDarkGrey loupe-off-screen"
     >
       <div 
          ref={contentRef}

@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { useSovereign } from '../context/SovereignContext';
+import { useSovereign } from '../hooks/useSovereign';
 
 export default function HomePage() {
-  const { isVaultUnlocked, unlockVault } = useSovereign();
+  const { isVaultUnlocked, unlockVault, t } = useSovereign();
   const [vaultKey, setVaultKey] = useState('');
   
   // Parallax Mechanics
@@ -63,15 +63,19 @@ export default function HomePage() {
           className="text-center z-10"
           style={{ y: yText }}
         >
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif tracking-widest text-shadow-gold mb-4">ABSOLUTE ELEGANCE</h1>
-          <p className="text-gray-400 tracking-[0.3em] uppercase text-sm md:text-base mb-12">The Real Link</p>
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif tracking-widest text-shadow-gold mb-4">
+            {t('hero.title')}
+          </h1>
+          <p className="text-gray-400 tracking-[0.3em] uppercase text-sm md:text-base mb-12">
+            {t('hero.subtitle')}
+          </p>
           
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Link to="/collections" className="px-8 py-4 bg-transparent border border-clGold text-clGold hover:bg-clGold hover:text-black transition-all duration-300 rounded-sm tracking-widest uppercase text-sm shadow-[0_0_15px_rgba(212,175,55,0.2)] hover:shadow-[0_0_30px_rgba(212,175,55,0.6)]">
-              Explore Collections
+              {t('hero.explore')}
             </Link>
             <Link to="/map" className="px-8 py-4 bg-white/5 border border-white/10 hover:border-clChrome hover:bg-white/10 transition-all duration-300 rounded-sm tracking-widest uppercase text-sm backdrop-blur-sm">
-              Enter 1CL Hub
+              {t('hero.enter')}
             </Link>
           </div>
         </motion.div>
@@ -194,7 +198,7 @@ export default function HomePage() {
           className="text-center"
         >
           <p className="text-clGold uppercase tracking-[0.4em] text-xs mb-8">Concept Executed By</p>
-          <img src="/1cl-hub/images/Logos/logo CL v.1.gold.png" alt="Chawblick Music" className="w-48 h-auto mx-auto invert opacity-80 mix-blend-screen" style={{ filter: 'brightness(0) invert(1)'}} />
+          <img src="/1cl-hub/images/Logos/logo CL v.1.gold.png" alt="Chawblick Music" className="w-48 h-auto mx-auto invert opacity-80 mix-blend-screen filter-pure-white" />
         </motion.div>
       </section>
     </div>

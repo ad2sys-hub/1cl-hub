@@ -56,8 +56,42 @@
   
   .glass-panel {
     background-color: rgba(17, 17, 17, 0.8);
+    -webkit-backdrop-filter: blur(12px);
     backdrop-filter: blur(12px);
     border: 1px solid rgba(192, 192, 192, 0.2);
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  /* Utility classes for cinematic UI */
+  .animation-delay-2s {
+    animation-delay: 2s;
+  }
+
+  .filter-pure-white {
+    filter: brightness(0) invert(1);
+  }
+
+  .loupe-off-screen {
+    left: -999px;
+    top: -999px;
+  }
+
+  .play-state-running {
+    animation-play-state: running !important;
+  }
+
+  .play-state-paused {
+    animation-play-state: paused !important;
+  }
+
+  .bg-image-var {
+    background-image: var(--bg-image);
+    background-size: cover;
+    background-position: center;
+  }
+
+  .media-hub-initial {
+    bottom: 100px;
+    left: 30px;
   }
 }

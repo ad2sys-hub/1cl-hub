@@ -1,26 +1,29 @@
 import { motion } from 'framer-motion';
+import { useSovereign } from '../hooks/useSovereign';
 
 export default function PhilosophyPage() {
+  const { t } = useSovereign();
+
   const pillars = [
-    { title: "Authenticity", text: "We do not follow trends. In the studio or the atelier, the process is pure. Every stitch, every beat, is born from a raw desire to create something real." },
-    { title: "Connection", text: "The physical garment is 'The Real Link'. It bridges the gap between the music we create and the community that lives it. A wearable extension of the Chawblick universe." },
-    { title: "Legacy", text: "One Link, All Legacy. Clothes that age with you. Music that stays with you. We are building the sovereign archives of tomorrow." }
+    { title: t('philosophy.pillar1Title'), text: t('philosophy.pillar1Text') },
+    { title: t('philosophy.pillar2Title'), text: t('philosophy.pillar2Text') },
+    { title: t('philosophy.pillar3Title'), text: t('philosophy.pillar3Text') }
   ];
 
   return (
     <div className="pt-28 pb-32 px-4">
       <div className="max-w-4xl mx-auto text-center mb-24">
         <motion.h1 
-          className="text-4xl md:text-6xl font-serif text-shadow-gold mb-6"
+          className="text-4xl md:text-6xl font-serif text-shadow-gold mb-6 tracking-tighter uppercase italic"
           initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}
         >
-          1CL — 1st Class Obsession
+          {t('philosophy.title')}
         </motion.h1>
         <motion.p 
-          className="text-gray-400 text-lg md:text-xl font-light leading-relaxed"
+          className="text-gray-400 text-lg md:text-xl font-light leading-relaxed font-sans"
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3, duration: 1 }}
         >
-          We are not just a clothing brand. We are an ecosystem. A sovereign physical manifestation of auditory art.
+          {t('philosophy.subtitle')}
         </motion.p>
       </div>
 
@@ -42,8 +45,8 @@ export default function PhilosophyPage() {
               </div>
               
               <div className="md:w-1/2 space-y-6">
-                <h3 className="text-3xl font-serif text-clGold">{pillar.title}</h3>
-                <p className="text-gray-300 leading-relaxed text-lg">{pillar.text}</p>
+                <h3 className="text-3xl font-serif text-clGold uppercase tracking-widest">{pillar.title}</h3>
+                <p className="text-gray-300 leading-relaxed text-lg font-light">{pillar.text}</p>
                 <div className="h-[1px] w-24 bg-clChrome/30" />
               </div>
             </motion.div>

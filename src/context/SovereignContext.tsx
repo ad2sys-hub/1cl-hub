@@ -1,7 +1,8 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect } from 'react';
 import type { ReactNode } from 'react';
 import { supabase } from '../lib/supabaseClient';
 import type { Session } from '@supabase/supabase-js';
+import { translations, type Language } from '../translations';
 
 interface SovereignState {
   isSidebarOpen: boolean;
@@ -19,9 +20,12 @@ interface SovereignState {
   isAdminAuthenticated: boolean;
   setAdminAuthenticated: (v: boolean) => void;
   adminSession: Session | null;
+  language: Language;
+  setLanguage: (lang: Language) => void;
+  t: (path: string) => string;
 }
 
-const SovereignContext = createContext<SovereignState | undefined>(undefined);
+export const SovereignContext = createContext<SovereignState | undefined>(undefined);
 
 export function SovereignProvider({ children }: { children: ReactNode }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -34,6 +38,9 @@ export function SovereignProvider({ children }: { children: ReactNode }) {
   // Real Auth Flags
   const [isAdminAuthenticated, setAdminAuthenticated] = useState(false);
   const [adminSession, setAdminSession] = useState<Session | null>(null);
+
+  // Language State (Defaults to English as per user request)
+  const [language, setLanguage] = useState<Language>('en');
 
   useEffect(() => {
     // Check active session on mount
@@ -51,9 +58,28 @@ export function SovereignProvider({ children }: { children: ReactNode }) {
     return () => subscription.unsubscribe();
   }, []);
 
+  // Sync language with DOM for SEO and Browser Auto-Translate prevention
+  useEffect(() => {
+    document.documentElement.setAttribute('lang', language);
+  }, [language]);
+
   const toggleSidebar = () => setIsSidebarOpen(prev => !prev);
   const toggleAgent = () => setIsAgentOpen(prev => !prev);
   const toggleGlobalLoupe = () => setIsGlobalLoupeActive(prev => !prev);
+
+  // Simple Translation Helper
+  const t = (path: string): string => {
+    const keys = path.split('.');
+    let result: any = translations[language];
+    for (const key of keys) {
+      if (result && result[key]) {
+        result = result[key];
+      } else {
+        return path; // Fallback to path string if not found
+      }
+    }
+    return typeof result === 'string' ? result : path;
+  };
 
   const unlockVault = (key: string) => {
     // Fallback logic for the vault (frontend simulation)
@@ -72,17 +98,10 @@ export function SovereignProvider({ children }: { children: ReactNode }) {
       isVaultUnlocked, unlockVault,
       isGlobalLoupeActive, toggleGlobalLoupe,
       isVoiceConsoleActive, setVoiceConsoleActive,
-      isAdminAuthenticated, setAdminAuthenticated, adminSession
+      isAdminAuthenticated, setAdminAuthenticated, adminSession,
+      language, setLanguage, t
     }}>
       {children}
     </SovereignContext.Provider>
   );
-}
-
-export function useSovereign() {
-  const context = useContext(SovereignContext);
-  if (context === undefined) {
-    throw new Error('useSovereign must be used within a SovereignProvider');
-  }
-  return context;
 }

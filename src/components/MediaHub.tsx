@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useSovereign } from '../context/SovereignContext';
+import { useSovereign } from '../hooks/useSovereign';
 
 const playlist = [
   { title: "YOUR ACTIONS KILL ME", artist: "Chawblick", file: "mp3/YOUR ACTIONS KILL ME.mp3", image: "images/JacketSongs/your actions kill me _instru_jacket.png" },
@@ -72,8 +72,7 @@ export default function MediaHub() {
             drag
             dragConstraints={{ left: 0, right: window.innerWidth - 350, top: 0, bottom: window.innerHeight - 400 }}
             dragMomentum={false}
-            className={`fixed z-50 bg-clDarkGrey/90 backdrop-blur-xl border border-white/10 rounded-lg shadow-2xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.5)] ${isMinimized ? 'w-64 h-16' : 'w-80 h-auto'}`}
-            style={{ bottom: 100, left: 30 }}
+            className={`fixed z-50 bg-clDarkGrey/90 backdrop-blur-xl border border-white/10 rounded-lg shadow-2xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.5)] media-hub-initial ${isMinimized ? 'w-64 h-16' : 'w-80 h-auto'}`}
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
@@ -116,7 +115,10 @@ export default function MediaHub() {
                 ) : (
                    <div className="p-6 flex flex-col items-center relative overflow-hidden">
                       {/* Ambient background bloom matching cover art */}
-                      <div className="absolute inset-0 opacity-20 blur-xl scale-150 animate-pulse" style={{ backgroundImage: `url('/1cl-hub/${playlist[trackIdx].image}')`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
+                      <motion.div 
+                         className="absolute inset-0 opacity-20 blur-xl scale-150 animate-pulse bg-cover bg-center" 
+                         animate={{ backgroundImage: `url('/1cl-hub/${playlist[trackIdx].image}')` }}
+                      />
 
                       {/* Animated Vinyl Cover Art */}
                       <motion.div
@@ -129,8 +131,7 @@ export default function MediaHub() {
                         <img 
                           src={"/1cl-hub/" + playlist[trackIdx].image} 
                           alt={playlist[trackIdx].title}
-                          className="w-full h-full object-cover animate-[spin_10s_linear_infinite]" 
-                          style={{ animationPlayState: isPlaying ? 'running' : 'paused' }}
+                          className={`w-full h-full object-cover animate-[spin_10s_linear_infinite] ${isPlaying ? 'play-state-running' : 'play-state-paused'}`} 
                         />
                         {/* Vinyl inner hole dot */}
                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-black rounded-full border border-white/20" />

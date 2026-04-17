@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useSovereign } from '../context/SovereignContext';
+import { useSovereign } from '../hooks/useSovereign';
 import { useNavigate } from 'react-router-dom';
 
 const knowledgeBase: Record<string, { reply: string, action?: string }> = {
@@ -19,14 +19,17 @@ const knowledgeBase: Record<string, { reply: string, action?: string }> = {
 };
 
 export default function IntelligentAgent() {
-  const { isAgentOpen, toggleAgent, toggleSidebar } = useSovereign();
-  const [messages, setMessages] = useState<{ text: string; sender: 'ai' | 'user' }[]>([
-    { text: "Bienvenue dans l'écosystème 1CL. Je suis The Curator. Comment puis-je vous guider ?", sender: 'ai' }
-  ]);
+  const { isAgentOpen, toggleAgent, toggleSidebar, language, t } = useSovereign();
+  const [messages, setMessages] = useState<{ text: string; sender: 'ai' | 'user' }[]>([]);
   const [inputVal, setInputVal] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const chatBodyRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
+
+  // Initialize welcome message when language changes or on mount
+  useEffect(() => {
+    setMessages([{ text: t('agent.welcome'), sender: 'ai' }]);
+  }, [language]);
 
   useEffect(() => {
     if (chatBodyRef.current) {
@@ -46,42 +49,50 @@ export default function IntelligentAgent() {
       let found = false;
       const lower = txt.toLowerCase();
       
-      // Dynamic Actions based on context
-      if (lower.includes('déconnecter') || lower.includes('lock')) {
-          setMessages(prev => [...prev, { text: "Protocoles de sécurité activés. Session administrative révoquée.", sender: 'ai' }]);
-          // We can't call handleLogout directly here easily without more plumbing, 
-          // but we can at least suggest it or trigger a context change if we exposed it.
-          // For now, let's just use the reply.
-          found = true;
-      }
+      // Keywords mapping for both languages
+      const mapping = {
+          vault: { en: "vault", fr: "vault" },
+          logistics: { en: "logistics", fr: "logistique" },
+          map: { en: "map", fr: "carte" },
+          iam: { en: "iam", fr: "iam" },
+          link: { en: "sovereign", fr: "sovereign" },
+          who: { en: "who", fr: "qui" },
+          brand: { en: "1cl", fr: "1cl" },
+          lock: { en: "lock", fr: "déconnecter" }
+      };
 
-      for (const key in knowledgeBase) {
-        if (lower.includes(key)) {
-          const entry = knowledgeBase[key];
-          setMessages(prev => [...prev, { text: entry.reply, sender: 'ai' }]);
-          
-          if (entry.action === "open_admin") toggleSidebar();
-          if (entry.action === "unlock_vault") {
-             navigate('/');
-             setTimeout(() => {
-               document.getElementById("vaultPortal")?.scrollIntoView({ behavior: 'smooth' });
-             }, 500);
-          }
-          if (entry.action === "nav_map") navigate('/map');
-          
+      if (lower.includes(mapping.lock[language])) {
+          setMessages(prev => [...prev, { text: t('agent.deconnect'), sender: 'ai' }]);
           found = true;
-          break;
-        }
+      } else if (lower.includes(mapping.vault[language])) {
+          setMessages(prev => [...prev, { text: language === 'en' ? "Accessing the Vault digital gate..." : "Accès au portail digital du Vault...", sender: 'ai' }]);
+          navigate('/');
+          setTimeout(() => document.getElementById("vaultPortal")?.scrollIntoView({ behavior: 'smooth' }), 500);
+          found = true;
+      } else if (lower.includes(mapping.logistics[language])) {
+          setMessages(prev => [...prev, { text: language === 'en' ? "Opening EMS Logistics center." : "Ouverture du centre logistique EMS.", sender: 'ai' }]);
+          toggleSidebar();
+          found = true;
+      } else if (lower.includes(mapping.map[language])) {
+          setMessages(prev => [...prev, { text: language === 'en' ? "Initializing 4D Path Map..." : "Initialisation de la carte 4D...", sender: 'ai' }]);
+          navigate('/map');
+          found = true;
+      } else if (lower.includes(mapping.link[language])) {
+          setMessages(prev => [...prev, { text: t('agent.sovereignLink'), sender: 'ai' }]);
+          found = true;
+      } else if (lower.includes(mapping.iam[language])) {
+          setMessages(prev => [...prev, { text: t('agent.iam'), sender: 'ai' }]);
+          found = true;
+      } else if (lower.includes(mapping.who[language])) {
+          setMessages(prev => [...prev, { text: t('agent.whoAreYou'), sender: 'ai' }]);
+          found = true;
+      } else if (lower.includes(mapping.brand[language])) {
+          setMessages(prev => [...prev, { text: t('agent.whatIs1CL'), sender: 'ai' }]);
+          found = true;
       }
       
       if (!found) {
-        if (lower.includes("qui es-tu") || lower.includes("who are you")) {
-           setMessages(prev => [...prev, { text: "Je suis The Curator, l'intelligence souveraine de l'écosystème 1CL. Ma mission est de veiller sur le lien entre le son et l'objet.", sender: 'ai' }]);
-        } else if (lower.includes("1cl") || lower.includes("marque")) {
-           setMessages(prev => [...prev, { text: "1CL Collection est l'éclosion du Street-Luxe. Un univers où la musique de Chawblick rencontre l'artisanat textile d'exception.", sender: 'ai' }]);
-        } else {
-           setMessages(prev => [...prev, { text: "Analyse des données 1CL en cours... Je n'ai pas de réponse précise. Essayez de me parler du Vault, de la Logistique ou de l'Atelier.", sender: 'ai' }]);
-        }
+        setMessages(prev => [...prev, { text: t('agent.unknown'), sender: 'ai' }]);
       }
     }, 1500);
   };
@@ -112,7 +123,7 @@ export default function IntelligentAgent() {
             <div className="bg-black/50 p-4 border-b border-clGold/30 flex justify-between items-center">
               <div>
                 <h4 className="text-clGold font-serif text-sm">SOVEREIGN IA</h4>
-                <p className="text-[10px] text-gray-500 uppercase tracking-widest">Connecté au réseau EMS</p>
+                <p className="text-[10px] text-gray-500 uppercase tracking-widest">{language === 'en' ? 'CONNECTED TO EMS NET' : 'CONNECTÉ AU RÉSEAU EMS'}</p>
               </div>
               <button onClick={toggleAgent} className="text-gray-400 hover:text-white transition-colors">✕</button>
             </div>
@@ -140,7 +151,7 @@ export default function IntelligentAgent() {
                 value={inputVal}
                 onChange={e => setInputVal(e.target.value)}
                 onKeyDown={e => e.key === 'Enter' && handleSend()}
-                placeholder="Message Sovereign..."
+                placeholder={t('agent.placeholder')}
                 className="flex-grow bg-transparent text-sm text-white placeholder-gray-600 focus:outline-none px-2"
               />
               <button onClick={handleSend} className="w-8 h-8 flex items-center justify-center bg-white/5 hover:bg-clGold/20 rounded-lg text-clGold transition-colors">

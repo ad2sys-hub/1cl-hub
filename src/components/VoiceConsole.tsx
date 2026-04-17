@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useSovereign } from '../context/SovereignContext';
+import { useSovereign } from '../hooks/useSovereign';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function VoiceConsole() {

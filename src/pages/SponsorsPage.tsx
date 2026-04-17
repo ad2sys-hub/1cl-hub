@@ -1,16 +1,33 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useSovereign } from '../hooks/useSovereign';
+import { supabase } from '../lib/supabaseClient';
 
 export default function SponsorsPage() {
-  const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
+  const { t } = useSovereign();
+  const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setFormStatus('submitting');
-    // Simulate secure network transaction
-    setTimeout(() => {
+    
+    const formData = new FormData(e.currentTarget);
+    const payload = {
+      entity: formData.get('entity'),
+      contact: formData.get('contact'),
+      synergy: formData.get('synergy'),
+      value_proposal: formData.get('value_proposal'),
+    };
+
+    const { error } = await supabase.from('partnership_inquiries').insert([payload]);
+
+    if (error) {
+      console.error("Sovereign Link Error:", error);
+      setFormStatus('error');
+      setTimeout(() => setFormStatus('idle'), 3000);
+    } else {
       setFormStatus('success');
-    }, 2500);
+    }
   };
 
   return (
@@ -19,7 +36,7 @@ export default function SponsorsPage() {
       {/* Background Graphic Effects - Particles / Light beams */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-clGold/10 rounded-full blur-[100px] animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-clChrome/5 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: '2s' }} />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-clChrome/5 rounded-full blur-[100px] animate-pulse animation-delay-2s" />
       </div>
 
       <div className="max-w-4xl mx-auto w-full relative z-10">
@@ -29,9 +46,9 @@ export default function SponsorsPage() {
           initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}
         >
           <div className="inline-block border border-clGold/30 px-4 py-2 mb-6">
-            <span className="text-clGold text-xs uppercase tracking-widest font-bold">Partner Portal</span>
+            <span className="text-clGold text-xs uppercase tracking-widest font-bold">{t('sponsors.subtitle')}</span>
           </div>
-          <h1 className="text-4xl md:text-6xl font-serif mb-6 px-2">SYNERGY & SPONSORSHIP</h1>
+          <h1 className="text-4xl md:text-6xl font-serif mb-6 px-2">{t('sponsors.title')}</h1>
           <p className="text-gray-400 text-lg leading-relaxed max-w-2xl mx-auto">
             1CL is a nexus between high-end music production and premium physical artifacts. We seek visionary partners to scale the "Sovereign" ecosystem.
           </p>
@@ -77,17 +94,17 @@ export default function SponsorsPage() {
                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                      <div className="flex flex-col space-y-2">
                        <label className="text-[10px] text-clGold uppercase tracking-widest font-bold">Entité / Société</label>
-                       <input required type="text" className="bg-black/50 border border-white/10 focus:border-clGold/50 text-white p-3 text-sm focus:outline-none transition-colors" placeholder="Nom de l'entreprise" />
+                       <input required name="entity" type="text" className="bg-black/50 border border-white/10 focus:border-clGold/50 text-white p-3 text-sm focus:outline-none transition-colors" placeholder="Nom de l'entreprise" />
                      </div>
                      <div className="flex flex-col space-y-2">
                        <label className="text-[10px] text-clGold uppercase tracking-widest font-bold">Contact Officiel</label>
-                       <input required type="email" className="bg-black/50 border border-white/10 focus:border-clGold/50 text-white p-3 text-sm focus:outline-none transition-colors" placeholder="Email professionnel" />
+                       <input required name="contact" type="email" className="bg-black/50 border border-white/10 focus:border-clGold/50 text-white p-3 text-sm focus:outline-none transition-colors" placeholder="Email professionnel" />
                      </div>
                    </div>
 
                    <div className="flex flex-col space-y-2">
                      <label className="text-[10px] text-clGold uppercase tracking-widest font-bold">Secteur de Synergie</label>
-                     <select className="bg-black/50 border border-white/10 focus:border-clGold/50 text-white p-3 text-sm focus:outline-none transition-colors appearance-none">
+                     <select name="synergy" title="Secteur de Synergie" className="bg-black/50 border border-white/10 focus:border-clGold/50 text-white p-3 text-sm focus:outline-none transition-colors appearance-none">
                        <option value="placement">Placement Produit & Clip Vidéo</option>
                        <option value="textile">Fourniture Textile / Manufacturier</option>
                        <option value="tech">Technologie (Web3, NFC, IA)</option>
@@ -97,7 +114,7 @@ export default function SponsorsPage() {
 
                    <div className="flex flex-col space-y-2">
                      <label className="text-[10px] text-clGold uppercase tracking-widest font-bold">Proposition de Valeur</label>
-                     <textarea required rows={4} className="bg-black/50 border border-white/10 focus:border-clGold/50 text-white p-3 text-sm focus:outline-none transition-colors resize-none" placeholder="Brève description de la synergie envisagée..."></textarea>
+                     <textarea required name="value_proposal" rows={4} className="bg-black/50 border border-white/10 focus:border-clGold/50 text-white p-3 text-sm focus:outline-none transition-colors resize-none" placeholder="Brève description de la synergie envisagée..."></textarea>
                    </div>
 
                    <button type="submit" className="self-center px-12 py-4 bg-transparent border border-clGold text-clGold font-semibold uppercase tracking-widest text-sm hover:bg-clGold hover:text-black transition-all shadow-[0_0_15px_rgba(212,175,55,0.2)] hover:shadow-[0_0_30px_rgba(212,175,55,0.6)]">
@@ -134,6 +151,23 @@ export default function SponsorsPage() {
                    </button>
                  </motion.div>
                )}
+
+               {formStatus === 'error' && (
+                  <motion.div 
+                    key="error"
+                    initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}
+                    className="relative z-10 flex flex-col items-center justify-center py-20 text-center"
+                  >
+                    <div className="w-20 h-20 bg-red-500/10 rounded-full flex items-center justify-center mb-6 shadow-[0_0_30px_rgba(239,68,68,0.3)]">
+                      <span className="text-4xl text-red-500">✕</span>
+                    </div>
+                    <h3 className="text-2xl font-serif text-white mb-2">ERREUR DE TRANSMISSION</h3>
+                    <p className="text-gray-400 mb-8">Vérifiez vos identifiants réseau ou réessayez plus tard.</p>
+                    <button onClick={() => setFormStatus('idle')} className="text-clGold border-b border-clGold/30 pb-1 text-xs uppercase tracking-widest hover:border-clGold transition-colors">
+                      Réessayer
+                    </button>
+                  </motion.div>
+                )}
              </AnimatePresence>
           </div>
         </motion.div>

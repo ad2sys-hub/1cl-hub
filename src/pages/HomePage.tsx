@@ -1,11 +1,17 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useSovereign } from '../context/SovereignContext';
 
 export default function HomePage() {
   const { isVaultUnlocked, unlockVault } = useSovereign();
   const [vaultKey, setVaultKey] = useState('');
+  
+  // Parallax Mechanics
+  const { scrollY } = useScroll();
+  const yLogo = useTransform(scrollY, [0, 800], [0, -150]);
+  const yText = useTransform(scrollY, [0, 800], [0, 300]);
+  const opacityBg = useTransform(scrollY, [0, 500], [0.2, 0]);
 
   const handleUnlock = () => {
     const success = unlockVault(vaultKey);
@@ -17,17 +23,21 @@ export default function HomePage() {
   return (
     <div className="w-full">
       {/* 1. Hero Section */}
-      <section className="relative h-screen flex flex-col items-center justify-center pt-20 px-4">
-        {/* Background ambient glow */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-20 pointer-events-none">
+      <section className="relative h-screen flex flex-col items-center justify-center pt-20 px-4 overflow-hidden">
+        {/* Background ambient glow with dynamic fade */}
+        <motion.div 
+           className="absolute inset-0 flex items-center justify-center pointer-events-none"
+           style={{ opacity: opacityBg }}
+        >
           <div className="w-[60vw] h-[60vw] bg-clGold rounded-full blur-[150px] mix-blend-screen" />
-        </div>
+        </motion.div>
 
         <motion.div 
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 1.5, ease: "easeOut" }}
           className="relative z-10 w-48 h-48 md:w-64 md:h-64 mb-8"
+          style={{ y: yLogo }}
         >
           {/* Logo Morph Hack via Opacity animation in loop */}
           <motion.img 
@@ -51,6 +61,7 @@ export default function HomePage() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.5, duration: 1 }}
           className="text-center z-10"
+          style={{ y: yText }}
         >
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif tracking-widest text-shadow-gold mb-4">ABSOLUTE ELEGANCE</h1>
           <p className="text-gray-400 tracking-[0.3em] uppercase text-sm md:text-base mb-12">The Real Link</p>

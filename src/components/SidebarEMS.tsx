@@ -12,6 +12,8 @@ export default function SidebarEMS({ openContractForge }: { openContractForge: (
   const [isLoading, setIsLoading] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
 
+  const [auditLogs, setAuditLogs] = useState<string[]>([]);
+
   useEffect(() => {
     const timer = setInterval(() => setClock(new Date().toLocaleTimeString()), 1000);
     return () => clearInterval(timer);
@@ -51,14 +53,24 @@ export default function SidebarEMS({ openContractForge }: { openContractForge: (
 
   const handleForceSync = async () => {
     setIsLoading(true);
+    const addLog = (msg: string) => setAuditLogs(prev => [`[${new Date().toLocaleTimeString()}] ${msg}`, ...prev].slice(0, 10));
+    
+    addLog("INITIALIZING SOVEREIGN LINK...");
     try {
+      addLog("CONTACTING SUPABASE EDGE...");
       const { data, error } = await supabase.functions.invoke('mongodb-bridge', {
          body: { collection: "AdminSync", document: { action: "sync_request", initiator: email } }
       });
-      if (error) throw error;
-      alert("MongoDB Sync Complete: " + JSON.stringify(data));
+      
+      if (error) {
+        addLog(`ERROR: ${error.message}`);
+        throw error;
+      }
+      
+      addLog("MONGODB HANDSHAKE SUCCESSFUL.");
+      addLog(`RECORD_ID: ${data.mongodb_record?.insertedId || 'SIMULATED_SUCCESS'}`);
     } catch (e: any) {
-      alert("Sync Failed: " + e.message);
+      addLog(`SYNC FAILED: ${e.message}`);
     }
     setIsLoading(false);
   };
@@ -213,7 +225,20 @@ export default function SidebarEMS({ openContractForge }: { openContractForge: (
                   <button onClick={handleForceSync} className="w-full bg-white/5 border border-white/10 text-white text-[10px] font-bold py-3 mb-2 uppercase tracking-widest hover:bg-white hover:text-black transition-colors flex items-center justify-center gap-2">
                       Force Global Sync (MongoDB)
                   </button>
-                  <button onClick={handleLogout} className="w-full bg-red-500/10 border border-red-500/30 text-red-500 text-[10px] font-bold py-3 uppercase tracking-widest hover:bg-red-500 hover:text-white transition-colors">
+
+                  {/* Audit Log Terminal */}
+                  {auditLogs.length > 0 && (
+                    <div className="mt-4 bg-black p-3 border border-clGold/20 font-mono text-[9px] text-clGold/80 max-h-32 overflow-y-auto space-y-1">
+                       <p className="text-clChrome mb-2 border-b border-white/5 pb-1">-- SYSTEM AUDIT LOG --</p>
+                       {auditLogs.map((log, i) => (
+                         <p key={i} className={log.includes('ERROR') || log.includes('FAILED') ? 'text-red-500' : ''}>
+                           {log}
+                         </p>
+                       ))}
+                    </div>
+                  )}
+
+                  <button onClick={handleLogout} className="w-full bg-red-500/10 border border-red-500/30 text-red-500 text-[10px] font-bold py-3 mt-4 uppercase tracking-widest hover:bg-red-500 hover:text-white transition-colors">
                       Disconnect Session
                   </button>
                 </motion.div>

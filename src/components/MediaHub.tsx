@@ -3,10 +3,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useSovereign } from '../context/SovereignContext';
 
 const playlist = [
-  { title: "YOUR ACTIONS KILL ME", artist: "Chawblick", file: "mp3/YOUR ACTIONS KILL ME.mp3" },
-  { title: "There Is Just a Simple Thing", artist: "Chawblick", file: "mp3/There Is Just a Simple Thing.mp3" },
-  { title: "I See In Her Eyes", artist: "Chawblick", file: "mp3/i see in her eyes.mp3" },
-  { title: "She Is My Boo", artist: "Chawblick", file: "mp3/she is my boo.mp3" }
+  { title: "YOUR ACTIONS KILL ME", artist: "Chawblick", file: "mp3/YOUR ACTIONS KILL ME.mp3", image: "images/JacketSongs/your actions kill me _instru_jacket.png" },
+  { title: "There Is Just a Simple Thing", artist: "Chawblick", file: "mp3/There Is Just a Simple Thing.mp3", image: "images/JacketSongs/Jacket_there-is-one thing-.png" },
+  { title: "I See In Her Eyes", artist: "Chawblick", file: "mp3/i see in her eyes.mp3", image: "images/JacketSongs/i see in yer eyes_jacket.png" },
+  { title: "She Is My Boo", artist: "Chawblick", file: "mp3/she is my boo.mp3", image: "images/JacketSongs/she is my boo_jacket1.png" },
+  { title: "When I See This", artist: "Chawblick", file: "mp3/when i see this.mp3", image: "images/JacketSongs/when i see this _jacket.png" },
+  { title: "Civilian Service", artist: "Chawblick", file: "mp3/Civilian Service-mp3_reg.mp3", image: "images/JacketSongs/civilian service_jacket.png" }
 ];
 
 export default function MediaHub() {
@@ -112,14 +114,34 @@ export default function MediaHub() {
                       loading="lazy" title="Spotify"
                    />
                 ) : (
-                   <div className="p-6 flex flex-col items-center">
-                      <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-clGold to-black mb-4 shadow-[0_0_20px_rgba(212,175,55,0.4)] animate-[spin_4s_linear_infinite]" style={{ animationPlayState: isPlaying ? 'running' : 'paused' }} />
-                      <h4 className="text-white text-center font-serif truncate w-full px-4">{playlist[trackIdx].title}</h4>
-                      <p className="text-xs text-clGold tracking-widest uppercase mb-6">{playlist[trackIdx].artist}</p>
+                   <div className="p-6 flex flex-col items-center relative overflow-hidden">
+                      {/* Ambient background bloom matching cover art */}
+                      <div className="absolute inset-0 opacity-20 blur-xl scale-150 animate-pulse" style={{ backgroundImage: `url('/1cl-hub/${playlist[trackIdx].image}')`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
+
+                      {/* Animated Vinyl Cover Art */}
+                      <motion.div
+                        key={trackIdx}
+                        initial={{ opacity: 0, scale: 0.8, rotate: -30 }}
+                        animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                        transition={{ duration: 0.8, type: "spring", bounce: 0.5 }}
+                        className="w-24 h-24 rounded-full overflow-hidden mb-4 shadow-[0_0_30px_rgba(212,175,55,0.4)] border-2 border-clGold relative z-10"
+                      >
+                        <img 
+                          src={"/1cl-hub/" + playlist[trackIdx].image} 
+                          alt={playlist[trackIdx].title}
+                          className="w-full h-full object-cover animate-[spin_10s_linear_infinite]" 
+                          style={{ animationPlayState: isPlaying ? 'running' : 'paused' }}
+                        />
+                        {/* Vinyl inner hole dot */}
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-black rounded-full border border-white/20" />
+                      </motion.div>
+
+                      <h4 className="text-white text-center font-serif truncate w-full px-4 relative z-10">{playlist[trackIdx].title}</h4>
+                      <p className="text-xs text-clGold tracking-widest uppercase mb-6 relative z-10">{playlist[trackIdx].artist}</p>
                       
-                      <div className="flex items-center gap-6">
+                      <div className="flex items-center gap-6 relative z-10">
                         <button onClick={prevTrack} className="text-gray-400 hover:text-white transition-colors text-xl">⏮</button>
-                        <button onClick={togglePlay} className="w-12 h-12 bg-clGold text-black rounded-full flex items-center justify-center text-xl hover:bg-white transition-colors">
+                        <button onClick={togglePlay} className="w-12 h-12 bg-clGold text-black rounded-full flex items-center justify-center text-xl hover:bg-white transition-colors shadow-[0_0_15px_rgba(212,175,55,0.3)]">
                           {isPlaying ? '⏸' : '▶'}
                         </button>
                         <button onClick={nextTrack} className="text-gray-400 hover:text-white transition-colors text-xl">⏭</button>

@@ -24,6 +24,7 @@ export default function IntelligentAgent() {
     { text: "Bienvenue dans l'écosystème 1CL. Je suis The Curator. Comment puis-je vous guider ?", sender: 'ai' }
   ]);
   const [inputVal, setInputVal] = useState('');
+  const [isTyping, setIsTyping] = useState(false);
   const chatBodyRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
@@ -31,18 +32,29 @@ export default function IntelligentAgent() {
     if (chatBodyRef.current) {
       chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
     }
-  }, [messages]);
+  }, [messages, isTyping]);
 
   const handleSend = () => {
     if (!inputVal.trim()) return;
     const txt = inputVal.trim();
     setMessages(prev => [...prev, { text: txt, sender: 'user' }]);
     setInputVal('');
+    setIsTyping(true);
 
     setTimeout(() => {
+      setIsTyping(false);
       let found = false;
       const lower = txt.toLowerCase();
       
+      // Dynamic Actions based on context
+      if (lower.includes('déconnecter') || lower.includes('lock')) {
+          setMessages(prev => [...prev, { text: "Protocoles de sécurité activés. Session administrative révoquée.", sender: 'ai' }]);
+          // We can't call handleLogout directly here easily without more plumbing, 
+          // but we can at least suggest it or trigger a context change if we exposed it.
+          // For now, let's just use the reply.
+          found = true;
+      }
+
       for (const key in knowledgeBase) {
         if (lower.includes(key)) {
           const entry = knowledgeBase[key];
@@ -63,9 +75,15 @@ export default function IntelligentAgent() {
       }
       
       if (!found) {
-        setMessages(prev => [...prev, { text: "Recherche en cours... Pouvez-vous préciser si vous parlez du Vault, de la Logistique ou de la Map ?", sender: 'ai' }]);
+        if (lower.includes("qui es-tu") || lower.includes("who are you")) {
+           setMessages(prev => [...prev, { text: "Je suis The Curator, l'intelligence souveraine de l'écosystème 1CL. Ma mission est de veiller sur le lien entre le son et l'objet.", sender: 'ai' }]);
+        } else if (lower.includes("1cl") || lower.includes("marque")) {
+           setMessages(prev => [...prev, { text: "1CL Collection est l'éclosion du Street-Luxe. Un univers où la musique de Chawblick rencontre l'artisanat textile d'exception.", sender: 'ai' }]);
+        } else {
+           setMessages(prev => [...prev, { text: "Analyse des données 1CL en cours... Je n'ai pas de réponse précise. Essayez de me parler du Vault, de la Logistique ou de l'Atelier.", sender: 'ai' }]);
+        }
       }
-    }, 600);
+    }, 1500);
   };
 
   return (
@@ -106,6 +124,13 @@ export default function IntelligentAgent() {
                   {m.text}
                 </div>
               ))}
+              {isTyping && (
+                <div className="bg-clGold/10 text-gray-300 border border-clGold/20 p-3 rounded-lg self-start mr-auto flex gap-1 items-center">
+                  <span className="w-1.5 h-1.5 bg-clGold rounded-full animate-bounce [animation-delay:-0.3s]"></span>
+                  <span className="w-1.5 h-1.5 bg-clGold rounded-full animate-bounce [animation-delay:-0.15s]"></span>
+                  <span className="w-1.5 h-1.5 bg-clGold rounded-full animate-bounce"></span>
+                </div>
+              )}
             </div>
 
             {/* Footer / Input */}

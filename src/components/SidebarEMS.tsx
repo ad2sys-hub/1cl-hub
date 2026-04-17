@@ -10,6 +10,7 @@ export default function SidebarEMS({ openContractForge }: { openContractForge: (
   const [password, setPassword] = useState('');
   const [authError, setAuthError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isSignUp, setIsSignUp] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => setClock(new Date().toLocaleTimeString()), 1000);
@@ -21,13 +22,25 @@ export default function SidebarEMS({ openContractForge }: { openContractForge: (
     setIsLoading(true);
     setAuthError('');
     
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-
-    if (error) {
-      setAuthError(error.message);
+    if (isSignUp) {
+       const { error } = await supabase.auth.signUp({
+          email,
+          password,
+       });
+       if (error) {
+          setAuthError(error.message);
+       } else {
+          alert("Registration request sent! Check your email for verification.");
+          setIsSignUp(false);
+       }
+    } else {
+       const { error } = await supabase.auth.signInWithPassword({
+          email,
+          password,
+       });
+       if (error) {
+          setAuthError(error.message);
+       }
     }
     setIsLoading(false);
   };
@@ -117,7 +130,14 @@ export default function SidebarEMS({ openContractForge }: { openContractForge: (
                        />
                     </div>
                     <button type="submit" className="w-full bg-clGold text-black font-bold py-4 uppercase tracking-widest text-sm hover:bg-white transition-colors mt-4 shadow-[0_0_15px_rgba(212,175,55,0.2)] hover:shadow-[0_0_30px_rgba(212,175,55,0.6)]">
-                      VERIFY PROTOCOL
+                      {isSignUp ? "INITIALIZE SECURITY CONTEXT" : "VERIFY PROTOCOL"}
+                    </button>
+                    <button 
+                       type="button"
+                       onClick={() => setIsSignUp(!isSignUp)}
+                       className="w-full text-[10px] text-gray-500 hover:text-clGold transition-colors tracking-widest uppercase mt-2"
+                    >
+                       {isSignUp ? "Already identified? Back to Login" : "No Identity? Create Admin Portal"}
                     </button>
                  </form>
               </div>

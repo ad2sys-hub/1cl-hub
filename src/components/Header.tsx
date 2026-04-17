@@ -1,11 +1,13 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Hexagon } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useSovereign } from '../context/SovereignContext';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const { toggleSidebar, isVoiceConsoleActive, setVoiceConsoleActive } = useSovereign();
   
   const navLinks = [
     { name: 'Home', path: '/' },
@@ -41,8 +43,30 @@ export default function Header() {
             ))}
           </nav>
 
+          <div className="hidden md:flex items-center gap-4">
+            <button 
+               onClick={toggleSidebar} 
+               className="border border-clGold/50 text-clGold hover:bg-clGold hover:text-black transition-colors px-4 py-1 text-xs tracking-widest uppercase font-bold"
+            >
+              Gestion / Admin
+            </button>
+            <button 
+               onClick={() => setVoiceConsoleActive(!isVoiceConsoleActive)} 
+               className={`text-xl transition-colors ${isVoiceConsoleActive ? 'text-clGold animate-pulse' : 'text-gray-500 hover:text-white'}`}
+               title="Toggle Voice Commands"
+            >
+              🎙
+            </button>
+          </div>
+
           {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center">
+          <div className="md:hidden flex items-center gap-4">
+            <button 
+               onClick={() => setVoiceConsoleActive(!isVoiceConsoleActive)} 
+               className={`text-xl transition-colors ${isVoiceConsoleActive ? 'text-clGold animate-pulse' : 'text-gray-500 hover:text-white'}`}
+            >
+              🎙
+            </button>
             <button onClick={() => setIsOpen(!isOpen)} className="text-gray-300 hover:text-white focus:outline-none">
               {isOpen ? <X size={28} /> : <Menu size={28} />}
             </button>

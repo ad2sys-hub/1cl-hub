@@ -1,15 +1,36 @@
 import { Outlet } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useState } from 'react';
+
+// Components
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import AnimatedLine from '../components/AnimatedLine';
 
+// Overlays
+import IntelligentAgent from '../components/IntelligentAgent';
+import MediaHub from '../components/MediaHub';
+import VoiceConsole from '../components/VoiceConsole';
+import GlobalLoupe from '../components/GlobalLoupe';
+import SidebarEMS from '../components/SidebarEMS';
+import ContractModal from '../components/ContractModal';
+
 export default function MainLayout() {
+  const [isContractOpen, setIsContractOpen] = useState(false);
+
   return (
     <div className="min-h-screen flex flex-col bg-clBlack text-white w-full">
       <AnimatedLine />
       <Header />
       
+      {/* Sovereignty Overlays */}
+      <GlobalLoupe />
+      <VoiceConsole />
+      <IntelligentAgent />
+      <MediaHub />
+      <SidebarEMS openContractForge={() => setIsContractOpen(true)} />
+      <ContractModal isOpen={isContractOpen} onClose={() => setIsContractOpen(false)} />
+
       <main className="flex-grow w-full relative overflow-hidden">
         <motion.div
           initial={{ opacity: 0, y: 20, filter: 'blur(10px)' }}

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { useParams } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function ProductPage() {
   const { id } = useParams();
@@ -8,6 +8,8 @@ export default function ProductPage() {
   const [activeVariant, setActiveVariant] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [inLookbook, setInLookbook] = useState(false);
+  const [sizeGuideOpen, setSizeGuideOpen] = useState(false);
+  const [specModalOpen, setSpecModalOpen] = useState(false);
 
   useEffect(() => {
     fetch('/1cl-hub/data/catalog.json')
@@ -93,18 +95,77 @@ export default function ProductPage() {
             </div>
 
             {/* Action */}
-            <div className="pt-8">
+            <div className="pt-8 space-y-4">
               <button 
                 onClick={() => setInLookbook(!inLookbook)}
                 className={`w-full py-5 border text-sm uppercase tracking-widest transition-all duration-300 ${inLookbook ? 'bg-white text-black border-white' : 'bg-transparent border-clGold text-clGold hover:bg-clGold/10 hover:shadow-[0_0_20px_rgba(212,175,55,0.3)]'}`}
               >
                 {inLookbook ? '✓ In Lookbook' : 'Add to Lookbook'}
               </button>
+
+              <div className="flex gap-4">
+                 <button onClick={() => setSizeGuideOpen(true)} className="w-1/2 py-3 border border-white/20 text-gray-300 hover:text-white hover:border-white text-xs uppercase tracking-widest transition-colors">
+                    Size Guide
+                 </button>
+                 <button onClick={() => setSpecModalOpen(true)} className="w-1/2 py-3 border border-clChrome/30 text-clChrome hover:text-white hover:border-clChrome text-xs uppercase tracking-widest transition-colors">
+                    Production Specs
+                 </button>
+              </div>
             </div>
-            
           </div>
         </motion.div>
       </div>
+
+      {/* MODALS */}
+      <AnimatePresence>
+        {sizeGuideOpen && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+            <motion.div className="absolute inset-0 bg-black/80 backdrop-blur-md" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setSizeGuideOpen(false)} />
+            <motion.div className="relative bg-[#111] border border-clGold/50 w-full max-w-2xl max-h-[90vh] overflow-y-auto p-8" initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 50 }}>
+              <button onClick={() => setSizeGuideOpen(false)} className="absolute top-4 right-4 text-gray-400 hover:text-white">✕</button>
+              <h2 className="text-2xl font-serif text-clGold text-center mb-6">Catalogue des Tailles — 1CL</h2>
+              
+              <h4 className="mb-2 text-white border-b border-white/10 pb-2">🧥 Hauts (T‑Shirt, Sweat, Hoodie, Pull)</h4>
+              <table className="w-full text-xs text-left text-gray-400 mb-6">
+                 <thead><tr className="text-gray-200 border-b border-white/5"><th className="py-2">Taille</th><th>Poitrine (cm)</th><th>Longueur (cm)</th><th>Manches (cm)</th></tr></thead>
+                 <tbody>
+                    <tr className="border-b border-white/5"><td className="py-1">M</td><td>53–55</td><td>70–72</td><td>63–65</td></tr>
+                    <tr className="border-b border-white/5"><td className="py-1">L</td><td>56–58</td><td>73–75</td><td>65–67</td></tr>
+                    <tr><td className="py-1">XL</td><td>59–61</td><td>76–78</td><td>67–69</td></tr>
+                 </tbody>
+              </table>
+              <div className="text-[10px] text-clGold uppercase tracking-widest text-center mt-8">Notes premium 1CL : Coupe légèrement oversize, tissus 280–350g.</div>
+            </motion.div>
+          </div>
+        )}
+
+        {specModalOpen && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+            <motion.div className="absolute inset-0 bg-black/80 backdrop-blur-md" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setSpecModalOpen(false)} />
+            <motion.div className="relative bg-[#111] border border-clChrome/50 w-full max-w-2xl max-h-[90vh] overflow-y-auto p-8" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }}>
+              <button onClick={() => setSpecModalOpen(false)} className="absolute top-4 right-4 text-gray-400 hover:text-white">✕</button>
+              <h2 className="text-2xl font-serif text-clChrome text-center mb-6">SPÉCIFICATIONS TECHNIQUES</h2>
+              
+              <table className="w-full text-xs text-left text-gray-300">
+                  <thead>
+                      <tr className="border-b border-white/10 text-white">
+                          <th className="py-2">Élément</th>
+                          <th>Emplacement</th>
+                          <th>Dimensions (L x H)</th>
+                          <th>Couleur/Fil</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr className="border-b border-white/5"><td className="py-2">Logo 1CL Principal</td><td>Poitrine Gauche</td><td>80 mm x 75 mm</td><td className="text-clGold">Fil Or / Fil Chrome</td></tr>
+                      <tr className="border-b border-white/5"><td className="py-2">Écusson Rond</td><td>Manche / Cuisse</td><td>Ø 60 mm</td><td>Or / Chrome avec liseré</td></tr>
+                      <tr><td className="py-2">Étiquette Intérieure</td><td>Col (Intérieur)</td><td>40 mm x 30 mm</td><td>Tissé fond satin, typo Or</td></tr>
+                  </tbody>
+              </table>
+              <div className="text-[10px] text-gray-500 uppercase tracking-widest text-center mt-8">Directive MPC : Tolérance de placement ±2mm. Tension de fil haute-densité.</div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

@@ -1,6 +1,9 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 
+// Context
+import { SovereignProvider } from './context/SovereignContext';
+
 // Pages
 import HomePage from './pages/HomePage';
 import CollectionsPage from './pages/CollectionsPage';
@@ -33,9 +36,11 @@ function AnimatedRoutes() {
 
 function App() {
   return (
-    <Router basename="/1cl-hub">
-      <AnimatedRoutes />
-    </Router>
+    <SovereignProvider>
+      <Router basename="/1cl-hub">
+        <AnimatedRoutes />
+      </Router>
+    </SovereignProvider>
   );
 }
 

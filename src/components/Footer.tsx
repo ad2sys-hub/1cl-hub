@@ -1,5 +1,3 @@
-import { Instagram, Twitter, Youtube } from 'lucide-react';
-
 export default function Footer() {
   return (
     <footer className="border-t border-white/5 bg-clBlack pt-16 pb-8 px-4 sm:px-6 lg:px-8 mt-auto z-10 relative">
@@ -22,15 +20,15 @@ export default function Footer() {
             <span className="text-xs text-gray-500 tracking-widest uppercase">© 2026 1CL Collection</span>
           </div>
 
-          <div className="flex gap-6">
-            <a href="#" className="text-gray-400 hover:text-clGold transition-colors border border-transparent hover:border-clGold/50 rounded-full p-2">
-              <Instagram size={18} />
+          <div className="flex gap-6 text-xs tracking-widest font-bold">
+            <a href="#" className="text-gray-400 hover:text-clGold transition-colors border border-transparent hover:border-clGold/50 rounded-full py-1 px-3">
+              IG
             </a>
-            <a href="#" className="text-gray-400 hover:text-clGold transition-colors border border-transparent hover:border-clGold/50 rounded-full p-2">
-              <Twitter size={18} />
+            <a href="#" className="text-gray-400 hover:text-clGold transition-colors border border-transparent hover:border-clGold/50 rounded-full py-1 px-3">
+              X
             </a>
-            <a href="#" className="text-gray-400 hover:text-clGold transition-colors border border-transparent hover:border-clGold/50 rounded-full p-2">
-              <Youtube size={18} />
+            <a href="#" className="text-gray-400 hover:text-clGold transition-colors border border-transparent hover:border-clGold/50 rounded-full py-1 px-3">
+              YT
             </a>
           </div>
 

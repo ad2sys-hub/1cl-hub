@@ -1,17 +1,33 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-clGold: #D4AF37;
+  --color-clChrome: #C0C0C0;
+  --color-clBlack: #050505;
+  --color-clDarkGrey: #111111;
+  --font-serif: "Playfair Display", serif;
+  --font-sans: Inter, sans-serif;
+  
+  --animate-shimmer-gold: shimmerGold 2s infinite linear;
+  @keyframes shimmerGold {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+}
 
 @layer base {
   body {
-    @apply bg-clBlack text-white font-sans antialiased;
+    background-color: var(--color-clBlack);
+    color: white;
+    font-family: var(--font-sans);
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-serif;
+    font-family: var(--font-serif);
   }
 
   /* Custom Scrollbar for Sovereign aesthetic */
@@ -19,15 +35,17 @@
     width: 6px;
   }
   ::-webkit-scrollbar-track {
-    @apply bg-clDarkGrey;
+    background-color: var(--color-clDarkGrey);
   }
   ::-webkit-scrollbar-thumb {
-    @apply bg-clGold rounded-full;
+    background-color: var(--color-clGold);
+    border-radius: 9999px;
   }
   
   /* Selection */
   ::selection {
-    @apply bg-clGold text-black;
+    background-color: var(--color-clGold);
+    color: black;
   }
 }
 
@@ -37,6 +55,9 @@
   }
   
   .glass-panel {
-    @apply bg-clDarkGrey/80 backdrop-blur-md border border-clChrome/20 shadow-xl;
+    background-color: rgba(17, 17, 17, 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(192, 192, 192, 0.2);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
   }
 }

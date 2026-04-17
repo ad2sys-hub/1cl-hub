@@ -1,7 +1,19 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { useSovereign } from '../context/SovereignContext';
 
 export default function HomePage() {
+  const { isVaultUnlocked, unlockVault } = useSovereign();
+  const [vaultKey, setVaultKey] = useState('');
+
+  const handleUnlock = () => {
+    const success = unlockVault(vaultKey);
+    if (!success) {
+      alert("ACCESS DENIED: Invalid Digital Key. (Try 'Digital Key')");
+    }
+  };
+
   return (
     <div className="w-full">
       {/* 1. Hero Section */}
@@ -96,6 +108,69 @@ export default function HomePage() {
           </motion.div>
 
         </div>
+      </section>
+
+      {/* 1CL Cinema Experience */}
+      <section className="py-24 px-4 border-b border-white/5 bg-clDarkGrey/50">
+         <div className="max-w-6xl mx-auto flex flex-col items-center">
+            <h2 className="text-4xl font-serif text-white mb-2">1CL Cinema</h2>
+            <p className="text-gray-500 tracking-widest uppercase text-sm mb-12">The Campaign Experience</p>
+            <div className="w-full aspect-video border border-clGold/30 p-2 glass-panel shadow-[0_0_30px_rgba(212,175,55,0.1)]">
+               <video className="w-full h-full object-cover" controls poster="/1cl-hub/images/Logos/logo CL v.1.gold.png">
+                  <source src="/1cl-hub/video/Descriptions_de_vidéos_publicitaires_CL.mp4" type="video/mp4" />
+               </video>
+            </div>
+         </div>
+      </section>
+
+      {/* THE VAULT */}
+      <section id="vaultPortal" className="py-32 px-4 relative overflow-hidden flex flex-col items-center border-b border-white/5">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-clGold/10 via-clBlack to-clBlack pointer-events-none" />
+        <h2 className="text-4xl md:text-5xl font-serif tracking-widest text-clGold mb-12 relative z-10 text-shadow-gold">THE VAULT</h2>
+        
+        {!isVaultUnlocked ? (
+          <motion.div 
+             className="glass-panel p-10 max-w-md w-full flex flex-col items-center text-center relative z-10"
+             initial={{ scale: 0.9, opacity: 0 }} whileInView={{ scale: 1, opacity: 1 }} viewport={{ once: true }}
+          >
+             <span className="text-6xl mb-6 text-clChrome">🔒</span>
+             <p className="text-gray-400 text-sm mb-8">Access restricted to Sovereign NFT holders and Official Partners.</p>
+             <input 
+               type="password" 
+               placeholder="ENTER DIGITAL KEY" 
+               value={vaultKey}
+               onChange={(e) => setVaultKey(e.target.value)}
+               onKeyDown={(e) => e.key === 'Enter' && handleUnlock()}
+               className="w-full bg-black border border-clGold/50 text-white p-4 text-center tracking-widest uppercase focus:outline-none focus:border-white transition-colors mb-4"
+             />
+             <button onClick={handleUnlock} className="w-full py-4 bg-clGold text-black font-bold uppercase tracking-widest text-sm hover:bg-white transition-colors">
+               ACCESS PORTAL
+             </button>
+          </motion.div>
+        ) : (
+          <motion.div 
+             className="w-full max-w-5xl relative z-10"
+             initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}
+             transition={{ duration: 0.8 }}
+          >
+             <div className="glass-panel p-10 border-clGold/50">
+                <h3 className="text-2xl font-serif text-white mb-6 border-b border-white/10 pb-4">EXCLUSIVE ARCHIVES</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                   {/* Vault Card */}
+                   <div className="border border-white/10 hover:border-clGold/50 transition-colors bg-black p-6 text-center group cursor-pointer">
+                      <img src="/1cl-hub/images/Logos/logo CL v.1.gold.png" className="w-16 h-16 mx-auto mb-4 opacity-70 group-hover:opacity-100 transition-opacity" alt="Ticket" />
+                      <h4 className="text-clGold text-sm font-bold tracking-widest uppercase mb-2">NFT ACCESS TICKET</h4>
+                      <p className="text-xs text-gray-500 uppercase tracking-wider">Early Drop Access</p>
+                   </div>
+                   <div className="border border-white/10 hover:border-clGold/50 transition-colors bg-black p-6 text-center group cursor-pointer">
+                      <img src="/1cl-hub/images/PNG/1CL-VST-GLD.png" className="w-16 h-16 mx-auto mb-4 object-contain opacity-70 group-hover:opacity-100 transition-opacity" alt="Secret Jacket" />
+                      <h4 className="text-clGold text-sm font-bold tracking-widest uppercase mb-2">PROTOTYPE ZERO</h4>
+                      <p className="text-xs text-gray-500 uppercase tracking-wider">Not For Sale</p>
+                   </div>
+                </div>
+             </div>
+          </motion.div>
+        )}
       </section>
 
       {/* 3. Product By Signature Zone */}

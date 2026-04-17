@@ -1,0 +1,170 @@
+[
+  {
+    "id": "TSH-BLK",
+    "name": "Essential Black",
+    "collection": "Essentials",
+    "type": "tshirt",
+    "color": "black",
+    "variants": [
+      {
+        "id": "TSH-BLK-GOLD",
+        "logo": "gold",
+        "image": "/images/PNG/1CL-TSH-BLK.png"
+      },
+      {
+        "id": "TSH-BLK-CHROME",
+        "logo": "chrome",
+        "image": "/images/PNG/1CL-TSH-BLK.png" 
+      }
+    ],
+    "tags": ["unisex", "street-luxe", "1CL"],
+    "tagline": "The foundation of absolute elegance."
+  },
+  {
+    "id": "TSH-WHI",
+    "name": "Pure White",
+    "collection": "Essentials",
+    "type": "tshirt",
+    "color": "white",
+    "variants": [
+      {
+        "id": "TSH-WHI-GOLD",
+        "logo": "gold",
+        "image": "/images/PNG/1CL-TSH-WHI.png"
+      },
+      {
+        "id": "TSH-WHI-CHROME",
+        "logo": "chrome",
+        "image": "/images/PNG/1CL-TSH-WHI.png"
+      }
+    ],
+    "tags": ["unisex", "sovereign", "1CL"],
+    "tagline": "Sovereign purity."
+  },
+  {
+    "id": "PUL-GLD",
+    "name": "Gold Edition Pull",
+    "collection": "Heritage",
+    "type": "pull",
+    "color": "gold",
+    "variants": [
+      {
+        "id": "PUL-GLD-GOLD",
+        "logo": "gold",
+        "image": "/images/PNG/1CL-PUL-GLD.png"
+      },
+      {
+        "id": "PUL-GLD-CHROME",
+        "logo": "chrome",
+        "image": "/images/PNG/1CL-PUL-GLD.png"
+      }
+    ],
+    "tags": ["heritage", "gold", "comfort"],
+    "tagline": "One Link, All Legacy."
+  },
+  {
+    "id": "PUL-BLK",
+    "name": "Onyx Black Pull",
+    "collection": "Heritage",
+    "type": "pull",
+    "color": "black",
+    "variants": [
+      {
+        "id": "PUL-BLK-GOLD",
+        "logo": "gold",
+        "image": "/images/PNG/1CL-PUL-BLK1.png"
+      },
+      {
+        "id": "PUL-BLK-CHROME",
+        "logo": "chrome",
+        "image": "/images/PNG/1CL-PUL-BLK1.png"
+      }
+    ],
+    "tags": ["heritage", "onyx", "comfort"],
+    "tagline": "The Real Link."
+  },
+  {
+    "id": "VST-BEL",
+    "name": "Beige Shell Jacket",
+    "collection": "Workshop Edition",
+    "type": "jacket",
+    "color": "beige",
+    "variants": [
+      {
+        "id": "VST-BEL-GOLD",
+        "logo": "gold",
+        "image": "/images/PNG/1CL-VST-BEI-Gold.png"
+      },
+      {
+        "id": "VST-BEL-CHROME",
+        "logo": "chrome",
+        "image": "/images/PNG/1CL-VST-BEI-chrome.png"
+      }
+    ],
+    "tags": ["workshop", "technical", "outerwear"],
+    "tagline": "Crafted in the Atelier."
+  },
+  {
+    "id": "VST-BLK",
+    "name": "Matte Black Armor",
+    "collection": "Workshop Edition",
+    "type": "jacket",
+    "color": "black",
+    "variants": [
+      {
+        "id": "VST-BLK-GOLD",
+        "logo": "gold",
+        "image": "/images/PNG/1CL-VST-BLK2.png"
+      },
+      {
+        "id": "VST-BLK-CHROME",
+        "logo": "chrome",
+        "image": "/images/PNG/1CL-VST-BLK2.png"
+      }
+    ],
+    "tags": ["workshop", "stealth", "outerwear"],
+    "tagline": "Uncompromising defense."
+  },
+  {
+    "id": "JOG-RED",
+    "name": "Royal Red Jogger",
+    "collection": "Heritage",
+    "type": "jogger",
+    "color": "red",
+    "variants": [
+      {
+        "id": "JOG-RED-GOLD",
+        "logo": "gold",
+        "image": "/images/PNG/1CL-JOG-RED-Gold.png"
+      },
+      {
+        "id": "JOG-RED-CHROME",
+        "logo": "chrome",
+        "image": "/images/PNG/1CL-JOG-RED.png"
+      }
+    ],
+    "tags": ["heritage", "royal", "bottoms"],
+    "tagline": "The pulse of the streets."
+  },
+  {
+    "id": "ART-SIMP1",
+    "name": "Simple Thing Jacket I",
+    "collection": "Workshop Edition",
+    "type": "jacket",
+    "color": "black",
+    "variants": [
+      {
+        "id": "ART-SIMP1-GOLD",
+        "logo": "gold",
+        "image": "/images/JacketSongs/Jacket_there-is-one thing-.png"
+      },
+      {
+        "id": "ART-SIMP1-CHROME",
+        "logo": "chrome",
+        "image": "/images/JacketSongs/Jacket_there-is-one thing-.png"
+      }
+    ],
+    "tags": ["artist", "chawblick", "exclusive"],
+    "tagline": "There Is Just a Simple Thing"
+  }
+]

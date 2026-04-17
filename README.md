@@ -1,73 +1,33 @@
-# React + TypeScript + Vite
+# 1CL Collection Hub
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The Intelligence Business Hub & 4D Sovereign Collection App for **1CL**.
 
-Currently, two official plugins are available:
+## Architecture & Tech Stack
+- **Framework:** React + Vite + TypeScript.
+- **Styling:** TailwindCSS (Custom Gold/Chrome Sovereign theme).
+- **Animations:** Framer Motion.
+- **Data Source:** `public/data/catalog.json`.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Managing the Catalog
+The catalog is the Single Source of Truth for the application. To add or modify products, edit `public/data/catalog.json`.
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+**JSON Format Example:**
+```json
+{
+  "id": "VST-NEW",
+  "name": "New Jacket Name",
+  "collection": "Workshop Edition",
+  "type": "jacket",
+  "color": "black",
+  "variants": [
+    { "id": "VST-NEW-GOLD", "logo": "gold", "image": "/images/PNG/jacket-gold.png" },
+    { "id": "VST-NEW-CHROME", "logo": "chrome", "image": "/images/PNG/jacket-chrome.png" }
+  ]
+}
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Deployment
+This application is configured for automatic deployment to GitHub Pages via GitHub Actions.
+1. Push your changes to the `main` or `master` branch.
+2. The Action located in `.github/workflows/deploy.yml` will automatically build the static files and deploy them.
+3. Make sure GitHub Pages settings in your repository are set to deploy from GitHub Actions.

@@ -1,87 +1,198 @@
 [
   {
     "id": "TSH-BLK",
-    "name": "Essential Black",
+    "name": "Essential Black Logo T-Shirt",
     "collection": "Essentials",
     "type": "tshirt",
     "color": "black",
     "variants": [
-      {
-        "id": "TSH-BLK-GOLD",
-        "logo": "gold",
-        "image": "/images/PNG/1CL-TSH-BLK.png"
-      },
-      {
-        "id": "TSH-BLK-CHROME",
-        "logo": "chrome",
-        "image": "/images/PNG/1CL-TSH-BLK.png" 
-      }
+      { "id": "TSH-BLK-GOLD", "logo": "gold", "image": "/images/PNG/1CL-TSH-BLK.png" },
+      { "id": "TSH-BLK-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-TSH-BLK.png" }
     ],
     "tags": ["unisex", "street-luxe", "1CL"],
     "tagline": "The foundation of absolute elegance."
   },
   {
     "id": "TSH-WHI",
-    "name": "Pure White",
+    "name": "Pure White Canvas T-Shirt",
     "collection": "Essentials",
     "type": "tshirt",
     "color": "white",
     "variants": [
-      {
-        "id": "TSH-WHI-GOLD",
-        "logo": "gold",
-        "image": "/images/PNG/1CL-TSH-WHI.png"
-      },
-      {
-        "id": "TSH-WHI-CHROME",
-        "logo": "chrome",
-        "image": "/images/PNG/1CL-TSH-WHI.png"
-      }
+      { "id": "TSH-WHI-GOLD", "logo": "gold", "image": "/images/PNG/1CL-TSH-WHI.png" },
+      { "id": "TSH-WHI-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-TSH-WHI.png" }
     ],
     "tags": ["unisex", "sovereign", "1CL"],
     "tagline": "Sovereign purity."
   },
   {
+    "id": "TSH-BEL",
+    "name": "Sand Dune T-Shirt",
+    "collection": "Essentials",
+    "type": "tshirt",
+    "color": "beige",
+    "variants": [
+      { "id": "TSH-BEL-GOLD", "logo": "gold", "image": "/images/PNG/1CL-TSH-BEL.png" },
+      { "id": "TSH-BEL-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-TSH-BEL.png" }
+    ],
+    "tags": ["unisex", "sovereign", "1CL"],
+    "tagline": "Earthy elegance."
+  },
+  {
+    "id": "TSH-BLU",
+    "name": "Deep Ocean T-Shirt",
+    "collection": "Essentials",
+    "type": "tshirt",
+    "color": "blue",
+    "variants": [
+      { "id": "TSH-BLU-GOLD", "logo": "gold", "image": "/images/PNG/1CL-TSH-BLU.png" },
+      { "id": "TSH-BLU-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-TSH-BLU.png" }
+    ],
+    "tags": ["unisex", "sovereign", "1CL"],
+    "tagline": "Abyssal depth."
+  },
+  {
+    "id": "TSH-GLD",
+    "name": "Imperial Gold T-Shirt",
+    "collection": "Essentials",
+    "type": "tshirt",
+    "color": "gold",
+    "variants": [
+      { "id": "TSH-GLD-GOLD", "logo": "gold", "image": "/images/PNG/1CL-TSH-GLD.png" },
+      { "id": "TSH-GLD-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-TSH-GLD.png" }
+    ],
+    "tags": ["unisex", "sovereign", "1CL"],
+    "tagline": "Radiant sovereignty."
+  },
+  {
+    "id": "TSH-GREY",
+    "name": "Concrete Grey T-Shirt",
+    "collection": "Essentials",
+    "type": "tshirt",
+    "color": "grey",
+    "variants": [
+      { "id": "TSH-GREY-GOLD", "logo": "gold", "image": "/images/PNG/1CL-TSH-GREY.png" },
+      { "id": "TSH-GREY-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-TSH-GREY.png" }
+    ],
+    "tags": ["unisex", "sovereign", "1CL"],
+    "tagline": "Urban camouflage."
+  },
+  {
+    "id": "TSH-GRN",
+    "name": "Forest Green T-Shirt",
+    "collection": "Essentials",
+    "type": "tshirt",
+    "color": "green",
+    "variants": [
+      { "id": "TSH-GRN-GOLD", "logo": "gold", "image": "/images/PNG/1CL-TSH-GRN.png" },
+      { "id": "TSH-GRN-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-TSH-GRN.png" }
+    ],
+    "tags": ["unisex", "sovereign", "1CL"],
+    "tagline": "Natural prestige."
+  },
+  {
+    "id": "TSH-RED",
+    "name": "Crimson T-Shirt",
+    "collection": "Essentials",
+    "type": "tshirt",
+    "color": "red",
+    "variants": [
+      { "id": "TSH-RED-GOLD", "logo": "gold", "image": "/images/PNG/1CL-TSH-RED.png" },
+      { "id": "TSH-RED-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-TSH-RED.png" }
+    ],
+    "tags": ["unisex", "sovereign", "1CL"],
+    "tagline": "The pulse of the streets."
+  },
+  {
     "id": "PUL-GLD",
-    "name": "Gold Edition Pull",
+    "name": "Gold Edition Pullover",
     "collection": "Heritage",
     "type": "pull",
     "color": "gold",
     "variants": [
-      {
-        "id": "PUL-GLD-GOLD",
-        "logo": "gold",
-        "image": "/images/PNG/1CL-PUL-GLD.png"
-      },
-      {
-        "id": "PUL-GLD-CHROME",
-        "logo": "chrome",
-        "image": "/images/PNG/1CL-PUL-GLD.png"
-      }
+      { "id": "PUL-GLD-GOLD", "logo": "gold", "image": "/images/PNG/1CL-PUL-GLD.png" },
+      { "id": "PUL-GLD-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-PUL-GLD.png" }
     ],
     "tags": ["heritage", "gold", "comfort"],
     "tagline": "One Link, All Legacy."
   },
   {
     "id": "PUL-BLK",
-    "name": "Onyx Black Pull",
+    "name": "Onyx Black Pullover",
     "collection": "Heritage",
     "type": "pull",
     "color": "black",
     "variants": [
-      {
-        "id": "PUL-BLK-GOLD",
-        "logo": "gold",
-        "image": "/images/PNG/1CL-PUL-BLK1.png"
-      },
-      {
-        "id": "PUL-BLK-CHROME",
-        "logo": "chrome",
-        "image": "/images/PNG/1CL-PUL-BLK1.png"
-      }
+      { "id": "PUL-BLK-GOLD", "logo": "gold", "image": "/images/PNG/1CL-PUL-BLK1.png" },
+      { "id": "PUL-BLK-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-PUL-BLK1.png" }
     ],
     "tags": ["heritage", "onyx", "comfort"],
     "tagline": "The Real Link."
+  },
+  {
+    "id": "PUL-BEI",
+    "name": "Desert Sand Pullover",
+    "collection": "Heritage",
+    "type": "pull",
+    "color": "beige",
+    "variants": [
+      { "id": "PUL-BEI-GOLD", "logo": "gold", "image": "/images/PNG/1CL-PUL-BEI.png" },
+      { "id": "PUL-BEI-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-PUL-BEI.png" }
+    ],
+    "tags": ["heritage", "onyx", "comfort"],
+    "tagline": "Warmth in the storm."
+  },
+  {
+    "id": "PUL-GREY",
+    "name": "Monochrome Pullover",
+    "collection": "Heritage",
+    "type": "pull",
+    "color": "grey",
+    "variants": [
+      { "id": "PUL-GREY-GOLD", "logo": "gold", "image": "/images/PNG/1CL-PUL-GREY1.png" },
+      { "id": "PUL-GREY-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-PUL-GREY2.png" }
+    ],
+    "tags": ["heritage", "onyx", "comfort"],
+    "tagline": "Brutalist comfort."
+  },
+  {
+    "id": "PUL-GRN",
+    "name": "Evergreen Pullover",
+    "collection": "Heritage",
+    "type": "pull",
+    "color": "green",
+    "variants": [
+      { "id": "PUL-GRN-GOLD", "logo": "gold", "image": "/images/PNG/1CL-PUL-GRN1.png" },
+      { "id": "PUL-GRN-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-PUL-GRN2.png" }
+    ],
+    "tags": ["heritage", "onyx", "comfort"],
+    "tagline": "Rooted in sovereignty."
+  },
+  {
+    "id": "PUL-RED",
+    "name": "Bloodline Pullover",
+    "collection": "Heritage",
+    "type": "pull",
+    "color": "red",
+    "variants": [
+      { "id": "PUL-RED-GOLD", "logo": "gold", "image": "/images/PNG/1CL-PUL-RED.png" },
+      { "id": "PUL-RED-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-PUL-RED.png" }
+    ],
+    "tags": ["heritage", "onyx", "comfort"],
+    "tagline": "The beating heart of 1CL."
+  },
+  {
+    "id": "PUL-WHI",
+    "name": "Snowfall Pullover",
+    "collection": "Heritage",
+    "type": "pull",
+    "color": "white",
+    "variants": [
+      { "id": "PUL-WHI-GOLD", "logo": "gold", "image": "/images/PNG/1CL-PUL-WHI.png" },
+      { "id": "PUL-WHI-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-PUL-WHI.png" }
+    ],
+    "tags": ["heritage", "onyx", "comfort"],
+    "tagline": "Pristine execution."
   },
   {
     "id": "VST-BEL",
@@ -90,16 +201,8 @@
     "type": "jacket",
     "color": "beige",
     "variants": [
-      {
-        "id": "VST-BEL-GOLD",
-        "logo": "gold",
-        "image": "/images/PNG/1CL-VST-BEI-Gold.png"
-      },
-      {
-        "id": "VST-BEL-CHROME",
-        "logo": "chrome",
-        "image": "/images/PNG/1CL-VST-BEI-chrome.png"
-      }
+      { "id": "VST-BEL-GOLD", "logo": "gold", "image": "/images/PNG/1CL-VST-BEI-Gold.png" },
+      { "id": "VST-BEL-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-VST-BEI-chrome.png" }
     ],
     "tags": ["workshop", "technical", "outerwear"],
     "tagline": "Crafted in the Atelier."
@@ -111,19 +214,76 @@
     "type": "jacket",
     "color": "black",
     "variants": [
-      {
-        "id": "VST-BLK-GOLD",
-        "logo": "gold",
-        "image": "/images/PNG/1CL-VST-BLK2.png"
-      },
-      {
-        "id": "VST-BLK-CHROME",
-        "logo": "chrome",
-        "image": "/images/PNG/1CL-VST-BLK2.png"
-      }
+      { "id": "VST-BLK-GOLD", "logo": "gold", "image": "/images/PNG/1CL-VST-BLK.png" },
+      { "id": "VST-BLK-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-VST-BLK2.png" }
     ],
     "tags": ["workshop", "stealth", "outerwear"],
     "tagline": "Uncompromising defense."
+  },
+  {
+    "id": "VST-BLU",
+    "name": "Midnight Blue Jacket",
+    "collection": "Workshop Edition",
+    "type": "jacket",
+    "color": "blue",
+    "variants": [
+      { "id": "VST-BLU-GOLD", "logo": "gold", "image": "/images/PNG/1CL-VST-BLU.png" },
+      { "id": "VST-BLU-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-VST-BLU.png" }
+    ],
+    "tags": ["workshop", "technical", "outerwear"],
+    "tagline": "Nighttime operations."
+  },
+  {
+    "id": "VST-GLD",
+    "name": "Solid Gold Puffer",
+    "collection": "Workshop Edition",
+    "type": "jacket",
+    "color": "gold",
+    "variants": [
+      { "id": "VST-GLD-GOLD", "logo": "gold", "image": "/images/PNG/1CL-VST-GLD.png" },
+      { "id": "VST-GLD-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-VST-GLD.png" }
+    ],
+    "tags": ["workshop", "stealth", "outerwear"],
+    "tagline": "Visible luxury."
+  },
+  {
+    "id": "VST-GRN",
+    "name": "Military Green Shell",
+    "collection": "Workshop Edition",
+    "type": "jacket",
+    "color": "green",
+    "variants": [
+      { "id": "VST-GRN-GOLD", "logo": "gold", "image": "/images/PNG/1CL-VST-GRN.png" },
+      { "id": "VST-GRN-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-VST-GRN.png" }
+    ],
+    "tags": ["workshop", "stealth", "outerwear"],
+    "tagline": "Tactical aesthetics."
+  },
+  {
+    "id": "VST-RED",
+    "name": "Cardinal Red Armor",
+    "collection": "Workshop Edition",
+    "type": "jacket",
+    "color": "red",
+    "variants": [
+      { "id": "VST-RED-GOLD", "logo": "gold", "image": "/images/PNG/1CL-VST-RED.png" },
+      { "id": "VST-RED-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-VST-RED.png" }
+    ],
+    "tags": ["workshop", "stealth", "outerwear"],
+    "tagline": "Make a statement."
+  },
+  {
+    "id": "VST-WHI",
+    "name": "Arctic White Jacket",
+    "collection": "Workshop Edition",
+    "type": "jacket",
+    "color": "white",
+    "variants": [
+      { "id": "VST-WHI-GOLD", "logo": "gold", "image": "/images/PNG/1CL-VST-WHI.png" },
+      { "id": "VST-WHI-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-VST-WHI.png" }
+    ],
+    "tags": ["workshop", "stealth", "outerwear"],
+    "tagline": "Absolute Zero."
   },
   {
     "id": "JOG-RED",
@@ -132,19 +292,89 @@
     "type": "jogger",
     "color": "red",
     "variants": [
-      {
-        "id": "JOG-RED-GOLD",
-        "logo": "gold",
-        "image": "/images/PNG/1CL-JOG-RED-Gold.png"
-      },
-      {
-        "id": "JOG-RED-CHROME",
-        "logo": "chrome",
-        "image": "/images/PNG/1CL-JOG-RED.png"
-      }
+      { "id": "JOG-RED-GOLD", "logo": "gold", "image": "/images/PNG/1CL-JOG-RED-Gold.png" },
+      { "id": "JOG-RED-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-JOG-RED.png" }
     ],
     "tags": ["heritage", "royal", "bottoms"],
     "tagline": "The pulse of the streets."
+  },
+  {
+    "id": "JOG-BEI",
+    "name": "Dune Jogger",
+    "collection": "Heritage",
+    "type": "jogger",
+    "color": "beige",
+    "variants": [
+      { "id": "JOG-BEI-GOLD", "logo": "gold", "image": "/images/PNG/CL-JOG-BEI.png" },
+      { "id": "JOG-BEI-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-JOG-BEI-chrome.png" }
+    ],
+    "tags": ["heritage", "royal", "bottoms"],
+    "tagline": "Effortless movement."
+  },
+  {
+    "id": "JOG-BLK",
+    "name": "Onyx Jogger",
+    "collection": "Heritage",
+    "type": "jogger",
+    "color": "black",
+    "variants": [
+      { "id": "JOG-BLK-GOLD", "logo": "gold", "image": "/images/PNG/1CL-JOG-BLK.png" },
+      { "id": "JOG-BLK-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-JOG-BLK.png" }
+    ],
+    "tags": ["heritage", "royal", "bottoms"],
+    "tagline": "Stealth agility."
+  },
+  {
+    "id": "JOG-BLU",
+    "name": "Azure Jogger",
+    "collection": "Heritage",
+    "type": "jogger",
+    "color": "blue",
+    "variants": [
+      { "id": "JOG-BLU-GOLD", "logo": "gold", "image": "/images/PNG/1CL-JOG-BLU-Gold.png" },
+      { "id": "JOG-BLU-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-JOG-BLU-Gold.png" }
+    ],
+    "tags": ["heritage", "royal", "bottoms"],
+    "tagline": "Deep state comfort."
+  },
+  {
+    "id": "JOG-GLD",
+    "name": "Imperial Gold Jogger",
+    "collection": "Heritage",
+    "type": "jogger",
+    "color": "gold",
+    "variants": [
+      { "id": "JOG-GLD-GOLD", "logo": "gold", "image": "/images/PNG/1CL-JOG-GLD.png" },
+      { "id": "JOG-GLD-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-JOG-GLD.png" }
+    ],
+    "tags": ["heritage", "royal", "bottoms"],
+    "tagline": "Luminous standard."
+  },
+  {
+    "id": "JOG-GRN",
+    "name": "Forest Jogger",
+    "collection": "Heritage",
+    "type": "jogger",
+    "color": "green",
+    "variants": [
+      { "id": "JOG-GRN-GOLD", "logo": "gold", "image": "/images/PNG/1CL-JOG-GRN.png" },
+      { "id": "JOG-GRN-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-JOG-GRN.png" }
+    ],
+    "tags": ["heritage", "royal", "bottoms"],
+    "tagline": "Grounded luxury."
+  },
+  {
+    "id": "JOG-WHI",
+    "name": "Arctic Jogger",
+    "collection": "Heritage",
+    "type": "jogger",
+    "color": "white",
+    "variants": [
+      { "id": "JOG-WHI-GOLD", "logo": "gold", "image": "/images/PNG/CL-JOG-WHI.png" },
+      { "id": "JOG-WHI-CHROME", "logo": "chrome", "image": "/images/PNG/CL-JOG-WHI.png" }
+    ],
+    "tags": ["heritage", "royal", "bottoms"],
+    "tagline": "Pure canvas."
   },
   {
     "id": "ART-SIMP1",
@@ -153,16 +383,8 @@
     "type": "jacket",
     "color": "black",
     "variants": [
-      {
-        "id": "ART-SIMP1-GOLD",
-        "logo": "gold",
-        "image": "/images/JacketSongs/Jacket_there-is-one thing-.png"
-      },
-      {
-        "id": "ART-SIMP1-CHROME",
-        "logo": "chrome",
-        "image": "/images/JacketSongs/Jacket_there-is-one thing-.png"
-      }
+      { "id": "ART-SIMP1-GOLD", "logo": "gold", "image": "/images/JacketSongs/Jacket_there-is-one thing-.png" },
+      { "id": "ART-SIMP1-CHROME", "logo": "chrome", "image": "/images/JacketSongs/Jacket_there-is-one thing-.png" }
     ],
     "tags": ["artist", "chawblick", "exclusive"],
     "tagline": "There Is Just a Simple Thing"

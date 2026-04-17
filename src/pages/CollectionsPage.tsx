@@ -5,10 +5,12 @@ import ProductCard from '../components/ProductCard';
 export default function CollectionsPage() {
   const [products, setProducts] = useState<any[]>([]);
   const [activeCollection, setActiveCollection] = useState('All');
+  const [activeGender, setActiveGender] = useState('All');
   const [activeType, setActiveType] = useState('all');
   const [loading, setLoading] = useState(true);
 
   const collections = ['All', 'Essentials', 'Heritage', 'Workshop Edition'];
+  const genders = ['All', 'Homme', 'Femme', 'Unisex'];
   const types = ['all', 'tshirt', 'pull', 'jogger', 'jacket'];
 
   useEffect(() => {
@@ -26,8 +28,9 @@ export default function CollectionsPage() {
 
   const filteredProducts = products.filter(p => {
     const matchCol = activeCollection === 'All' || p.collection === activeCollection;
+    const matchGender = activeGender === 'All' || p.gender === activeGender;
     const matchType = activeType === 'all' || p.type === activeType;
-    return matchCol && matchType;
+    return matchCol && matchGender && matchType;
   });
 
   return (
@@ -41,23 +44,38 @@ export default function CollectionsPage() {
         </div>
 
         {/* Filters */}
-        <div className="flex flex-col md:flex-rowjustify-between items-center gap-8 mb-12 border-b border-white/10 pb-8">
+        <div className="flex flex-col gap-6 mb-12 border-b border-white/10 pb-8">
           
-          {/* Collection Tabs */}
-          <div className="flex space-x-6 overflow-x-auto w-full md:w-auto pb-4 md:pb-0 scrollbar-hide">
-            {collections.map(col => (
-              <button
-                key={col}
-                onClick={() => setActiveCollection(col)}
-                className={`whitespace-nowrap uppercase tracking-widest text-xs transition-colors pb-2 border-b-2 ${activeCollection === col ? 'border-clGold text-white' : 'border-transparent text-gray-500 hover:text-gray-300'}`}
-              >
-                {col}
-              </button>
-            ))}
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+            {/* Collection Tabs */}
+            <div className="flex space-x-6 overflow-x-auto w-full md:w-auto pb-2 scrollbar-hide">
+              {collections.map(col => (
+                <button
+                  key={col}
+                  onClick={() => setActiveCollection(col)}
+                  className={`whitespace-nowrap uppercase tracking-widest text-xs transition-colors pb-2 border-b-2 ${activeCollection === col ? 'border-clGold text-white' : 'border-transparent text-gray-500 hover:text-gray-300'}`}
+                >
+                  {col}
+                </button>
+              ))}
+            </div>
+
+            {/* Gender Filters */}
+            <div className="flex space-x-4">
+              {genders.map(gender => (
+                <button
+                  key={gender}
+                  onClick={() => setActiveGender(gender)}
+                  className={`uppercase tracking-widest text-xs transition-colors ${activeGender === gender ? 'text-clGold font-bold' : 'text-gray-500 hover:text-white'}`}
+                >
+                  {gender}
+                </button>
+              ))}
+            </div>
           </div>
 
           {/* Type Filters */}
-          <div className="flex flex-wrap gap-3 justify-center">
+          <div className="flex flex-wrap gap-3 justify-center border-t border-white/5 pt-6">
             {types.map(type => (
               <button
                 key={type}

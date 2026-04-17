@@ -6,11 +6,24 @@
     "type": "tshirt",
     "color": "black",
     "variants": [
-      { "id": "TSH-BLK-GOLD", "logo": "gold", "image": "/images/PNG/1CL-TSH-BLK.png" },
-      { "id": "TSH-BLK-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-TSH-BLK.png" }
+      {
+        "id": "TSH-BLK-GOLD",
+        "logo": "gold",
+        "image": "/images/PNG/1CL-TSH-BLK.png"
+      },
+      {
+        "id": "TSH-BLK-CHROME",
+        "logo": "chrome",
+        "image": "/images/PNG/1CL-TSH-BLK.png"
+      }
     ],
-    "tags": ["unisex", "street-luxe", "1CL"],
-    "tagline": "The foundation of absolute elegance."
+    "tags": [
+      "unisex",
+      "street-luxe",
+      "1CL"
+    ],
+    "tagline": "The foundation of absolute elegance.",
+    "gender": "Homme"
   },
   {
     "id": "TSH-WHI",
@@ -19,11 +32,24 @@
     "type": "tshirt",
     "color": "white",
     "variants": [
-      { "id": "TSH-WHI-GOLD", "logo": "gold", "image": "/images/PNG/1CL-TSH-WHI.png" },
-      { "id": "TSH-WHI-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-TSH-WHI.png" }
+      {
+        "id": "TSH-WHI-GOLD",
+        "logo": "gold",
+        "image": "/images/PNG/1CL-TSH-WHI.png"
+      },
+      {
+        "id": "TSH-WHI-CHROME",
+        "logo": "chrome",
+        "image": "/images/PNG/1CL-TSH-WHI.png"
+      }
     ],
-    "tags": ["unisex", "sovereign", "1CL"],
-    "tagline": "Sovereign purity."
+    "tags": [
+      "unisex",
+      "sovereign",
+      "1CL"
+    ],
+    "tagline": "Sovereign purity.",
+    "gender": "Femme"
   },
   {
     "id": "TSH-BEL",
@@ -32,11 +58,24 @@
     "type": "tshirt",
     "color": "beige",
     "variants": [
-      { "id": "TSH-BEL-GOLD", "logo": "gold", "image": "/images/PNG/1CL-TSH-BEL.png" },
-      { "id": "TSH-BEL-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-TSH-BEL.png" }
+      {
+        "id": "TSH-BEL-GOLD",
+        "logo": "gold",
+        "image": "/images/PNG/1CL-TSH-BEL.png"
+      },
+      {
+        "id": "TSH-BEL-CHROME",
+        "logo": "chrome",
+        "image": "/images/PNG/1CL-TSH-BEL.png"
+      }
     ],
-    "tags": ["unisex", "sovereign", "1CL"],
-    "tagline": "Earthy elegance."
+    "tags": [
+      "unisex",
+      "sovereign",
+      "1CL"
+    ],
+    "tagline": "Earthy elegance.",
+    "gender": "Femme"
   },
   {
     "id": "TSH-BLU",
@@ -45,11 +84,24 @@
     "type": "tshirt",
     "color": "blue",
     "variants": [
-      { "id": "TSH-BLU-GOLD", "logo": "gold", "image": "/images/PNG/1CL-TSH-BLU.png" },
-      { "id": "TSH-BLU-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-TSH-BLU.png" }
+      {
+        "id": "TSH-BLU-GOLD",
+        "logo": "gold",
+        "image": "/images/PNG/1CL-TSH-BLU.png"
+      },
+      {
+        "id": "TSH-BLU-CHROME",
+        "logo": "chrome",
+        "image": "/images/PNG/1CL-TSH-BLU.png"
+      }
     ],
-    "tags": ["unisex", "sovereign", "1CL"],
-    "tagline": "Abyssal depth."
+    "tags": [
+      "unisex",
+      "sovereign",
+      "1CL"
+    ],
+    "tagline": "Abyssal depth.",
+    "gender": "Homme"
   },
   {
     "id": "TSH-GLD",
@@ -58,11 +110,24 @@
     "type": "tshirt",
     "color": "gold",
     "variants": [
-      { "id": "TSH-GLD-GOLD", "logo": "gold", "image": "/images/PNG/1CL-TSH-GLD.png" },
-      { "id": "TSH-GLD-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-TSH-GLD.png" }
+      {
+        "id": "TSH-GLD-GOLD",
+        "logo": "gold",
+        "image": "/images/PNG/1CL-TSH-GLD.png"
+      },
+      {
+        "id": "TSH-GLD-CHROME",
+        "logo": "chrome",
+        "image": "/images/PNG/1CL-TSH-GLD.png"
+      }
     ],
-    "tags": ["unisex", "sovereign", "1CL"],
-    "tagline": "Radiant sovereignty."
+    "tags": [
+      "unisex",
+      "sovereign",
+      "1CL"
+    ],
+    "tagline": "Radiant sovereignty.",
+    "gender": "Unisex"
   },
   {
     "id": "TSH-GREY",
@@ -71,11 +136,24 @@
     "type": "tshirt",
     "color": "grey",
     "variants": [
-      { "id": "TSH-GREY-GOLD", "logo": "gold", "image": "/images/PNG/1CL-TSH-GREY.png" },
-      { "id": "TSH-GREY-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-TSH-GREY.png" }
+      {
+        "id": "TSH-GREY-GOLD",
+        "logo": "gold",
+        "image": "/images/PNG/1CL-TSH-GREY.png"
+      },
+      {
+        "id": "TSH-GREY-CHROME",
+        "logo": "chrome",
+        "image": "/images/PNG/1CL-TSH-GREY.png"
+      }
     ],
-    "tags": ["unisex", "sovereign", "1CL"],
-    "tagline": "Urban camouflage."
+    "tags": [
+      "unisex",
+      "sovereign",
+      "1CL"
+    ],
+    "tagline": "Urban camouflage.",
+    "gender": "Homme"
   },
   {
     "id": "TSH-GRN",
@@ -84,11 +162,24 @@
     "type": "tshirt",
     "color": "green",
     "variants": [
-      { "id": "TSH-GRN-GOLD", "logo": "gold", "image": "/images/PNG/1CL-TSH-GRN.png" },
-      { "id": "TSH-GRN-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-TSH-GRN.png" }
+      {
+        "id": "TSH-GRN-GOLD",
+        "logo": "gold",
+        "image": "/images/PNG/1CL-TSH-GRN.png"
+      },
+      {
+        "id": "TSH-GRN-CHROME",
+        "logo": "chrome",
+        "image": "/images/PNG/1CL-TSH-GRN.png"
+      }
     ],
-    "tags": ["unisex", "sovereign", "1CL"],
-    "tagline": "Natural prestige."
+    "tags": [
+      "unisex",
+      "sovereign",
+      "1CL"
+    ],
+    "tagline": "Natural prestige.",
+    "gender": "Unisex"
   },
   {
     "id": "TSH-RED",
@@ -97,11 +188,24 @@
     "type": "tshirt",
     "color": "red",
     "variants": [
-      { "id": "TSH-RED-GOLD", "logo": "gold", "image": "/images/PNG/1CL-TSH-RED.png" },
-      { "id": "TSH-RED-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-TSH-RED.png" }
+      {
+        "id": "TSH-RED-GOLD",
+        "logo": "gold",
+        "image": "/images/PNG/1CL-TSH-RED.png"
+      },
+      {
+        "id": "TSH-RED-CHROME",
+        "logo": "chrome",
+        "image": "/images/PNG/1CL-TSH-RED.png"
+      }
     ],
-    "tags": ["unisex", "sovereign", "1CL"],
-    "tagline": "The pulse of the streets."
+    "tags": [
+      "unisex",
+      "sovereign",
+      "1CL"
+    ],
+    "tagline": "The pulse of the streets.",
+    "gender": "Unisex"
   },
   {
     "id": "PUL-GLD",
@@ -110,11 +214,24 @@
     "type": "pull",
     "color": "gold",
     "variants": [
-      { "id": "PUL-GLD-GOLD", "logo": "gold", "image": "/images/PNG/1CL-PUL-GLD.png" },
-      { "id": "PUL-GLD-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-PUL-GLD.png" }
+      {
+        "id": "PUL-GLD-GOLD",
+        "logo": "gold",
+        "image": "/images/PNG/1CL-PUL-GLD.png"
+      },
+      {
+        "id": "PUL-GLD-CHROME",
+        "logo": "chrome",
+        "image": "/images/PNG/1CL-PUL-GLD.png"
+      }
     ],
-    "tags": ["heritage", "gold", "comfort"],
-    "tagline": "One Link, All Legacy."
+    "tags": [
+      "heritage",
+      "gold",
+      "comfort"
+    ],
+    "tagline": "One Link, All Legacy.",
+    "gender": "Unisex"
   },
   {
     "id": "PUL-BLK",
@@ -123,11 +240,24 @@
     "type": "pull",
     "color": "black",
     "variants": [
-      { "id": "PUL-BLK-GOLD", "logo": "gold", "image": "/images/PNG/1CL-PUL-BLK1.png" },
-      { "id": "PUL-BLK-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-PUL-BLK1.png" }
+      {
+        "id": "PUL-BLK-GOLD",
+        "logo": "gold",
+        "image": "/images/PNG/1CL-PUL-BLK1.png"
+      },
+      {
+        "id": "PUL-BLK-CHROME",
+        "logo": "chrome",
+        "image": "/images/PNG/1CL-PUL-BLK1.png"
+      }
     ],
-    "tags": ["heritage", "onyx", "comfort"],
-    "tagline": "The Real Link."
+    "tags": [
+      "heritage",
+      "onyx",
+      "comfort"
+    ],
+    "tagline": "The Real Link.",
+    "gender": "Homme"
   },
   {
     "id": "PUL-BEI",
@@ -136,11 +266,24 @@
     "type": "pull",
     "color": "beige",
     "variants": [
-      { "id": "PUL-BEI-GOLD", "logo": "gold", "image": "/images/PNG/1CL-PUL-BEI.png" },
-      { "id": "PUL-BEI-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-PUL-BEI.png" }
+      {
+        "id": "PUL-BEI-GOLD",
+        "logo": "gold",
+        "image": "/images/PNG/1CL-PUL-BEI.png"
+      },
+      {
+        "id": "PUL-BEI-CHROME",
+        "logo": "chrome",
+        "image": "/images/PNG/1CL-PUL-BEI.png"
+      }
     ],
-    "tags": ["heritage", "onyx", "comfort"],
-    "tagline": "Warmth in the storm."
+    "tags": [
+      "heritage",
+      "onyx",
+      "comfort"
+    ],
+    "tagline": "Warmth in the storm.",
+    "gender": "Femme"
   },
   {
     "id": "PUL-GREY",
@@ -149,11 +292,24 @@
     "type": "pull",
     "color": "grey",
     "variants": [
-      { "id": "PUL-GREY-GOLD", "logo": "gold", "image": "/images/PNG/1CL-PUL-GREY1.png" },
-      { "id": "PUL-GREY-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-PUL-GREY2.png" }
+      {
+        "id": "PUL-GREY-GOLD",
+        "logo": "gold",
+        "image": "/images/PNG/1CL-PUL-GREY1.png"
+      },
+      {
+        "id": "PUL-GREY-CHROME",
+        "logo": "chrome",
+        "image": "/images/PNG/1CL-PUL-GREY2.png"
+      }
     ],
-    "tags": ["heritage", "onyx", "comfort"],
-    "tagline": "Brutalist comfort."
+    "tags": [
+      "heritage",
+      "onyx",
+      "comfort"
+    ],
+    "tagline": "Brutalist comfort.",
+    "gender": "Homme"
   },
   {
     "id": "PUL-GRN",
@@ -162,11 +318,24 @@
     "type": "pull",
     "color": "green",
     "variants": [
-      { "id": "PUL-GRN-GOLD", "logo": "gold", "image": "/images/PNG/1CL-PUL-GRN1.png" },
-      { "id": "PUL-GRN-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-PUL-GRN2.png" }
+      {
+        "id": "PUL-GRN-GOLD",
+        "logo": "gold",
+        "image": "/images/PNG/1CL-PUL-GRN1.png"
+      },
+      {
+        "id": "PUL-GRN-CHROME",
+        "logo": "chrome",
+        "image": "/images/PNG/1CL-PUL-GRN2.png"
+      }
     ],
-    "tags": ["heritage", "onyx", "comfort"],
-    "tagline": "Rooted in sovereignty."
+    "tags": [
+      "heritage",
+      "onyx",
+      "comfort"
+    ],
+    "tagline": "Rooted in sovereignty.",
+    "gender": "Unisex"
   },
   {
     "id": "PUL-RED",
@@ -175,11 +344,24 @@
     "type": "pull",
     "color": "red",
     "variants": [
-      { "id": "PUL-RED-GOLD", "logo": "gold", "image": "/images/PNG/1CL-PUL-RED.png" },
-      { "id": "PUL-RED-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-PUL-RED.png" }
+      {
+        "id": "PUL-RED-GOLD",
+        "logo": "gold",
+        "image": "/images/PNG/1CL-PUL-RED.png"
+      },
+      {
+        "id": "PUL-RED-CHROME",
+        "logo": "chrome",
+        "image": "/images/PNG/1CL-PUL-RED.png"
+      }
     ],
-    "tags": ["heritage", "onyx", "comfort"],
-    "tagline": "The beating heart of 1CL."
+    "tags": [
+      "heritage",
+      "onyx",
+      "comfort"
+    ],
+    "tagline": "The beating heart of 1CL.",
+    "gender": "Unisex"
   },
   {
     "id": "PUL-WHI",
@@ -188,11 +370,24 @@
     "type": "pull",
     "color": "white",
     "variants": [
-      { "id": "PUL-WHI-GOLD", "logo": "gold", "image": "/images/PNG/1CL-PUL-WHI.png" },
-      { "id": "PUL-WHI-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-PUL-WHI.png" }
+      {
+        "id": "PUL-WHI-GOLD",
+        "logo": "gold",
+        "image": "/images/PNG/1CL-PUL-WHI.png"
+      },
+      {
+        "id": "PUL-WHI-CHROME",
+        "logo": "chrome",
+        "image": "/images/PNG/1CL-PUL-WHI.png"
+      }
     ],
-    "tags": ["heritage", "onyx", "comfort"],
-    "tagline": "Pristine execution."
+    "tags": [
+      "heritage",
+      "onyx",
+      "comfort"
+    ],
+    "tagline": "Pristine execution.",
+    "gender": "Femme"
   },
   {
     "id": "VST-BEL",
@@ -201,11 +396,24 @@
     "type": "jacket",
     "color": "beige",
     "variants": [
-      { "id": "VST-BEL-GOLD", "logo": "gold", "image": "/images/PNG/1CL-VST-BEI-Gold.png" },
-      { "id": "VST-BEL-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-VST-BEI-chrome.png" }
+      {
+        "id": "VST-BEL-GOLD",
+        "logo": "gold",
+        "image": "/images/PNG/1CL-VST-BEI-Gold.png"
+      },
+      {
+        "id": "VST-BEL-CHROME",
+        "logo": "chrome",
+        "image": "/images/PNG/1CL-VST-BEI-chrome.png"
+      }
     ],
-    "tags": ["workshop", "technical", "outerwear"],
-    "tagline": "Crafted in the Atelier."
+    "tags": [
+      "workshop",
+      "technical",
+      "outerwear"
+    ],
+    "tagline": "Crafted in the Atelier.",
+    "gender": "Femme"
   },
   {
     "id": "VST-BLK",
@@ -214,11 +422,24 @@
     "type": "jacket",
     "color": "black",
     "variants": [
-      { "id": "VST-BLK-GOLD", "logo": "gold", "image": "/images/PNG/1CL-VST-BLK.png" },
-      { "id": "VST-BLK-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-VST-BLK2.png" }
+      {
+        "id": "VST-BLK-GOLD",
+        "logo": "gold",
+        "image": "/images/PNG/1CL-VST-BLK.png"
+      },
+      {
+        "id": "VST-BLK-CHROME",
+        "logo": "chrome",
+        "image": "/images/PNG/1CL-VST-BLK2.png"
+      }
     ],
-    "tags": ["workshop", "stealth", "outerwear"],
-    "tagline": "Uncompromising defense."
+    "tags": [
+      "workshop",
+      "stealth",
+      "outerwear"
+    ],
+    "tagline": "Uncompromising defense.",
+    "gender": "Homme"
   },
   {
     "id": "VST-BLU",
@@ -227,11 +448,24 @@
     "type": "jacket",
     "color": "blue",
     "variants": [
-      { "id": "VST-BLU-GOLD", "logo": "gold", "image": "/images/PNG/1CL-VST-BLU.png" },
-      { "id": "VST-BLU-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-VST-BLU.png" }
+      {
+        "id": "VST-BLU-GOLD",
+        "logo": "gold",
+        "image": "/images/PNG/1CL-VST-BLU.png"
+      },
+      {
+        "id": "VST-BLU-CHROME",
+        "logo": "chrome",
+        "image": "/images/PNG/1CL-VST-BLU.png"
+      }
     ],
-    "tags": ["workshop", "technical", "outerwear"],
-    "tagline": "Nighttime operations."
+    "tags": [
+      "workshop",
+      "technical",
+      "outerwear"
+    ],
+    "tagline": "Nighttime operations.",
+    "gender": "Homme"
   },
   {
     "id": "VST-GLD",
@@ -240,11 +474,24 @@
     "type": "jacket",
     "color": "gold",
     "variants": [
-      { "id": "VST-GLD-GOLD", "logo": "gold", "image": "/images/PNG/1CL-VST-GLD.png" },
-      { "id": "VST-GLD-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-VST-GLD.png" }
+      {
+        "id": "VST-GLD-GOLD",
+        "logo": "gold",
+        "image": "/images/PNG/1CL-VST-GLD.png"
+      },
+      {
+        "id": "VST-GLD-CHROME",
+        "logo": "chrome",
+        "image": "/images/PNG/1CL-VST-GLD.png"
+      }
     ],
-    "tags": ["workshop", "stealth", "outerwear"],
-    "tagline": "Visible luxury."
+    "tags": [
+      "workshop",
+      "stealth",
+      "outerwear"
+    ],
+    "tagline": "Visible luxury.",
+    "gender": "Unisex"
   },
   {
     "id": "VST-GRN",
@@ -253,11 +500,24 @@
     "type": "jacket",
     "color": "green",
     "variants": [
-      { "id": "VST-GRN-GOLD", "logo": "gold", "image": "/images/PNG/1CL-VST-GRN.png" },
-      { "id": "VST-GRN-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-VST-GRN.png" }
+      {
+        "id": "VST-GRN-GOLD",
+        "logo": "gold",
+        "image": "/images/PNG/1CL-VST-GRN.png"
+      },
+      {
+        "id": "VST-GRN-CHROME",
+        "logo": "chrome",
+        "image": "/images/PNG/1CL-VST-GRN.png"
+      }
     ],
-    "tags": ["workshop", "stealth", "outerwear"],
-    "tagline": "Tactical aesthetics."
+    "tags": [
+      "workshop",
+      "stealth",
+      "outerwear"
+    ],
+    "tagline": "Tactical aesthetics.",
+    "gender": "Unisex"
   },
   {
     "id": "VST-RED",
@@ -266,11 +526,24 @@
     "type": "jacket",
     "color": "red",
     "variants": [
-      { "id": "VST-RED-GOLD", "logo": "gold", "image": "/images/PNG/1CL-VST-RED.png" },
-      { "id": "VST-RED-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-VST-RED.png" }
+      {
+        "id": "VST-RED-GOLD",
+        "logo": "gold",
+        "image": "/images/PNG/1CL-VST-RED.png"
+      },
+      {
+        "id": "VST-RED-CHROME",
+        "logo": "chrome",
+        "image": "/images/PNG/1CL-VST-RED.png"
+      }
     ],
-    "tags": ["workshop", "stealth", "outerwear"],
-    "tagline": "Make a statement."
+    "tags": [
+      "workshop",
+      "stealth",
+      "outerwear"
+    ],
+    "tagline": "Make a statement.",
+    "gender": "Unisex"
   },
   {
     "id": "VST-WHI",
@@ -279,11 +552,24 @@
     "type": "jacket",
     "color": "white",
     "variants": [
-      { "id": "VST-WHI-GOLD", "logo": "gold", "image": "/images/PNG/1CL-VST-WHI.png" },
-      { "id": "VST-WHI-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-VST-WHI.png" }
+      {
+        "id": "VST-WHI-GOLD",
+        "logo": "gold",
+        "image": "/images/PNG/1CL-VST-WHI.png"
+      },
+      {
+        "id": "VST-WHI-CHROME",
+        "logo": "chrome",
+        "image": "/images/PNG/1CL-VST-WHI.png"
+      }
     ],
-    "tags": ["workshop", "stealth", "outerwear"],
-    "tagline": "Absolute Zero."
+    "tags": [
+      "workshop",
+      "stealth",
+      "outerwear"
+    ],
+    "tagline": "Absolute Zero.",
+    "gender": "Femme"
   },
   {
     "id": "JOG-RED",
@@ -292,11 +578,24 @@
     "type": "jogger",
     "color": "red",
     "variants": [
-      { "id": "JOG-RED-GOLD", "logo": "gold", "image": "/images/PNG/1CL-JOG-RED-Gold.png" },
-      { "id": "JOG-RED-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-JOG-RED.png" }
+      {
+        "id": "JOG-RED-GOLD",
+        "logo": "gold",
+        "image": "/images/PNG/1CL-JOG-RED-Gold.png"
+      },
+      {
+        "id": "JOG-RED-CHROME",
+        "logo": "chrome",
+        "image": "/images/PNG/1CL-JOG-RED.png"
+      }
     ],
-    "tags": ["heritage", "royal", "bottoms"],
-    "tagline": "The pulse of the streets."
+    "tags": [
+      "heritage",
+      "royal",
+      "bottoms"
+    ],
+    "tagline": "The pulse of the streets.",
+    "gender": "Unisex"
   },
   {
     "id": "JOG-BEI",
@@ -305,11 +604,24 @@
     "type": "jogger",
     "color": "beige",
     "variants": [
-      { "id": "JOG-BEI-GOLD", "logo": "gold", "image": "/images/PNG/CL-JOG-BEI.png" },
-      { "id": "JOG-BEI-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-JOG-BEI-chrome.png" }
+      {
+        "id": "JOG-BEI-GOLD",
+        "logo": "gold",
+        "image": "/images/PNG/CL-JOG-BEI.png"
+      },
+      {
+        "id": "JOG-BEI-CHROME",
+        "logo": "chrome",
+        "image": "/images/PNG/1CL-JOG-BEI-chrome.png"
+      }
     ],
-    "tags": ["heritage", "royal", "bottoms"],
-    "tagline": "Effortless movement."
+    "tags": [
+      "heritage",
+      "royal",
+      "bottoms"
+    ],
+    "tagline": "Effortless movement.",
+    "gender": "Femme"
   },
   {
     "id": "JOG-BLK",
@@ -318,11 +630,24 @@
     "type": "jogger",
     "color": "black",
     "variants": [
-      { "id": "JOG-BLK-GOLD", "logo": "gold", "image": "/images/PNG/1CL-JOG-BLK.png" },
-      { "id": "JOG-BLK-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-JOG-BLK.png" }
+      {
+        "id": "JOG-BLK-GOLD",
+        "logo": "gold",
+        "image": "/images/PNG/1CL-JOG-BLK.png"
+      },
+      {
+        "id": "JOG-BLK-CHROME",
+        "logo": "chrome",
+        "image": "/images/PNG/1CL-JOG-BLK.png"
+      }
     ],
-    "tags": ["heritage", "royal", "bottoms"],
-    "tagline": "Stealth agility."
+    "tags": [
+      "heritage",
+      "royal",
+      "bottoms"
+    ],
+    "tagline": "Stealth agility.",
+    "gender": "Homme"
   },
   {
     "id": "JOG-BLU",
@@ -331,11 +656,24 @@
     "type": "jogger",
     "color": "blue",
     "variants": [
-      { "id": "JOG-BLU-GOLD", "logo": "gold", "image": "/images/PNG/1CL-JOG-BLU-Gold.png" },
-      { "id": "JOG-BLU-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-JOG-BLU-Gold.png" }
+      {
+        "id": "JOG-BLU-GOLD",
+        "logo": "gold",
+        "image": "/images/PNG/1CL-JOG-BLU-Gold.png"
+      },
+      {
+        "id": "JOG-BLU-CHROME",
+        "logo": "chrome",
+        "image": "/images/PNG/1CL-JOG-BLU-Gold.png"
+      }
     ],
-    "tags": ["heritage", "royal", "bottoms"],
-    "tagline": "Deep state comfort."
+    "tags": [
+      "heritage",
+      "royal",
+      "bottoms"
+    ],
+    "tagline": "Deep state comfort.",
+    "gender": "Homme"
   },
   {
     "id": "JOG-GLD",
@@ -344,11 +682,24 @@
     "type": "jogger",
     "color": "gold",
     "variants": [
-      { "id": "JOG-GLD-GOLD", "logo": "gold", "image": "/images/PNG/1CL-JOG-GLD.png" },
-      { "id": "JOG-GLD-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-JOG-GLD.png" }
+      {
+        "id": "JOG-GLD-GOLD",
+        "logo": "gold",
+        "image": "/images/PNG/1CL-JOG-GLD.png"
+      },
+      {
+        "id": "JOG-GLD-CHROME",
+        "logo": "chrome",
+        "image": "/images/PNG/1CL-JOG-GLD.png"
+      }
     ],
-    "tags": ["heritage", "royal", "bottoms"],
-    "tagline": "Luminous standard."
+    "tags": [
+      "heritage",
+      "royal",
+      "bottoms"
+    ],
+    "tagline": "Luminous standard.",
+    "gender": "Unisex"
   },
   {
     "id": "JOG-GRN",
@@ -357,11 +708,24 @@
     "type": "jogger",
     "color": "green",
     "variants": [
-      { "id": "JOG-GRN-GOLD", "logo": "gold", "image": "/images/PNG/1CL-JOG-GRN.png" },
-      { "id": "JOG-GRN-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-JOG-GRN.png" }
+      {
+        "id": "JOG-GRN-GOLD",
+        "logo": "gold",
+        "image": "/images/PNG/1CL-JOG-GRN.png"
+      },
+      {
+        "id": "JOG-GRN-CHROME",
+        "logo": "chrome",
+        "image": "/images/PNG/1CL-JOG-GRN.png"
+      }
     ],
-    "tags": ["heritage", "royal", "bottoms"],
-    "tagline": "Grounded luxury."
+    "tags": [
+      "heritage",
+      "royal",
+      "bottoms"
+    ],
+    "tagline": "Grounded luxury.",
+    "gender": "Unisex"
   },
   {
     "id": "JOG-WHI",
@@ -370,11 +734,24 @@
     "type": "jogger",
     "color": "white",
     "variants": [
-      { "id": "JOG-WHI-GOLD", "logo": "gold", "image": "/images/PNG/CL-JOG-WHI.png" },
-      { "id": "JOG-WHI-CHROME", "logo": "chrome", "image": "/images/PNG/CL-JOG-WHI.png" }
+      {
+        "id": "JOG-WHI-GOLD",
+        "logo": "gold",
+        "image": "/images/PNG/CL-JOG-WHI.png"
+      },
+      {
+        "id": "JOG-WHI-CHROME",
+        "logo": "chrome",
+        "image": "/images/PNG/CL-JOG-WHI.png"
+      }
     ],
-    "tags": ["heritage", "royal", "bottoms"],
-    "tagline": "Pure canvas."
+    "tags": [
+      "heritage",
+      "royal",
+      "bottoms"
+    ],
+    "tagline": "Pure canvas.",
+    "gender": "Femme"
   },
   {
     "id": "ART-SIMP1",
@@ -383,10 +760,23 @@
     "type": "jacket",
     "color": "black",
     "variants": [
-      { "id": "ART-SIMP1-GOLD", "logo": "gold", "image": "/images/JacketSongs/Jacket_there-is-one thing-.png" },
-      { "id": "ART-SIMP1-CHROME", "logo": "chrome", "image": "/images/JacketSongs/Jacket_there-is-one thing-.png" }
+      {
+        "id": "ART-SIMP1-GOLD",
+        "logo": "gold",
+        "image": "/images/JacketSongs/Jacket_there-is-one thing-.png"
+      },
+      {
+        "id": "ART-SIMP1-CHROME",
+        "logo": "chrome",
+        "image": "/images/JacketSongs/Jacket_there-is-one thing-.png"
+      }
     ],
-    "tags": ["artist", "chawblick", "exclusive"],
-    "tagline": "There Is Just a Simple Thing"
+    "tags": [
+      "artist",
+      "chawblick",
+      "exclusive"
+    ],
+    "tagline": "There Is Just a Simple Thing",
+    "gender": "Homme"
   }
 ]

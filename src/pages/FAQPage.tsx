@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useSovereign } from '../hooks/useSovereign';
-import { ChevronDown, Shield, Database, Zap, UserCheck } from 'lucide-react';
+import { ChevronDown, Shield, Database, Zap, UserCheck, type LucideIcon } from 'lucide-react';
 
 interface FAQEntry {
   id: string;
-  icon: any;
+  icon: LucideIcon;
   category: { en: string; fr: string };
   question: { en: string; fr: string };
   answer: { en: string; fr: string };
@@ -55,7 +55,7 @@ const faqData: FAQEntry[] = [
 ];
 
 export default function FAQPage() {
-  const { language, t } = useSovereign();
+  const { language } = useSovereign();
   const [activeTab, setActiveTab] = useState<string | null>(null);
 
   return (

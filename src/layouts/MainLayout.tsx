@@ -14,8 +14,10 @@ import VoiceConsole from '../components/VoiceConsole';
 import GlobalLoupe from '../components/GlobalLoupe';
 import SidebarEMS from '../components/SidebarEMS';
 import ContractModal from '../components/ContractModal';
+import { useSovereign } from '../hooks/useSovereign';
 
 export default function MainLayout() {
+  const { language } = useSovereign();
   const [isContractOpen, setIsContractOpen] = useState(false);
 
   return (
@@ -26,7 +28,7 @@ export default function MainLayout() {
       {/* Sovereignty Overlays */}
       <GlobalLoupe />
       <VoiceConsole />
-      <IntelligentAgent />
+      <IntelligentAgent key={language} />
       <MediaHub />
       <SidebarEMS openContractForge={() => setIsContractOpen(true)} />
       <ContractModal isOpen={isContractOpen} onClose={() => setIsContractOpen(false)} />

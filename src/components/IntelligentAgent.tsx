@@ -3,33 +3,16 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useSovereign } from '../hooks/useSovereign';
 import { useNavigate } from 'react-router-dom';
 
-const knowledgeBase: Record<string, { reply: string, action?: string }> = {
-  vault: {
-    reply: "Le Vault est notre zone hypersécurisée. J'ouvre l'accès digital pour vous.",
-    action: "unlock_vault"
-  },
-  logistique: {
-    reply: "La Carte Logistique EMS permet le suivi global. J'ouvre le dashboard pour vous.",
-    action: "open_admin"
-  },
-  map: {
-    reply: "Initialisation de la carte 4D EMS@Path.",
-    action: "nav_map"
-  },
-};
 
 export default function IntelligentAgent() {
   const { isAgentOpen, toggleAgent, toggleSidebar, language, t } = useSovereign();
-  const [messages, setMessages] = useState<{ text: string; sender: 'ai' | 'user' }[]>([]);
+  const [messages, setMessages] = useState<{ text: string; sender: 'ai' | 'user' }[]>(() => [
+    { text: t('agent.welcome'), sender: 'ai' }
+  ]);
   const [inputVal, setInputVal] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const chatBodyRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
-
-  // Initialize welcome message when language changes or on mount
-  useEffect(() => {
-    setMessages([{ text: t('agent.welcome'), sender: 'ai' }]);
-  }, [language]);
 
   useEffect(() => {
     if (chatBodyRef.current) {

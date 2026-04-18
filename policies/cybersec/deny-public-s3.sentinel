@@ -1,0 +1,8 @@
+import "tfplan/v2" as tfplan
+
+deny if {
+  some bucket in tfplan.resource_changes {
+    bucket.type is "aws_s3_bucket" and
+    bucket.change.after.acl is "public-read"
+  }
+}

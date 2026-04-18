@@ -1,0 +1,7 @@
+# ══════════════════════════════════════════════════════════
+# terraform.tfvars — NEVER COMMIT TO GIT
+# ══════════════════════════════════════════════════════════
+# Copy this file to terraform.tfvars and fill in your values
+
+project_id = "YOUR_GCP_PROJECT_ID"  # e.g. "1cl-sovereign-hub"
+region     = "europe-west1"          # Closest to Paris

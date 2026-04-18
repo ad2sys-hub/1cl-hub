@@ -1,0 +1,47 @@
+steps:
+  # Step 1 — Build Docker image
+  - name: 'gcr.io/cloud-builders/docker'
+    id: 'build'
+    args:
+      - 'build'
+      - '--build-arg'
+      - 'VITE_SUPABASE_URL=${_SUPABASE_URL}'
+      - '--build-arg'
+      - 'VITE_SUPABASE_ANON_KEY=${_SUPABASE_ANON_KEY}'
+      - '-t'
+      - '${_REGION}-docker.pkg.dev/${PROJECT_ID}/1cl-hub/app:${SHORT_SHA}'
+      - '-t'
+      - '${_REGION}-docker.pkg.dev/${PROJECT_ID}/1cl-hub/app:latest'
+      - '.'
+
+  # Step 2 — Push to Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    id: 'push'
+    args:
+      - 'push'
+      - '--all-tags'
+      - '${_REGION}-docker.pkg.dev/${PROJECT_ID}/1cl-hub/app'
+
+  # Step 3 — Deploy to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    id: 'deploy'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - '1cl-hub'
+      - '--image=${_REGION}-docker.pkg.dev/${PROJECT_ID}/1cl-hub/app:${SHORT_SHA}'
+      - '--region=${_REGION}'
+      - '--platform=managed'
+      - '--allow-unauthenticated'
+
+substitutions:
+  _REGION: 'europe-west1'
+  _SUPABASE_URL: '${SUPABASE_URL}'
+  _SUPABASE_ANON_KEY: '${SUPABASE_ANON_KEY}'
+
+options:
+  logging: CLOUD_LOGGING_ONLY
+  machineType: 'E2_HIGHCPU_8'
+
+timeout: '600s'

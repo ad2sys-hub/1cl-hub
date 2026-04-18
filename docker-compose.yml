@@ -1,0 +1,27 @@
+version: '3.9'
+
+services:
+  # 1CL Hub — React Frontend
+  1cl-hub:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        VITE_SUPABASE_URL: ${VITE_SUPABASE_URL}
+        VITE_SUPABASE_ANON_KEY: ${VITE_SUPABASE_ANON_KEY}
+    ports:
+      - "8080:8080"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/1cl-hub/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    labels:
+      - "com.1cl.service=frontend"
+      - "com.1cl.version=2.0"
+
+volumes:
+  app_data:

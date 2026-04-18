@@ -1,27 +1,139 @@
-name: Terraform Cloud Pipeline
+name: Terraform — 1CL Hub Infrastructure
 
 on:
   push:
-    branches:
-      - main
+    branches: ["main"]
+    paths:
+      - "infra/terraform/**"
+  pull_request:
+    branches: ["main"]
+    paths:
+      - "infra/terraform/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: terraform-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  TF_WORKING_DIR: infra/terraform
+  TF_CLOUD_ORGANIZATION: anes-systems
+  TF_WORKSPACE: 1cl_hub_infra
 
 jobs:
-  terraform:
+  # ─────────────────────────────────────────────
+  # Validation & Format check
+  # ─────────────────────────────────────────────
+  validate:
+    name: Validate Terraform
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "~> 1.6"
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+
+      - name: Terraform Format Check
+        working-directory: ${{ env.TF_WORKING_DIR }}
+        run: terraform fmt -check -recursive
+        continue-on-error: false
 
       - name: Terraform Init
-        run: terraform -chdir=infra/terraform init
+        working-directory: ${{ env.TF_WORKING_DIR }}
+        run: terraform init -no-color
+
+      - name: Terraform Validate
+        working-directory: ${{ env.TF_WORKING_DIR }}
+        run: terraform validate -no-color
+
+  # ─────────────────────────────────────────────
+  # Plan — affiché dans la PR
+  # ─────────────────────────────────────────────
+  plan:
+    name: Terraform Plan
+    runs-on: ubuntu-latest
+    needs: validate
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "~> 1.6"
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+
+      - name: Terraform Init
+        working-directory: ${{ env.TF_WORKING_DIR }}
+        run: terraform init -no-color
 
       - name: Terraform Plan
-        run: terraform -chdir=infra/terraform plan
+        id: plan
+        working-directory: ${{ env.TF_WORKING_DIR }}
+        run: terraform plan -no-color -out=tfplan
+        env:
+          TF_VAR_supabase_url: ${{ secrets.SUPABASE_URL }}
+          TF_VAR_supabase_service_role: ${{ secrets.SUPABASE_SERVICE_ROLE }}
+          TF_VAR_mongo_uri: ${{ secrets.MONGO_URI }}
+        continue-on-error: true
+
+      - name: Comment Plan on PR
+        uses: actions/github-script@v7
+        if: github.event_name == 'pull_request'
+        env:
+          PLAN: "${{ steps.plan.outputs.stdout }}"
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const output = `#### Terraform Plan 📋
+            \`\`\`
+            ${process.env.PLAN}
+            \`\`\`
+            *Pushed by: @${{ github.actor }}, Action: \`${{ github.event_name }}\`*`;
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: output
+            });
+
+  # ─────────────────────────────────────────────
+  # Apply — uniquement sur push main
+  # ─────────────────────────────────────────────
+  apply:
+    name: Terraform Apply
+    runs-on: ubuntu-latest
+    needs: validate
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    environment:
+      name: production
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "~> 1.6"
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+
+      - name: Terraform Init
+        working-directory: ${{ env.TF_WORKING_DIR }}
+        run: terraform init -no-color
 
       - name: Terraform Apply
-        if: github.ref == 'refs/heads/main'
-        run: terraform -chdir=infra/terraform apply -auto-approve
+        working-directory: ${{ env.TF_WORKING_DIR }}
+        run: terraform apply -auto-approve -no-color
+        env:
+          TF_VAR_supabase_url: ${{ secrets.SUPABASE_URL }}
+          TF_VAR_supabase_service_role: ${{ secrets.SUPABASE_SERVICE_ROLE }}
+          TF_VAR_mongo_uri: ${{ secrets.MONGO_URI }}

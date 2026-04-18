@@ -1,14 +1,47 @@
-output "anes_core" {
-  value = module.anes_core.anes_core_vpc_id
-  description = "VPC principal du module ANES Core"
+# ═══════════════════════════════════════════════════════════════════
+# 1CL HUB — Outputs sponsor-ready
+# ═══════════════════════════════════════════════════════════════════
+
+output "vpc_id" {
+  description = "ID du VPC ANES Core"
+  value       = module.anes_core.vpc_id
 }
 
-output "ems_path_cluster" {
-  value = module.ems_path.ems_path_cluster
-  description = "Cluster ECS pour EMS@Path"
+output "subnet_id" {
+  description = "ID du subnet applicatif ANES Core"
+  value       = module.anes_core.subnet_id
 }
 
-output "supabase_mongo_bridge" {
-  value = module.supabase_mongo_bridge.bridge_status
-  description = "Statut du bridge souverain Supabase ↔ MongoDB"
+output "s3_bucket_anes_core" {
+  description = "Nom du bucket S3 ANES Core (souverain)"
+  value       = module.anes_core.s3_bucket_name
+}
+
+output "ecs_cluster_arn" {
+  description = "ARN du cluster ECS Fargate EMS@Path"
+  value       = module.ems_path.cluster_arn
+}
+
+output "ems_service_name" {
+  description = "Nom du service ECS EMS@Path"
+  value       = module.ems_path.service_name
+}
+
+output "bridge_status" {
+  description = "Statut du bridge Supabase ↔ MongoDB"
+  value       = module.supabase_mongo_bridge.bridge_status
+}
+
+output "workspace" {
+  description = "Workspace Terraform Cloud actif"
+  value       = "1cl_hub_infra @ anes-systems"
+}
+
+output "compliance_tags" {
+  description = "Tags de conformité appliqués à toutes les ressources"
+  value = {
+    ecosystem  = "anes-emsat"
+    module     = "1cl_hub"
+    compliance = "audit_ready"
+  }
 }

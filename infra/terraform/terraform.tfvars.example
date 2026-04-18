@@ -1,0 +1,19 @@
+# ═══════════════════════════════════════════════════════════════════
+# Exemple de valeurs — NE PAS COMMITTER en clair
+# Copier vers terraform.tfvars et remplir avec les vraies valeurs
+# OU utiliser les variables Terraform Cloud (recommandé)
+# ═══════════════════════════════════════════════════════════════════
+
+aws_region  = "eu-west-3"
+environment = "production"
+
+vpc_cidr    = "10.10.0.0/16"
+subnet_cidr = "10.10.1.0/24"
+
+ems_docker_image  = "ad2sys/ems-path:latest"
+ems_container_port = 8080
+
+# ── Secrets (définir dans Terraform Cloud comme variables sensibles) ──
+# supabase_url          = "https://xxxx.supabase.co"
+# supabase_service_role = "eyJhbGciOiJIUz..."
+# mongo_uri             = "mongodb+srv://user:pass@cluster.mongodb.net/1cl-hub"

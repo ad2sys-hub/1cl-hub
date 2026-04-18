@@ -1,0 +1,45 @@
+# ═══════════════════════════════════════════════════════════════════
+# Policy Sentinel — Tags obligatoires
+# CyberSec Level : SOFT (advisory) → passer à HARD en production
+# Scope          : 1cl_hub_infra workspace
+# ═══════════════════════════════════════════════════════════════════
+
+import "tfplan/v2" as tfplan
+
+# Tags requis sur toutes les ressources AWS
+required_tags = ["ecosystem", "module", "owner", "env", "compliance"]
+
+# Récupérer toutes les ressources avec changement
+all_resources = filter tfplan.resource_changes as _, changes {
+  changes.provider_name contains "aws" and
+  changes.change.actions contains "create"
+}
+
+# ───────────────────────────────────────────────
+# Règle : chaque ressource créée doit porter
+# l'ensemble des required_tags
+# ───────────────────────────────────────────────
+check_required_tags = rule {
+  all all_resources as _, resource {
+    all required_tags as tag {
+      resource.change.after.tags[tag] is not null
+    }
+  }
+}
+
+# ───────────────────────────────────────────────
+# Règle : valeurs compliance acceptables
+# ───────────────────────────────────────────────
+check_compliance_value = rule {
+  all all_resources as _, resource {
+    resource.change.after.tags["compliance"] in [
+      "audit_ready",
+      "sponsor_ready",
+      "compliant"
+    ]
+  }
+}
+
+main = rule {
+  check_required_tags and check_compliance_value
+}

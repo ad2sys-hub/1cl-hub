@@ -1,0 +1,33 @@
+# ═══════════════════════════════════════════════════════════════════
+# Policy Sentinel — Interdiction S3 publics
+# CyberSec Level : HARD (blocking)
+# Scope          : 1cl_hub_infra workspace
+# ═══════════════════════════════════════════════════════════════════
+
+import "tfplan/v2" as tfplan
+
+# Récupérer toutes les ressources S3 de ce plan
+s3_buckets = filter tfplan.resource_changes as _, changes {
+  changes.type is "aws_s3_bucket"
+}
+
+s3_public_access_blocks = filter tfplan.resource_changes as _, changes {
+  changes.type is "aws_s3_bucket_public_access_block"
+}
+
+# ───────────────────────────────────────────────
+# Règle : chaque bucket doit avoir un
+# public_access_block associé et configuré
+# ───────────────────────────────────────────────
+deny_public_s3 = rule {
+  all s3_public_access_blocks as _, block {
+    block.change.after.block_public_acls       is true and
+    block.change.after.block_public_policy     is true and
+    block.change.after.ignore_public_acls      is true and
+    block.change.after.restrict_public_buckets is true
+  }
+}
+
+main = rule {
+  deny_public_s3
+}

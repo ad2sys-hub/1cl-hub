@@ -55,7 +55,7 @@ const faqData: FAQEntry[] = [
 ];
 
 export default function FAQPage() {
-  const { language } = useSovereign();
+  const { t, language } = useSovereign();
   const [activeTab, setActiveTab] = useState<string | null>(null);
 
   return (
@@ -67,10 +67,10 @@ export default function FAQPage() {
           className="text-center mb-16"
         >
           <h1 className="text-4xl md:text-5xl font-serif text-clGold mb-4 tracking-tighter uppercase italic">
-            {language === 'en' ? 'Sovereign Knowledge' : 'Savoir Souverain'}
+            {t('faq.title')}
           </h1>
           <p className="text-gray-500 uppercase tracking-[0.4em] text-xs">
-            {language === 'en' ? 'Technical Specifications & System Guide' : 'Spécifications Techniques & Guide Système'}
+            {t('faq.subtitle')}
           </p>
         </motion.div>
 
@@ -141,25 +141,23 @@ export default function FAQPage() {
           className="mt-20 text-center p-8 bg-black/50 border border-white/5 rounded-sm"
         >
           <p className="text-gray-400 text-xs mb-6 italic">
-            {language === 'en' 
-              ? "Need deeper assistance? Our Sovereign AI Curator is available 24/7 in the bottom-right terminal."
-              : "Besoin d'une assistance approfondie ? Notre IA Curator est disponible 24/7 dans le terminal en bas à droite."}
+            <strong>{t('faq.helpTitle')}</strong> — {t('faq.helpText')}
           </p>
           <div className="flex justify-center gap-8">
              <div className="text-center">
                 <p className="text-[9px] text-gray-600 uppercase tracking-widest mb-1">Status</p>
                 <div className="flex items-center gap-2 justify-center">
                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.6)]"></div>
-                   <span className="text-[10px] text-white font-mono uppercase">Node Active</span>
+                   <span className="text-[10px] text-white font-mono uppercase">{t('faq.nodeActive')}</span>
                 </div>
              </div>
              <div className="text-center">
-                <p className="text-[9px] text-gray-600 uppercase tracking-widest mb-1">Latency</p>
+                <p className="text-[9px] text-gray-600 uppercase tracking-widest mb-1">{t('faq.latency')}</p>
                 <span className="text-[10px] text-white font-mono uppercase">22ms</span>
              </div>
              <div className="text-center">
-                <p className="text-[9px] text-gray-600 uppercase tracking-widest mb-1">Sync</p>
-                <span className="text-[10px] text-white font-mono uppercase">Nominal</span>
+                <p className="text-[9px] text-gray-600 uppercase tracking-widest mb-1">{t('faq.sync')}</p>
+                <span className="text-[10px] text-white font-mono uppercase">{t('faq.nominal')}</span>
              </div>
           </div>
         </motion.div>

@@ -9,7 +9,8 @@ export const translations = {
       sponsors: 'Sponsorships',
       map: 'EMS@Path 4D',
       faq: 'FAQ',
-      admin: 'Gestion / Admin'
+      admin: 'Gestion / Admin',
+      share: 'Share Link'
     },
     hero: {
         title: 'ABSOLUTE ELEGANCE',
@@ -62,6 +63,39 @@ export const translations = {
           jacket: 'Jackets'
         }
     },
+    sponsors: {
+        title: 'FORGE PARTNERSHIPS',
+        subtitle: 'Connect to the 1CL sovereign network',
+        formTitle: 'PROPOSAL METRICS',
+        submit: 'SEND PROPOSAL',
+        description: '1CL is a nexus between high-end music production and premium physical artifacts. We seek visionary partners to scale the "Sovereign" ecosystem.',
+        card1Title: 'Brand Placement',
+        card1Text: 'Integrate your brand natively into our 4D ecosystem, runway drops, and highly-anticipated music video releases by Chawblick Music.',
+        card2Title: 'Textile & Tech Innovation',
+        card2Text: 'We collaborate with advanced material suppliers and Web3/phygital innovators to embed digital ownership (NFT/NFC) into our premium Workshop Edition jackets.',
+        initiate: 'Initiate Dialogue',
+        subInitiate: 'Exclusive partnership inquiries handled securely via the EMS network.',
+        entity: 'Entity / Company',
+        contact: 'Official Contact',
+        synergy: 'Synergy Sector',
+        proposal: 'Value Proposal',
+        options: {
+          placement: 'Product Placement & Music Video',
+          textile: 'Textile Supply / Manufacturing',
+          tech: 'Technology (Web3, NFC, AI)',
+          event: 'Events & Retail'
+        },
+        status: {
+          encrypting: 'Encrypting...',
+          routing: 'Routing to 1CL EMS Hub.',
+          successTitle: 'SECURE REQUEST',
+          successText: 'Your data has been transmitted to the 1CL administrative network. The Curator is processing.',
+          errorTitle: 'TRANSMISSION ERROR',
+          errorText: 'Check your network credentials or try again later.',
+          back: 'Back to Portal',
+          retry: 'Retry'
+        }
+    },
     philosophy: {
         title: '1CL — 1st Class Obsession',
         subtitle: 'We are not just a clothing brand. We are an ecosystem. A sovereign physical manifestation of auditory art.',
@@ -71,6 +105,21 @@ export const translations = {
         pillar2Text: "The physical garment is 'The Real Link'. It bridges the gap between the music we create and the community that lives it. A wearable extension of the Chawblick universe.",
         pillar3Title: 'Legacy',
         pillar3Text: 'One Link, All Legacy. Clothes that age with you. Music that stays with you. We are building the sovereign archives of tomorrow.'
+    },
+    faq: {
+        title: 'FREQUENTLY ASKED QUESTIONS',
+        subtitle: 'Sovereign Support Protocols',
+        helpTitle: 'Need deeper assistance?',
+        helpText: 'Our Sovereign AI Curator is available 24/7 in the bottom-right terminal.',
+        nodeActive: 'Node Active',
+        latency: 'Latency',
+        sync: 'Sync',
+        nominal: 'Nominal'
+    },
+    share: {
+        title: '1CL Hub — Sovereign Ecosystem',
+        text: 'Explore the future of Street-Luxe and auditory art.',
+        success: 'Link copied to clipboard.'
     }
   },
   fr: {
@@ -81,7 +130,8 @@ export const translations = {
       sponsors: 'Partenariats',
       map: 'EMS@Path 4D',
       faq: 'FAQ',
-      admin: 'Gestion / Admin'
+      admin: 'Gestion / Admin',
+      share: 'Partager le Hub'
     },
     hero: {
         title: 'ÉLÉGANCE ABSOLUE',
@@ -138,7 +188,34 @@ export const translations = {
         title: 'FORGE DES PARTENARIATS',
         subtitle: 'Connectez-vous au réseau souverain 1CL',
         formTitle: 'MÉTRIQUES DE PROPOSITION',
-        submit: 'ENVOYER LA PROPOSITION'
+        submit: 'ENVOYER LA PROPOSITION',
+        description: '1CL est un lien entre la production musicale de haut vol et les objets physiques premium. Nous recherchons des partenaires visionnaires pour développer l\'écosystème "Sovereign".',
+        card1Title: 'Placement de Marque',
+        card1Text: 'Intégrez votre marque nativement dans notre écosystème 4D, nos défilés et les clips musicaux très attendus de Chawblick Music.',
+        card2Title: 'Innovation Textile & Tech',
+        card2Text: 'Nous collaborons avec des fournisseurs de matériaux avancés et des innovateurs Web3 pour intégrer la propriété numérique (NFT/NFC) dans nos vestes Workshop Edition.',
+        initiate: 'Initier le Dialogue',
+        subInitiate: 'Demandes de partenariat exclusives gérées de manière sécurisée via le réseau EMS.',
+        entity: 'Entité / Société',
+        contact: 'Contact Officiel',
+        synergy: 'Secteur de Synergie',
+        proposal: 'Proposition de Valeur',
+        options: {
+          placement: 'Placement Produit & Clip Vidéo',
+          textile: 'Fourniture Textile / Manufacturier',
+          tech: 'Technologie (Web3, NFC, IA)',
+          event: 'Événementiel & Retail'
+        },
+        status: {
+          encrypting: 'Chiffrement en cours...',
+          routing: 'Routage vers le Hub EMS 1CL.',
+          successTitle: 'REQUÊTE SÉCURISÉE',
+          successText: 'Vos données ont été transmises au réseau administratif 1CL. Le Curator procède à l\'analyse.',
+          errorTitle: 'ERREUR DE TRANSMISSION',
+          errorText: 'Vérifiez vos identifiants réseau ou réessayez plus tard.',
+          back: 'Retourner au Portail',
+          retry: 'Réessayer'
+        }
     },
     philosophy: {
         title: '1CL — Obsession de 1ère Classe',
@@ -149,6 +226,21 @@ export const translations = {
         pillar2Text: 'Le vêtement physique est "Le Lien Réel". Il comble le fossé entre la musique que nous créons et la communauté qui la vit. Une extension portable de l\'univers Chawblick.',
         pillar3Title: 'Héritage',
         pillar3Text: 'Un Lien, Tout Héritage. Des vêtements qui vieillissent avec vous. Une musique qui reste avec vous. Nous construisons les archives souveraines de demain.'
+    },
+    faq: {
+        title: 'FOIRE AUX QUESTIONS',
+        subtitle: 'Protocoles de Support Souverains',
+        helpTitle: 'Besoin d\'une assistance approfondie ?',
+        helpText: 'Notre IA Curator est disponible 24/7 dans le terminal en bas à droite.',
+        nodeActive: 'Node Actif',
+        latency: 'Latence',
+        sync: 'Sync',
+        nominal: 'Nominal'
+    },
+    share: {
+        title: 'Hub 1CL — Écosystème Souverain',
+        text: 'Découvrez le futur du Street-Luxe et de l\'art auditif.',
+        success: 'Lien copié dans le presse-papier.'
     }
   }
 };

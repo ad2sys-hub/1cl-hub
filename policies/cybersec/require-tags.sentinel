@@ -1,0 +1,9 @@
+import "tfplan/v2" as tfplan
+
+required_tags = ["module", "ecosystem", "compliance"]
+
+deny if {
+  some r in tfplan.resource_changes {
+    not all required_tags in keys(r.change.after.tags)
+  }
+}

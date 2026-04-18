@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 export default function ProductPage() {
   const { id } = useParams();
+  const { t } = useSovereign();
   const [product, setProduct] = useState<any>(null);
   const [activeVariant, setActiveVariant] = useState<any>(null);
   const [loading, setLoading] = useState(true);
@@ -86,7 +87,7 @@ export default function ProductPage() {
 
             {/* Slogans & Details */}
             <div>
-               <p className="text-xs uppercase tracking-widest text-gray-500 mb-2">Specifications</p>
+               <p className="text-xs uppercase tracking-widest text-gray-500 mb-2">{t('product.specifications')}</p>
                <ul className="text-sm text-gray-300 space-y-2 opacity-80">
                  <li>• Aesthetic: Street-Luxe / Sovereign</li>
                  <li>• Signature: High-density embroidery</li>
@@ -100,7 +101,7 @@ export default function ProductPage() {
                 onClick={() => setInLookbook(!inLookbook)}
                 className={`w-full py-5 border text-sm uppercase tracking-widest transition-all duration-300 ${inLookbook ? 'bg-white text-black border-white' : 'bg-transparent border-clGold text-clGold hover:bg-clGold/10 hover:shadow-[0_0_20px_rgba(212,175,55,0.3)]'}`}
               >
-                {inLookbook ? '✓ In Lookbook' : 'Add to Lookbook'}
+                {inLookbook ? '✓ In Lookbook' : t('product.addToCart')}
               </button>
 
               <div className="flex gap-4">
@@ -108,7 +109,7 @@ export default function ProductPage() {
                     Size Guide
                  </button>
                  <button onClick={() => setSpecModalOpen(true)} className="w-1/2 py-3 border border-clChrome/30 text-clChrome hover:text-white hover:border-clChrome text-xs uppercase tracking-widest transition-colors">
-                    Production Specs
+                    {t('product.specifications')}
                  </button>
               </div>
             </div>
@@ -123,18 +124,18 @@ export default function ProductPage() {
             <motion.div className="absolute inset-0 bg-black/80 backdrop-blur-md" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setSizeGuideOpen(false)} />
             <motion.div className="relative bg-[#111] border border-clGold/50 w-full max-w-2xl max-h-[90vh] overflow-y-auto p-8" initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 50 }}>
               <button onClick={() => setSizeGuideOpen(false)} className="absolute top-4 right-4 text-gray-400 hover:text-white">✕</button>
-              <h2 className="text-2xl font-serif text-clGold text-center mb-6">Catalogue des Tailles — 1CL</h2>
+              <h2 className="text-2xl font-serif text-clGold text-center mb-6">{t('catalog.all')} // 1CL</h2>
               
-              <h4 className="mb-2 text-white border-b border-white/10 pb-2">🧥 Hauts (T‑Shirt, Sweat, Hoodie, Pull)</h4>
+              <h4 className="mb-2 text-white border-b border-white/10 pb-2">🧥 {t('catalog.types.jacket')} / {t('catalog.types.tshirt')}</h4>
               <table className="w-full text-xs text-left text-gray-400 mb-6">
-                 <thead><tr className="text-gray-200 border-b border-white/5"><th className="py-2">Taille</th><th>Poitrine (cm)</th><th>Longueur (cm)</th><th>Manches (cm)</th></tr></thead>
+                 <thead><tr className="text-gray-200 border-b border-white/5"><th className="py-2">Size</th><th>Chest (cm)</th><th>Length (cm)</th><th>Sleeves (cm)</th></tr></thead>
                  <tbody>
                     <tr className="border-b border-white/5"><td className="py-1">M</td><td>53–55</td><td>70–72</td><td>63–65</td></tr>
                     <tr className="border-b border-white/5"><td className="py-1">L</td><td>56–58</td><td>73–75</td><td>65–67</td></tr>
                     <tr><td className="py-1">XL</td><td>59–61</td><td>76–78</td><td>67–69</td></tr>
                  </tbody>
               </table>
-              <div className="text-[10px] text-clGold uppercase tracking-widest text-center mt-8">Notes premium 1CL : Coupe légèrement oversize, tissus 280–350g.</div>
+              <div className="text-[10px] text-clGold uppercase tracking-widest text-center mt-8">{t('product.craftedIn')}</div>
             </motion.div>
           </div>
         )}
@@ -144,24 +145,23 @@ export default function ProductPage() {
             <motion.div className="absolute inset-0 bg-black/80 backdrop-blur-md" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setSpecModalOpen(false)} />
             <motion.div className="relative bg-[#111] border border-clChrome/50 w-full max-w-2xl max-h-[90vh] overflow-y-auto p-8" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }}>
               <button onClick={() => setSpecModalOpen(false)} className="absolute top-4 right-4 text-gray-400 hover:text-white">✕</button>
-              <h2 className="text-2xl font-serif text-clChrome text-center mb-6">SPÉCIFICATIONS TECHNIQUES</h2>
+              <h2 className="text-2xl font-serif text-clChrome text-center mb-6">{t('product.specifications')}</h2>
               
               <table className="w-full text-xs text-left text-gray-300">
                   <thead>
                       <tr className="border-b border-white/10 text-white">
-                          <th className="py-2">Élément</th>
-                          <th>Emplacement</th>
-                          <th>Dimensions (L x H)</th>
-                          <th>Couleur/Fil</th>
+                          <th className="py-2">Element</th>
+                          <th>Location</th>
+                          <th>Dimensions</th>
+                          <th>Color/Thread</th>
                       </tr>
                   </thead>
                   <tbody>
-                      <tr className="border-b border-white/5"><td className="py-2">Logo 1CL Principal</td><td>Poitrine Gauche</td><td>80 mm x 75 mm</td><td className="text-clGold">Fil Or / Fil Chrome</td></tr>
-                      <tr className="border-b border-white/5"><td className="py-2">Écusson Rond</td><td>Manche / Cuisse</td><td>Ø 60 mm</td><td>Or / Chrome avec liseré</td></tr>
-                      <tr><td className="py-2">Étiquette Intérieure</td><td>Col (Intérieur)</td><td>40 mm x 30 mm</td><td>Tissé fond satin, typo Or</td></tr>
+                      <tr className="border-b border-white/5"><td className="py-2">1CL Main Logo</td><td>Left Chest</td><td>80 mm x 75 mm</td><td className="text-clGold">Gold / Chrome</td></tr>
+                      <tr className="border-b border-white/5"><td className="py-2">Round Badge</td><td>Sleeve / Thigh</td><td>Ø 60 mm</td><td>Gold / Chrome</td></tr>
                   </tbody>
               </table>
-              <div className="text-[10px] text-gray-500 uppercase tracking-widest text-center mt-8">Directive MPC : Tolérance de placement ±2mm. Tension de fil haute-densité.</div>
+              <div className="text-[10px] text-gray-500 uppercase tracking-widest text-center mt-8">{t('product.craftedIn')}</div>
             </motion.div>
           </div>
         )}

@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 
 // Context
@@ -39,7 +39,7 @@ function AnimatedRoutes() {
 function App() {
   return (
     <SovereignProvider>
-      <Router basename="/1cl-hub">
+      <Router>
         <AnimatedRoutes />
       </Router>
     </SovereignProvider>

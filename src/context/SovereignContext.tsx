@@ -39,8 +39,16 @@ export function SovereignProvider({ children }: { children: ReactNode }) {
   const [isAdminAuthenticated, setAdminAuthenticated] = useState(false);
   const [adminSession, setAdminSession] = useState<Session | null>(null);
 
-  // Language State (Defaults to English as per user request)
-  const [language, setLanguage] = useState<Language>('en');
+  // Language State with persistence
+  const [language, setLanguage] = useState<Language>(() => {
+    const saved = localStorage.getItem('sovereign_lang');
+    return (saved === 'fr' || saved === 'en') ? saved : 'en';
+  });
+
+  useEffect(() => {
+    localStorage.setItem('sovereign_lang', language);
+    document.documentElement.setAttribute('lang', language);
+  }, [language]);
 
   useEffect(() => {
     // Check active session on mount
@@ -49,7 +57,6 @@ export function SovereignProvider({ children }: { children: ReactNode }) {
       if (session) setAdminAuthenticated(true);
     });
 
-    // Listen for Auth events (login, logout, token refresh)
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setAdminSession(session);
       setAdminAuthenticated(!!session);
@@ -58,26 +65,24 @@ export function SovereignProvider({ children }: { children: ReactNode }) {
     return () => subscription.unsubscribe();
   }, []);
 
-  // Sync language with DOM for SEO and Browser Auto-Translate prevention
-  useEffect(() => {
-    document.documentElement.setAttribute('lang', language);
-  }, [language]);
-
   const toggleSidebar = () => setIsSidebarOpen(prev => !prev);
   const toggleAgent = () => setIsAgentOpen(prev => !prev);
   const toggleGlobalLoupe = () => setIsGlobalLoupeActive(prev => !prev);
 
-  // Simple Translation Helper
+  // Robust Translation Helper
   const t = (path: string): string => {
     const keys = path.split('.');
     let result: any = translations[language];
+    
     for (const key of keys) {
       if (result && result[key]) {
         result = result[key];
       } else {
-        return path; // Fallback to path string if not found
+        // Log missing key in dev mode if needed
+        return path; 
       }
     }
+    
     return typeof result === 'string' ? result : path;
   };
 

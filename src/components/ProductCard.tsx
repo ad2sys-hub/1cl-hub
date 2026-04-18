@@ -20,6 +20,7 @@ interface Product {
 }
 
 export default function ProductCard({ product }: { product: Product }) {
+  const { t } = useSovereign();
   const [activeVariant, setActiveVariant] = useState(product.variants[0]);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -35,7 +36,7 @@ export default function ProductCard({ product }: { product: Product }) {
       {/* Quick View Overlay */}
       <div className={`absolute top-4 right-4 z-20 transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
         <span className="bg-black/80 backdrop-blur-md text-clGold text-[10px] uppercase tracking-widest px-2 py-1 border border-clGold/20">
-          Quick View
+          {t('catalog.quickView')}
         </span>
       </div>
 

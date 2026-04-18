@@ -9,14 +9,33 @@ export const translations = {
       sponsors: 'Sponsorships',
       map: 'EMS@Path 4D',
       faq: 'FAQ',
-      admin: 'Gestion / Admin',
-      share: 'Share Link'
+      admin: 'Admin / IAM',
+      share: 'Share Link',
+      voice: 'Voice'
     },
     hero: {
         title: 'ABSOLUTE ELEGANCE',
         subtitle: 'The Real Link',
         explore: 'Explore Collections',
         enter: 'Enter 1CL Hub'
+    },
+    home: {
+        masterpieceTitle: 'The Masterpiece',
+        masterpieceText: 'Merging auditory brilliance with physical woven reality. The "Simple Thing" jacket is not just clothing; it\'s a wearable exhibition of the Chawblick music universe.',
+        viewSpec: 'View Specification',
+        cinemaTitle: '1CL Cinema',
+        campaign: 'The Campaign Experience',
+        vaultTitle: 'THE VAULT',
+        vaultRestricted: 'Access restricted to Sovereign NFT holders and Official Partners.',
+        vaultPlaceholder: 'ENTER DIGITAL KEY',
+        vaultButton: 'ACCESS PORTAL',
+        vaultDenied: 'ACCESS DENIED: Invalid Digital Key. (Try "Digital Key")',
+        exclusiveArchives: 'EXCLUSIVE ARCHIVES',
+        nftTicket: 'NFT ACCESS TICKET',
+        earlyDrop: 'Early Drop Access',
+        prototypeZero: 'PROTOTYPE ZERO',
+        notForSale: 'Not For Sale',
+        conceptBy: 'Concept Executed By'
     },
     agent: {
         welcome: "Welcome to the 1CL ecosystem. I am The Curator. How may I guide you?",
@@ -28,24 +47,6 @@ export const translations = {
         iam: "IAM (Identity and Access Management) uses Supabase Auth and 2FA to ensure only authorized personnel can access the EMS Dashboard.",
         unknown: "Analyzing 1CL data... I do not have a specific answer. Try asking about the Vault, Logistics, or the Atelier.",
         deconnect: "Security protocols activated. Administrative session revoked."
-    },
-    auth: {
-        restricted: 'ACCESS RESTRICTED',
-        identify: 'Identify context via Supabase IAM',
-        email: 'Identity (Email)',
-        password: 'KeyPhrase (Password)',
-        verify: 'VERIFY PROTOCOL',
-        signup: 'INITIALIZE SECURITY CONTEXT',
-        noAccount: 'No Identity? Create Admin Portal',
-        hasAccount: 'Already identified? Back to Login'
-    },
-    admin: {
-        dashboard: 'EMS DASHBOARD',
-        iamPortal: 'IAM SECURITY PORTAL',
-        sync: 'Force Global Sync (MongoDB)',
-        syncing: 'Syncing Data...',
-        disconnect: 'Disconnect Session',
-        audit: '-- SYSTEM AUDIT LOG --'
     },
     catalog: {
         title: 'THE ARCHIVE',
@@ -61,7 +62,26 @@ export const translations = {
           pull: 'Pulls & Sweats',
           jogger: 'Joggers',
           jacket: 'Jackets'
+        },
+        quickView: 'Quick View',
+        collections: {
+          essentials: 'Essentials',
+          heritage: 'Heritage',
+          workshop: 'Workshop Edition'
         }
+    },
+    product: {
+        addToCart: 'Add to Archive',
+        specifications: 'Technical Specifications',
+        availability: 'Availability',
+        inStock: 'In Stock',
+        limitedEdition: 'Limited Edition',
+        outOfStock: 'Vault Closed (Out of Stock)',
+        description: 'Description',
+        materials: 'Materials',
+        origin: 'Origin',
+        craftedIn: 'Crafted in the 1CL Workshop',
+        backToCatalog: 'Back to Collections'
     },
     sponsors: {
         title: 'FORGE PARTNERSHIPS',
@@ -120,6 +140,22 @@ export const translations = {
         title: '1CL Hub — Sovereign Ecosystem',
         text: 'Explore the future of Street-Luxe and auditory art.',
         success: 'Link copied to clipboard.'
+    },
+    map4d: {
+      nav: 'EMS@Path Navigation',
+      matrix: '4D Sovereign Matrix',
+      status: 'Sovereign Link: Stable',
+      layer: 'Interactive Orchestration Layer — Sovereign Hub v1.0',
+      nodes: {
+        collections: 'Collections',
+        philosophy: 'Philosophy',
+        workshop: 'Workshop',
+        sponsors: 'Sponsorships',
+        matrixCore: '1CL Matrix'
+      }
+    },
+    system: {
+        version: '2.0.4-SOVEREIGN-SYNC'
     }
   },
   fr: {
@@ -130,14 +166,33 @@ export const translations = {
       sponsors: 'Partenariats',
       map: 'EMS@Path 4D',
       faq: 'FAQ',
-      admin: 'Gestion / Admin',
-      share: 'Partager le Hub'
+      admin: 'Gestion / IAM',
+      share: 'Partager le Hub',
+      voice: 'Voix'
     },
     hero: {
         title: 'ÉLÉGANCE ABSOLUE',
         subtitle: 'Le Lien Réel',
         explore: 'Explorer les Collections',
         enter: 'Entrer dans le Hub 1CL'
+    },
+    home: {
+        masterpieceTitle: 'Le Chef-d\'œuvre',
+        masterpieceText: 'Fusion de la brillance auditive et de la réalité textile. La veste "Simple Thing" n\'est pas qu\'un vêtement ; c\'est une exposition portable de l\'univers musical de Chawblick.',
+        viewSpec: 'Voir les Spécifications',
+        cinemaTitle: 'Cinéma 1CL',
+        campaign: 'L\'Expérience de Campagne',
+        vaultTitle: 'LE VAULT',
+        vaultRestricted: 'Accès restreint aux détenteurs de NFT Sovereign et aux partenaires officiels.',
+        vaultPlaceholder: 'ENTRER LA CLÉ DIGITALE',
+        vaultButton: 'ACCÉDER AU PORTAIL',
+        vaultDenied: 'ACCÈS REFUSÉ : Clé Digitale Invalide. (Essayez "Digital Key")',
+        exclusiveArchives: 'ARCHIVES EXCLUSIVES',
+        nftTicket: 'TICKET D\'ACCÈS NFT',
+        earlyDrop: 'Accès Anticipé',
+        prototypeZero: 'PROTOTYPE ZÉRO',
+        notForSale: 'Non Destiné à la Vente',
+        conceptBy: 'Concept Exécuté Par'
     },
     agent: {
         welcome: "Bienvenue dans l'écosystème 1CL. Je suis The Curator. Comment puis-je vous guider ?",
@@ -149,24 +204,6 @@ export const translations = {
         iam: "L'IAM (Gestion des Identités et des Accès) utilise Supabase Auth et la 2FA pour garantir que seul le personnel autorisé accède au Dashboard EMS.",
         unknown: "Analyse des données 1CL en cours... Je n'ai pas de réponse précise. Essayez de me parler du Vault, de la Logistique ou de l'Atelier.",
         deconnect: "Protocoles de sécurité activés. Session administrative révoquée."
-    },
-    auth: {
-        restricted: 'ACCÈS RESTRICTE',
-        identify: 'Identification contextuelle via Supabase IAM',
-        email: 'Identité (Email)',
-        password: 'Mot de Passe (KeyPhrase)',
-        verify: 'VÉRIFIER LE PROTOCOLE',
-        signup: 'INITIALISER LE CONTEXTE SÉCURITÉ',
-        noAccount: 'Pas d\'identité ? Créer un portail Admin',
-        hasAccount: 'Déjà identifié ? Retour au Login'
-    },
-    admin: {
-        dashboard: 'DASHBOARD EMS',
-        iamPortal: 'PORTAIL SÉCURITÉ IAM',
-        sync: 'Forcer la Sync Globale (MongoDB)',
-        syncing: 'Synchronisation en cours...',
-        disconnect: 'Déconnecter la Session',
-        audit: '-- LOG D\'AUDIT SYSTÈME --'
     },
     catalog: {
         title: 'L\'ARCHIVE',
@@ -182,7 +219,26 @@ export const translations = {
           pull: 'Pulls & Sweats',
           jogger: 'Joggings',
           jacket: 'Vestes'
+        },
+        quickView: 'Aperçu Rapide',
+        collections: {
+          essentials: 'Essentiels',
+          heritage: 'Héritage',
+          workshop: 'Édition Atelier'
         }
+    },
+    product: {
+        addToCart: 'Ajouter à l\'Archive',
+        specifications: 'Spécifications Techniques',
+        availability: 'Disponibilité',
+        inStock: 'En Stock',
+        limitedEdition: 'Édition Limitée',
+        outOfStock: 'Vault Fermé (Rupture)',
+        description: 'Description',
+        materials: 'Matériaux',
+        origin: 'Origine',
+        craftedIn: 'Confectionné à l\'Atelier 1CL',
+        backToCatalog: 'Retour aux Collections'
     },
     sponsors: {
         title: 'FORGE DES PARTENARIATS',
@@ -241,6 +297,22 @@ export const translations = {
         title: 'Hub 1CL — Écosystème Souverain',
         text: 'Découvrez le futur du Street-Luxe et de l\'art auditif.',
         success: 'Lien copié dans le presse-papier.'
+    },
+    map4d: {
+      nav: 'Navigation EMS@Path',
+      matrix: 'Matrice Souveraine 4D',
+      status: 'Lien Souverain : Stable',
+      layer: 'Couche d\'Orchestration Interactive — Hub Sovereign v1.0',
+      nodes: {
+        collections: 'Collections',
+        philosophy: 'Philosophie',
+        workshop: 'Atelier',
+        sponsors: 'Partenariats',
+        matrixCore: 'Matrice 1CL'
+      }
+    },
+    system: {
+        version: '2.0.4-SOVEREIGN-SYNC'
     }
   }
 };

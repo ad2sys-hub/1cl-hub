@@ -6,6 +6,7 @@ import { useSound } from '../hooks/useSound';
 export default function Map4DPage() {
   const navigate = useNavigate();
   const { playSound, stopSound } = useSound();
+  const { t } = useSovereign();
 
   useEffect(() => {
     playSound('drone');
@@ -13,11 +14,11 @@ export default function Map4DPage() {
   }, [playSound, stopSound]);
 
   const nodes = [
-    { id: 1, title: 'Collections', path: '/collections', x: 20, y: 30, size: 80, desc: 'The Archive' },
-    { id: 2, title: 'Philosophy', path: '/philosophy', x: 70, y: 20, size: 100, desc: '1st Class Obsession' },
-    { id: 3, title: 'Workshop', path: '/collections', x: 80, y: 70, size: 70, desc: 'Atelier Mode' },
-    { id: 4, title: 'Sponsors', path: '/sponsors', x: 30, y: 80, size: 90, desc: 'Partner Hub' },
-    { id: 5, title: '1CL Matrix', path: '/', x: 50, y: 50, size: 120, desc: 'The Core' },
+    { id: 1, title: t('map4d.nodes.collections'), path: '/collections', x: 20, y: 30, size: 80, desc: t('catalog.subtitle') },
+    { id: 2, title: t('map4d.nodes.philosophy'), path: '/philosophy', x: 70, y: 20, size: 100, desc: '1st Class Obsession' },
+    { id: 3, title: t('map4d.nodes.workshop'), path: '/collections', x: 80, y: 70, size: 70, desc: 'Atelier Mode' },
+    { id: 4, title: t('map4d.nodes.sponsors'), path: '/sponsors', x: 30, y: 80, size: 90, desc: 'Partner Hub' },
+    { id: 5, title: t('map4d.nodes.matrixCore'), path: '/', x: 50, y: 50, size: 120, desc: 'The Core' },
   ];
 
   return (
@@ -30,11 +31,11 @@ export default function Map4DPage() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-clDarkGrey/40 via-clBlack to-clBlack pointer-events-none" />
       
       <div className="absolute top-8 left-8 z-20">
-         <h1 className="text-clChrome tracking-[0.4em] uppercase text-xs glitch-text">EMS@Path Navigation</h1>
-         <p className="font-serif text-3xl text-clGold mt-2">4D Sovereign Matrix</p>
+         <h1 className="text-clChrome tracking-[0.4em] uppercase text-xs glitch-text">{t('map4d.nav')}</h1>
+         <p className="font-serif text-3xl text-clGold mt-2">{t('map4d.matrix')}</p>
          <div className="flex items-center gap-2 mt-4">
            <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-           <span className="text-[8px] uppercase tracking-widest text-clChrome/60">Sovereign Link: Stable</span>
+           <span className="text-[8px] uppercase tracking-widest text-clChrome/60">{t('map4d.status')}</span>
          </div>
       </div>
 
@@ -88,7 +89,7 @@ export default function Map4DPage() {
       </div>
 
       <div className="absolute bottom-12 left-0 right-0 text-center pointer-events-none">
-        <p className="text-gray-600 text-[8px] tracking-[0.5em] uppercase glitch-text">Interactive Orchestration Layer — Sovereign Hub v1.0</p>
+        <p className="text-gray-600 text-[8px] tracking-[0.5em] uppercase glitch-text">{t('map4d.layer')}</p>
       </div>
 
     </div>

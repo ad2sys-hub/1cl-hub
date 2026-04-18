@@ -16,7 +16,7 @@ export default function HomePage() {
   const handleUnlock = () => {
     const success = unlockVault(vaultKey);
     if (!success) {
-      alert("ACCESS DENIED: Invalid Digital Key. (Try 'Digital Key')");
+      alert(t('home.vaultDenied'));
     }
   };
 
@@ -95,7 +95,7 @@ export default function HomePage() {
           >
             <img src="/1cl-hub/images/JacketSongs/Jacket_there-is-one thing-.png" alt="Simple Thing Jacket" className="w-full h-full object-cover rounded-sm grayscale group-hover:grayscale-0 transition-all duration-700" />
             <div className="absolute bottom-8 left-8 right-8">
-              <h3 className="font-serif text-3xl text-white drop-shadow-lg">There Is Just a Simple Thing</h3>
+              <h3 className="font-serif text-3xl text-white drop-shadow-lg">{t('home.masterpieceTitle')}</h3>
               <p className="text-clGold tracking-widest text-xs mt-2 uppercase">Official Artist Collectible</p>
             </div>
             {/* PARENTAL ADVISORY Tweak for album feel */}
@@ -111,13 +111,13 @@ export default function HomePage() {
             transition={{ duration: 1, delay: 0.2 }}
             className="flex flex-col space-y-6"
           >
-            <h2 className="font-serif text-4xl text-clGold">The Masterpiece</h2>
+            <h2 className="font-serif text-4xl text-clGold">{t('home.masterpieceTitle')}</h2>
             <p className="text-gray-400 font-sans leading-relaxed text-lg">
-              Merging auditory brilliance with physical woven reality. The <span className="text-white">"Simple Thing"</span> jacket is not just clothing; it's a wearable exhibition of the Chawblick music universe.
+              {t('home.masterpieceText')}
             </p>
             <div className="pt-6">
               <Link to="/product/ART-SIMP1" className="inline-flex items-center gap-2 text-clChrome hover:text-white border-b border-clChrome/30 hover:border-white pb-1 transition-colors tracking-wider uppercase text-sm">
-                View Specification <span className="text-clGold">→</span>
+                {t('home.viewSpec')} <span className="text-clGold">→</span>
               </Link>
             </div>
           </motion.div>
@@ -128,8 +128,8 @@ export default function HomePage() {
       {/* 1CL Cinema Experience */}
       <section className="py-24 px-4 border-b border-white/5 bg-clDarkGrey/50">
          <div className="max-w-6xl mx-auto flex flex-col items-center">
-            <h2 className="text-4xl font-serif text-white mb-2">1CL Cinema</h2>
-            <p className="text-gray-500 tracking-widest uppercase text-sm mb-12">The Campaign Experience</p>
+            <h2 className="text-4xl font-serif text-white mb-2">{t('home.cinemaTitle')}</h2>
+            <p className="text-gray-500 tracking-widest uppercase text-sm mb-12">{t('home.campaign')}</p>
             <div className="w-full aspect-video border border-clGold/30 p-2 glass-panel shadow-[0_0_30px_rgba(212,175,55,0.1)]">
                <video className="w-full h-full object-cover" controls poster="/1cl-hub/images/Logos/logo CL v.1.gold.png">
                   <source src="/1cl-hub/video/Descriptions_de_vidéos_publicitaires_CL.mp4" type="video/mp4" />
@@ -141,7 +141,7 @@ export default function HomePage() {
       {/* THE VAULT */}
       <section id="vaultPortal" className="py-32 px-4 relative overflow-hidden flex flex-col items-center border-b border-white/5">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-clGold/10 via-clBlack to-clBlack pointer-events-none" />
-        <h2 className="text-4xl md:text-5xl font-serif tracking-widest text-clGold mb-12 relative z-10 text-shadow-gold">THE VAULT</h2>
+        <h2 className="text-4xl md:text-5xl font-serif tracking-widest text-clGold mb-12 relative z-10 text-shadow-gold">{t('home.vaultTitle')}</h2>
         
         {!isVaultUnlocked ? (
           <motion.div 
@@ -149,17 +149,17 @@ export default function HomePage() {
              initial={{ scale: 0.9, opacity: 0 }} whileInView={{ scale: 1, opacity: 1 }} viewport={{ once: true }}
           >
              <span className="text-6xl mb-6 text-clChrome">🔒</span>
-             <p className="text-gray-400 text-sm mb-8">Access restricted to Sovereign NFT holders and Official Partners.</p>
+             <p className="text-gray-400 text-sm mb-8">{t('home.vaultRestricted')}</p>
              <input 
                type="password" 
-               placeholder="ENTER DIGITAL KEY" 
+               placeholder={t('home.vaultPlaceholder')} 
                value={vaultKey}
                onChange={(e) => setVaultKey(e.target.value)}
                onKeyDown={(e) => e.key === 'Enter' && handleUnlock()}
                className="w-full bg-black border border-clGold/50 text-white p-4 text-center tracking-widest uppercase focus:outline-none focus:border-white transition-colors mb-4"
              />
              <button onClick={handleUnlock} className="w-full py-4 bg-clGold text-black font-bold uppercase tracking-widest text-sm hover:bg-white transition-colors">
-               ACCESS PORTAL
+               {t('home.vaultButton')}
              </button>
           </motion.div>
         ) : (
@@ -169,18 +169,18 @@ export default function HomePage() {
              transition={{ duration: 0.8 }}
           >
              <div className="glass-panel p-10 border-clGold/50">
-                <h3 className="text-2xl font-serif text-white mb-6 border-b border-white/10 pb-4">EXCLUSIVE ARCHIVES</h3>
+                <h3 className="text-2xl font-serif text-white mb-6 border-b border-white/10 pb-4">{t('home.exclusiveArchives')}</h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                    {/* Vault Card */}
                    <div className="border border-white/10 hover:border-clGold/50 transition-colors bg-black p-6 text-center group cursor-pointer">
                       <img src="/1cl-hub/images/Logos/logo CL v.1.gold.png" className="w-16 h-16 mx-auto mb-4 opacity-70 group-hover:opacity-100 transition-opacity" alt="Ticket" />
-                      <h4 className="text-clGold text-sm font-bold tracking-widest uppercase mb-2">NFT ACCESS TICKET</h4>
-                      <p className="text-xs text-gray-500 uppercase tracking-wider">Early Drop Access</p>
+                      <h4 className="text-clGold text-sm font-bold tracking-widest uppercase mb-2">{t('home.nftTicket')}</h4>
+                      <p className="text-xs text-gray-500 uppercase tracking-wider">{t('home.earlyDrop')}</p>
                    </div>
                    <div className="border border-white/10 hover:border-clGold/50 transition-colors bg-black p-6 text-center group cursor-pointer">
                       <img src="/1cl-hub/images/PNG/1CL-VST-GLD.png" className="w-16 h-16 mx-auto mb-4 object-contain opacity-70 group-hover:opacity-100 transition-opacity" alt="Secret Jacket" />
-                      <h4 className="text-clGold text-sm font-bold tracking-widest uppercase mb-2">PROTOTYPE ZERO</h4>
-                      <p className="text-xs text-gray-500 uppercase tracking-wider">Not For Sale</p>
+                      <h4 className="text-clGold text-sm font-bold tracking-widest uppercase mb-2">{t('home.prototypeZero')}</h4>
+                      <p className="text-xs text-gray-500 uppercase tracking-wider">{t('home.notForSale')}</p>
                    </div>
                 </div>
              </div>
@@ -197,7 +197,7 @@ export default function HomePage() {
           transition={{ duration: 1.5 }}
           className="text-center"
         >
-          <p className="text-clGold uppercase tracking-[0.4em] text-xs mb-8">Concept Executed By</p>
+          <p className="text-clGold uppercase tracking-[0.4em] text-xs mb-8">{t('home.conceptBy')}</p>
           <img src="/1cl-hub/images/Logos/logo CL v.1.gold.png" alt="Chawblick Music" className="w-48 h-auto mx-auto invert opacity-80 mix-blend-screen filter-pure-white" />
         </motion.div>
       </section>

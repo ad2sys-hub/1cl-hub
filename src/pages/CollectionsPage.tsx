@@ -62,7 +62,7 @@ export default function CollectionsPage() {
                   onClick={() => setActiveCollection(col)}
                   className={`whitespace-nowrap uppercase tracking-widest text-[10px] transition-colors pb-2 border-b-2 ${activeCollection === col ? 'border-clGold text-white' : 'border-transparent text-gray-500 hover:text-gray-300'}`}
                 >
-                  {col === 'All' ? t('catalog.all') : col}
+                  {col === 'All' ? t('catalog.all') : t(`catalog.collections.${col.toLowerCase().replace(' ', '')}`)}
                 </button>
               ))}
             </div>

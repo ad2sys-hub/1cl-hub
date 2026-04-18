@@ -1,8 +1,16 @@
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import { useSound } from '../hooks/useSound';
 
 export default function Map4DPage() {
   const navigate = useNavigate();
+  const { playSound, stopSound } = useSound();
+
+  useEffect(() => {
+    playSound('drone');
+    return () => stopSound('drone');
+  }, [playSound, stopSound]);
 
   const nodes = [
     { id: 1, title: 'Collections', path: '/collections', x: 20, y: 30, size: 80, desc: 'The Archive' },
@@ -13,14 +21,21 @@ export default function Map4DPage() {
   ];
 
   return (
-    <div className="relative min-h-screen bg-clBlack overflow-hidden pt-20">
+    <div className="relative min-h-screen bg-clBlack overflow-hidden pt-20 hologram-container">
       
+      {/* Dynamic Scanline Effect */}
+      <div className="scanline" />
+
       {/* Background Starfield / Constellation Ambient */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-clDarkGrey/40 via-clBlack to-clBlack pointer-events-none" />
       
       <div className="absolute top-8 left-8 z-20">
-         <h1 className="text-clChrome tracking-[0.4em] uppercase text-xs">EMS@Path Navigation</h1>
+         <h1 className="text-clChrome tracking-[0.4em] uppercase text-xs glitch-text">EMS@Path Navigation</h1>
          <p className="font-serif text-3xl text-clGold mt-2">4D Sovereign Matrix</p>
+         <div className="flex items-center gap-2 mt-4">
+           <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+           <span className="text-[8px] uppercase tracking-widest text-clChrome/60">Sovereign Link: Stable</span>
+         </div>
       </div>
 
       <div className="relative w-full h-[80vh] mt-12 mx-auto max-w-6xl">
@@ -51,16 +66,20 @@ export default function Map4DPage() {
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: i * 0.2, type: 'spring', stiffness: 100 }}
             whileHover={{ scale: 1.1, zIndex: 10 }}
-            onClick={() => navigate(node.path)}
+            onHoverStart={() => playSound('hover')}
+            onClick={() => {
+              playSound('click');
+              setTimeout(() => navigate(node.path), 300);
+            }}
           >
             {/* Core glowing sphere */}
-            <div className="absolute inset-0 bg-clGold/20 rounded-full blur-md group-hover:bg-clGold/50 transition-colors duration-500" />
-            <div className="absolute inset-1 bg-clDarkGrey border border-clGold/50 rounded-full shadow-[0_0_15px_rgba(212,175,55,0.3)] group-hover:border-white transition-colors flex items-center justify-center">
-               <span className="text-white font-serif text-sm px-2 text-center group-hover:text-clGold transition-colors">{node.title}</span>
+            <div className="absolute inset-0 bg-clGold/10 rounded-full blur-md group-hover:bg-clGold/40 transition-colors duration-500" />
+            <div className="absolute inset-1 bg-clDarkGrey/80 border border-clGold/50 rounded-full hologram-glow group-hover:border-white transition-all flex items-center justify-center">
+               <span className="text-white font-serif text-sm px-2 text-center group-hover:text-clGold transition-colors tracking-tighter">{node.title}</span>
             </div>
 
             {/* Hover tooltip label */}
-            <div className="absolute -bottom-8 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap text-[10px] uppercase tracking-widest text-clChrome">
+            <div className="absolute -bottom-8 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap text-[8px] uppercase tracking-[0.3em] text-clChrome">
               {node.desc}
             </div>
           </motion.div>
@@ -69,7 +88,7 @@ export default function Map4DPage() {
       </div>
 
       <div className="absolute bottom-12 left-0 right-0 text-center pointer-events-none">
-        <p className="text-gray-600 text-xs tracking-[0.3em] uppercase">Interactive Orchestration Layer</p>
+        <p className="text-gray-600 text-[8px] tracking-[0.5em] uppercase glitch-text">Interactive Orchestration Layer — Sovereign Hub v1.0</p>
       </div>
 
     </div>

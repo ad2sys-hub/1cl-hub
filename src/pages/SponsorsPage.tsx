@@ -1,14 +1,18 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useSovereign } from '../hooks/useSovereign';
-import { supabase } from '../lib/supabaseClient';
+import { useBridge } from '../hooks/useBridge';
+import { useSound } from '../hooks/useSound';
 
 export default function SponsorsPage() {
   const { t } = useSovereign();
+  const { syncToSovereign } = useBridge();
+  const { playSound } = useSound();
   const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    playSound('click');
     setFormStatus('submitting');
     
     const formData = new FormData(e.currentTarget);
@@ -17,12 +21,13 @@ export default function SponsorsPage() {
       contact: formData.get('contact'),
       synergy: formData.get('synergy'),
       value_proposal: formData.get('value_proposal'),
+      status: 'PENDING_HUB_REVIEW',
+      created_at: new Date().toISOString()
     };
 
-    const { error } = await supabase.from('partnership_inquiries').insert([payload]);
+    const result = await syncToSovereign('partnership_inquiries', payload);
 
-    if (error) {
-      console.error("Sovereign Link Error:", error);
+    if (!result) {
       setFormStatus('error');
       setTimeout(() => setFormStatus('idle'), 3000);
     } else {

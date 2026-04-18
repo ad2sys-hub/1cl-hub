@@ -27,6 +27,22 @@ provider "aws" {
 
 provider "docker" {}
 
+module "anes_core" {
+  source = "./modules/anes_core"
+}
+
+module "ems_path" {
+  source = "./modules/ems_path"
+}
+
+module "supabase_mongo_bridge" {
+  source = "./modules/supabase_mongo_bridge"
+
+  supabase_url          = var.supabase_url
+  supabase_service_role = var.supabase_service_role
+  mongo_uri             = var.mongo_uri
+}
+
 # Exemple de ressource (placeholder)
 resource "null_resource" "init" {
   triggers = {

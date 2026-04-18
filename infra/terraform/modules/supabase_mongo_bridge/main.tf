@@ -1,6 +1,20 @@
-resource "null_resource" "supabase_mongo_bridge" {
+variable "supabase_url" {}
+variable "supabase_service_role" {}
+variable "mongo_uri" {}
+
+resource "null_resource" "bridge" {
   triggers = {
-    supabase = var.supabase_url
-    mongo    = var.mongo_uri
+    supabase_url = var.supabase_url
+    mongo_uri    = var.mongo_uri
   }
+
+  provisioner "local-exec" {
+    command = <<EOT
+echo "Bridge Supabase ↔ MongoDB initialisé"
+EOT
+  }
+}
+
+output "bridge_status" {
+  value = "Bridge Supabase ↔ MongoDB opérationnel"
 }

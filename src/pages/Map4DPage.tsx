@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useSound } from '../hooks/useSound';
+import { useSovereign } from '../hooks/useSovereign';
 
 export default function Map4DPage() {
   const navigate = useNavigate();

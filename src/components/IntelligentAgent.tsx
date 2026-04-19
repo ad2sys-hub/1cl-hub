@@ -1,12 +1,14 @@
 import { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useDragControls } from 'framer-motion';
 import { useSovereign } from '../hooks/useSovereign';
 import { useNavigate } from 'react-router-dom';
 import { useSound } from '../hooks/useSound';
+import { GripHorizontal } from 'lucide-react';
 
 export default function IntelligentAgent() {
   const { isAgentOpen, toggleAgent, toggleSidebar, language, t, accessibilityMode, toggleAccessibility } = useSovereign();
   const { playSound } = useSound();
+  const dragControls = useDragControls();
   const [sizeMode, setSizeMode] = useState<'small' | 'medium' | 'middle' | 'full'>('medium');
   const [messages, setMessages] = useState<{ text: string; sender: 'ai' | 'user' }[]>(() => [
     { text: t('agent.welcome'), sender: 'ai' }
@@ -24,10 +26,10 @@ export default function IntelligentAgent() {
 
   // Size Configuration Mapping
   const sizeStyles = {
-    small: "bottom-44 right-10 w-[350px] h-[500px]",
-    medium: "bottom-44 right-10 w-[550px] max-h-[min(750px,82vh)] h-[750px]",
-    middle: "bottom-10 right-10 w-[900px] h-[85vh]",
-    full: "top-[2vh] right-[1vw] w-[98vw] h-[96vh]"
+    small: "bottom-20 right-4 md:right-10 w-[min(90vw,350px)] h-[min(500px,70vh)]",
+    medium: "bottom-20 right-4 md:right-10 w-[min(90vw,550px)] h-[min(750px,80vh)]",
+    middle: "bottom-6 right-4 md:right-10 w-[min(95vw,900px)] h-[85vh]",
+    full: "top-0 left-0 w-full h-full rounded-none"
   };
 
   const handleSend = () => {
@@ -128,6 +130,11 @@ export default function IntelligentAgent() {
         {isAgentOpen && (
           <motion.div
             layout
+            drag={sizeMode !== 'full'}
+            dragControls={dragControls}
+            dragListener={false}
+            dragMomentum={false}
+            dragConstraints={{ top: 0, left: 0, right: 0, bottom: 0 }}
             className={`fixed ${sizeStyles[sizeMode]} bg-clBlack/95 backdrop-blur-3xl border border-clGold/30 rounded-2xl shadow-[0_0_100px_rgba(0,0,0,0.9)] z-[110] overflow-hidden flex flex-col hologram-container ring-1 ring-clGold/20 transition-all duration-300 ease-in-out`}
             initial={{ opacity: 0, y: 50, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -136,11 +143,21 @@ export default function IntelligentAgent() {
             {/* Sync Scanline for Agent */}
             <div className="absolute top-0 left-0 w-full h-0.5 bg-clGold/30 animate-pulse scanline h-10 opacity-10" />
 
-            {/* Header */}
-            <div className="bg-black/50 p-4 border-b border-clGold/30 flex justify-between items-center relative z-10">
-              <div className="flex flex-col">
-                <h4 className="text-clGold font-serif text-sm glitch-text tracking-widest">1CL SOVEREIGN AGENT</h4>
-                <p className="text-[10px] text-gray-500 uppercase tracking-widest">{t('agent.connectedEMS')}</p>
+            {/* Header / Drag Handle */}
+            <div 
+              onPointerDown={(e) => dragControls.start(e)}
+              className={`bg-black/50 p-4 border-b border-clGold/30 flex justify-between items-center relative z-10 ${sizeMode !== 'full' ? 'cursor-move' : ''}`}
+            >
+              <div className="flex items-center gap-3">
+                {sizeMode !== 'full' && (
+                  <div className="text-clGold/30">
+                    <GripHorizontal size={16} />
+                  </div>
+                )}
+                <div className="flex flex-col">
+                  <h4 className="text-clGold font-serif text-sm glitch-text tracking-widest uppercase">1CL SOVEREIGN AGENT</h4>
+                  <p className="text-[10px] text-gray-500 uppercase tracking-widest">{t('agent.connectedEMS')}</p>
+                </div>
               </div>
 
               <div className="flex items-center gap-3">

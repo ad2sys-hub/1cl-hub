@@ -248,6 +248,25 @@ export const translations = {
         legal: 'Legal Notice',
         contact: 'Contact Hub'
     },
+    legalPage: {
+        title: 'LEGAL PROTOCOLS',
+        terms: 'Terms of Service',
+        privacy: 'Privacy Policy',
+        sovereignty: 'Sovereignty Agreement',
+        intro: 'The 1CL ecosystem operates under the Sovereign Protocol. By accessing the 1CL Hub, you agree to the cryptographic terms of the EMS network.',
+        article1: 'Intellectual Property: All phygital assets, designs, and soundscapes are protected by 1CL-EMS encryption.',
+        article2: 'Data Sovereignty: User metrics are handled via Supabase/Mongo decentralized logic. No third-party data extraction is permitted.'
+    },
+    contactHub: {
+        title: 'CONTACT HUB',
+        subtitle: 'Secure communication portal',
+        name: 'Identity Name',
+        email: 'Network Email',
+        subject: 'Inquiry Axis',
+        message: 'Encoded Message',
+        send: 'Initialize Transmission',
+        success: 'Message routed to 1CL EMS network.'
+    },
     system: {
         version: '2.0.4-SOVEREIGN-SYNC'
     }
@@ -498,6 +517,25 @@ export const translations = {
         copyright: '© 2026 1CL Collection. Tous droits réservés.',
         legal: 'Mentions Légales',
         contact: 'Contact Hub'
+    },
+    legalPage: {
+        title: 'PROTOCOLES LÉGAUX',
+        terms: 'Conditions de Service',
+        privacy: 'Confidentialité',
+        sovereignty: 'Accord de Souveraineté',
+        intro: 'L\'écosystème 1CL opère sous le Protocole Souverain. En accédant au Hub 1CL, vous acceptez les termes cryptographiques du réseau EMS.',
+        article1: 'Propriété Intellectuelle : Tous les objets phygitaux et paysages sonores sont protégés par le chiffrement 1CL-EMS.',
+        article2: 'Souveraineté des Données : Les métriques utilisateur sont gérées via la logique décentralisée Supabase/Mongo.'
+    },
+    contactHub: {
+        title: 'CENTRE DE CONTACT',
+        subtitle: 'Portail de communication sécurisé',
+        name: 'Nom d\'Identité',
+        email: 'E-mail Réseau',
+        subject: 'Axe de Demande',
+        message: 'Message Encodé',
+        send: 'Initialiser la Transmission',
+        success: 'Message routé vers le réseau 1CL EMS.'
     },
     system: {
         version: '2.0.4-SOVEREIGN-SYNC'

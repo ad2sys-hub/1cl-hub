@@ -12,6 +12,8 @@ import PhilosophyPage from './pages/PhilosophyPage';
 import SponsorsPage from './pages/SponsorsPage';
 import Map4DPage from './pages/Map4DPage';
 import FAQPage from './pages/FAQPage';
+import LegalPage from './pages/LegalPage';
+import ContactPage from './pages/ContactPage';
 
 // Layout
 import MainLayout from './layouts/MainLayout';
@@ -30,6 +32,8 @@ function AnimatedRoutes() {
           <Route path="/sponsors" element={<SponsorsPage />} />
           <Route path="/map" element={<Map4DPage />} />
           <Route path="/faq" element={<FAQPage />} />
+          <Route path="/legal" element={<LegalPage />} />
+          <Route path="/contact" element={<ContactPage />} />
         </Route>
       </Routes>
     </AnimatePresence>

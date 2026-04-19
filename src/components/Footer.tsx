@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useSovereign } from '../hooks/useSovereign';
 
 export default function Footer() {
@@ -32,21 +33,21 @@ export default function Footer() {
           </div>
 
           <div className="flex gap-6 text-xs tracking-widest font-bold">
-            <a href="#" className="text-gray-400 hover:text-clGold transition-colors border border-transparent hover:border-clGold/50 rounded-full py-1 px-3">
+            <a href="https://instagram.com/1clcollection" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-clGold transition-colors border border-transparent hover:border-clGold/50 rounded-full py-1 px-3">
               IG
             </a>
-            <a href="#" className="text-gray-400 hover:text-clGold transition-colors border border-transparent hover:border-clGold/50 rounded-full py-1 px-3">
+            <a href="https://twitter.com/1clcollection" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-clGold transition-colors border border-transparent hover:border-clGold/50 rounded-full py-1 px-3">
               X
             </a>
-            <a href="#" className="text-gray-400 hover:text-clGold transition-colors border border-transparent hover:border-clGold/50 rounded-full py-1 px-3">
+            <a href="https://youtube.com/@1clcollection" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-clGold transition-colors border border-transparent hover:border-clGold/50 rounded-full py-1 px-3">
               YT
             </a>
           </div>
 
           <div className="flex gap-4 text-xs text-gray-500 tracking-wider">
-            <a href="#" className="hover:text-clChrome transition-colors">{t('footer.legal')}</a>
+            <Link to="/legal" className="hover:text-clChrome transition-colors">{t('footer.legal')}</Link>
             <span>|</span>
-            <a href="#" className="hover:text-clChrome transition-colors">{t('footer.contact')}</a>
+            <Link to="/contact" className="hover:text-clChrome transition-colors">{t('footer.contact')}</Link>
           </div>
         </div>
       </div>

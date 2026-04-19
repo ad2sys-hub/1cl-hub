@@ -14,6 +14,7 @@ import VoiceConsole from '../components/VoiceConsole';
 import GlobalLoupe from '../components/GlobalLoupe';
 import SidebarEMS from '../components/SidebarEMS';
 import ContractModal from '../components/ContractModal';
+import CookieConsent from '../components/CookieConsent';
 import { useSovereign } from '../hooks/useSovereign';
 
 export default function MainLayout() {
@@ -32,8 +33,9 @@ export default function MainLayout() {
       <MediaHub />
       <SidebarEMS openContractForge={() => setIsContractOpen(true)} />
       <ContractModal isOpen={isContractOpen} onClose={() => setIsContractOpen(false)} />
+      <CookieConsent />
 
-      <main className="flex-grow w-full relative overflow-hidden">
+      <main className="flex-grow w-full relative overflow-hidden accessibility-inherit">
         <motion.div
           initial={{ opacity: 0, y: 20, filter: 'blur(10px)' }}
           animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}

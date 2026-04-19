@@ -1,5 +1,48 @@
 @import "tailwindcss";
 
+/* W3C Accessibility Protocol Mode */
+.cl-accessibility-mode {
+  --cl-gold: #FFD700 !important;
+  --cl-chrome: #FFFFFF !important;
+  background-color: #000000 !important;
+  font-size: 1.1rem;
+}
+
+.cl-accessibility-mode .hologram-container,
+.cl-accessibility-mode .glass-panel,
+.cl-accessibility-mode .backdrop-blur-md,
+.cl-accessibility-mode .backdrop-blur-3xl {
+  backdrop-filter: none !important;
+  background: #000000 !important;
+  border: 2px solid #FFD700 !important;
+}
+
+.cl-accessibility-mode .text-gray-400,
+.cl-accessibility-mode .text-gray-500,
+.cl-accessibility-mode .text-gray-600 {
+  color: #FFFFFF !important;
+  font-weight: bold !important;
+}
+
+.cl-accessibility-mode button,
+.cl-accessibility-mode a {
+  outline: 4px solid #FFD700 !important;
+  outline-offset: 2px;
+  min-width: 44px;
+  min-height: 44px;
+  text-decoration: underline;
+}
+
+.cl-accessibility-mode .glitch-text::before,
+.cl-accessibility-mode .glitch-text::after,
+.cl-accessibility-mode .scanline {
+  display: none !important;
+}
+
+.accessibility-inherit {
+  transition: all 0.2s ease-in-out;
+}
+
 @theme {
   --color-clGold: #D4AF37;
   --color-clChrome: #C0C0C0;

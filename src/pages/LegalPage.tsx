@@ -52,16 +52,26 @@ export default function LegalPage() {
             </div>
           </section>
 
-          <section className="p-8 border border-clGold/20 bg-clGold/5 rounded-2xl backdrop-blur-sm">
+          <section className="p-8 border border-clGold/20 bg-clGold/5 rounded-2xl backdrop-blur-sm" aria-label="Privacy and RGPD Compliance">
             <h2 className="text-clGold font-serif text-xl tracking-widest mb-6 uppercase flex items-center gap-4">
               <span className="w-8 h-px bg-clGold/30" />
-              {t('legalPage.sovereignty')}
+              RGPD / {t('legalPage.privacy')}
             </h2>
-            <p className="text-gray-300 font-light leading-relaxed italic">
-              "To enter the 1CL ecosystem is to acknowledge the fusion of digital existence and physical artifact. The Sovereign Protocol is the bond."
-            </p>
+            <div className="space-y-4 text-gray-300 font-light leading-relaxed">
+              <p className="italic">
+                {t('legalPage.rgpd')}
+              </p>
+              <p className="text-sm opacity-60">
+                "To enter the 1CL ecosystem is to acknowledge the fusion of digital existence and physical artifact. The Sovereign Protocol is the bond."
+              </p>
+            </div>
           </section>
         </motion.div>
+
+        {/* Accessibility Status */}
+        <div className="p-4 border border-white/5 rounded-lg text-center bg-white/5">
+           <p className="text-[10px] text-clChrome/50 tracking-widest">{t('accessibility.w3cStatus')}</p>
+        </div>
 
         {/* Footer Signature */}
         <div className="pt-20 text-center opacity-30 select-none">

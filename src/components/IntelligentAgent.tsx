@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSound } from '../hooks/useSound';
 
 export default function IntelligentAgent() {
-  const { isAgentOpen, toggleAgent, toggleSidebar, language, t } = useSovereign();
+  const { isAgentOpen, toggleAgent, toggleSidebar, language, t, accessibilityMode, toggleAccessibility } = useSovereign();
   const { playSound } = useSound();
   const [sizeMode, setSizeMode] = useState<'small' | 'medium' | 'middle' | 'full'>('medium');
   const [messages, setMessages] = useState<{ text: string; sender: 'ai' | 'user' }[]>(() => [
@@ -31,10 +31,20 @@ export default function IntelligentAgent() {
   };
 
   const handleSend = () => {
-    // ... same logic ...
     if (!inputVal.trim()) return;
     playSound('click');
     const txt = inputVal.trim();
+    const lower = txt.toLowerCase();
+
+    // 1CL Assist Logic
+    if (lower.includes('assist') || lower.includes('aide') || lower.includes('w3c')) {
+        setMessages(prev => [...prev, { text: txt, sender: 'user' }]);
+        setMessages(prev => [...prev, { text: t('accessibility.toggle'), sender: 'ai' }]);
+        if (!accessibilityMode) toggleAccessibility();
+        setInputVal('');
+        return;
+    }
+
     setMessages(prev => [...prev, { text: txt, sender: 'user' }]);
     setInputVal('');
     setIsTyping(true);
@@ -101,7 +111,7 @@ export default function IntelligentAgent() {
     <>
       {/* Floating Bubble */}
       <motion.div
-        className="fixed bottom-24 right-10 px-6 h-12 bg-clDarkGrey/90 backdrop-blur-md rounded-full border-2 border-clGold shadow-[0_0_40px_rgba(212,175,55,0.5)] flex items-center justify-center cursor-pointer z-[100] hover:bg-clGold/30 transition-all hologram-glow"
+        className={`fixed bottom-24 right-10 px-6 h-12 bg-clDarkGrey/90 backdrop-blur-md rounded-full border-2 border-clGold shadow-[0_0_40px_rgba(212,175,55,0.5)] flex items-center justify-center cursor-pointer z-[100] hover:bg-clGold/30 transition-all hologram-glow ${accessibilityMode ? 'border-white bg-black' : ''}`}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         onHoverStart={() => playSound('hover')}
@@ -135,12 +145,14 @@ export default function IntelligentAgent() {
 
               <div className="flex items-center gap-3">
                 {/* Size Controls */}
-                <div className="flex bg-white/5 rounded-lg border border-white/10 p-1 mr-2">
+                <div className="flex bg-white/5 rounded-lg border border-white/10 p-1 mr-2" role="group" aria-label="Agent Resizing Controls">
                   {(['small', 'medium', 'middle', 'full'] as const).map(m => (
                     <button
                       key={m}
                       onClick={() => { playSound('hover'); setSizeMode(m); }}
                       className={`text-[10px] px-2 py-1 rounded transition-colors ${sizeMode === m ? 'bg-clGold text-black font-bold' : 'text-gray-500 hover:text-white'}`}
+                      aria-label={`Switch to ${m} size`}
+                      aria-pressed={sizeMode === m}
                     >
                       {m.toUpperCase().charAt(0)}
                     </button>
@@ -153,6 +165,7 @@ export default function IntelligentAgent() {
                     toggleAgent();
                   }}
                   className="text-gray-400 hover:text-white transition-colors text-lg"
+                  aria-label="Close 1CL Agent"
                 >✕</button>
               </div>
             </div>
@@ -174,19 +187,21 @@ export default function IntelligentAgent() {
             </div>
 
             {/* Footer / Input */}
-            <div className="p-4 border-t border-white/10 bg-black flex gap-3 relative z-10">
+            <div className={`p-4 border-t border-white/10 flex gap-3 relative z-10 ${accessibilityMode ? 'bg-black border-white border-2' : 'bg-black'}`}>
               <input 
                 type="text" 
                 value={inputVal}
                 onChange={e => setInputVal(e.target.value)}
                 onKeyDown={e => e.key === 'Enter' && handleSend()}
                 placeholder={t('agent.placeholder')}
+                aria-label="Agent Message Input"
                 className="flex-grow bg-white/5 border border-white/10 rounded-xl text-sm text-white placeholder-gray-600 focus:outline-none px-4 py-2 focus:border-clGold/50 transition-colors"
               />
               <button 
                 onClick={handleSend}
                 className="w-10 h-10 flex items-center justify-center bg-white/5 hover:bg-clGold/30 rounded-xl text-clGold transition-all border border-white/10"
                 onMouseEnter={() => playSound('hover')}
+                aria-label="Send Message"
               >
                 ➢
               </button>

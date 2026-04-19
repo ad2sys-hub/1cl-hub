@@ -23,6 +23,11 @@ interface SovereignState {
   language: Language;
   setLanguage: (lang: Language) => void;
   t: (path: string) => string;
+  // Accessibility & Compliance
+  accessibilityMode: boolean;
+  toggleAccessibility: () => void;
+  cookieConsent: boolean | null;
+  setCookieConsent: (v: boolean) => void;
 }
 
 export const SovereignContext = createContext<SovereignState | undefined>(undefined);
@@ -35,6 +40,15 @@ export function SovereignProvider({ children }: { children: ReactNode }) {
   const [isGlobalLoupeActive, setIsGlobalLoupeActive] = useState(false);
   const [isVoiceConsoleActive, setVoiceConsoleActive] = useState(false);
   
+  // Compliance & Accessibility States
+  const [accessibilityMode, setAccessibilityMode] = useState<boolean>(() => {
+    return localStorage.getItem('sovereign_access') === 'true';
+  });
+  const [cookieConsent, setCookieConsentState] = useState<boolean | null>(() => {
+    const saved = localStorage.getItem('sovereign_cookies');
+    return saved === null ? null : saved === 'true';
+  });
+
   // Real Auth Flags
   const [isAdminAuthenticated, setAdminAuthenticated] = useState(false);
   const [adminSession, setAdminSession] = useState<Session | null>(null);
@@ -49,6 +63,20 @@ export function SovereignProvider({ children }: { children: ReactNode }) {
     localStorage.setItem('sovereign_lang', language);
     document.documentElement.setAttribute('lang', language);
   }, [language]);
+
+  useEffect(() => {
+    localStorage.setItem('sovereign_access', accessibilityMode.toString());
+    if (accessibilityMode) {
+      document.documentElement.classList.add('cl-accessibility-mode');
+    } else {
+      document.documentElement.classList.remove('cl-accessibility-mode');
+    }
+  }, [accessibilityMode]);
+
+  const setCookieConsent = (v: boolean) => {
+    localStorage.setItem('sovereign_cookies', v.toString());
+    setCookieConsentState(v);
+  };
 
   useEffect(() => {
     // Check active session on mount
@@ -68,6 +96,7 @@ export function SovereignProvider({ children }: { children: ReactNode }) {
   const toggleSidebar = () => setIsSidebarOpen(prev => !prev);
   const toggleAgent = () => setIsAgentOpen(prev => !prev);
   const toggleGlobalLoupe = () => setIsGlobalLoupeActive(prev => !prev);
+  const toggleAccessibility = () => setAccessibilityMode(prev => !prev);
 
   // Robust Translation Helper
   const t = (path: string): string => {
@@ -78,7 +107,6 @@ export function SovereignProvider({ children }: { children: ReactNode }) {
       if (result && result[key]) {
         result = result[key];
       } else {
-        // Log missing key in dev mode if needed
         return path; 
       }
     }
@@ -87,7 +115,6 @@ export function SovereignProvider({ children }: { children: ReactNode }) {
   };
 
   const unlockVault = (key: string) => {
-    // Fallback logic for the vault (frontend simulation)
     if (key.toLowerCase() === 'digital key') {
       setIsVaultUnlocked(true);
       return true;
@@ -104,7 +131,9 @@ export function SovereignProvider({ children }: { children: ReactNode }) {
       isGlobalLoupeActive, toggleGlobalLoupe,
       isVoiceConsoleActive, setVoiceConsoleActive,
       isAdminAuthenticated, setAdminAuthenticated, adminSession,
-      language, setLanguage, t
+      language, setLanguage, t,
+      accessibilityMode, toggleAccessibility,
+      cookieConsent, setCookieConsent
     }}>
       {children}
     </SovereignContext.Provider>

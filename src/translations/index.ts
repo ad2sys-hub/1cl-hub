@@ -255,7 +255,8 @@ export const translations = {
         sovereignty: 'Sovereignty Agreement',
         intro: 'The 1CL ecosystem operates under the Sovereign Protocol. By accessing the 1CL Hub, you agree to the cryptographic terms of the EMS network.',
         article1: 'Intellectual Property: All phygital assets, designs, and soundscapes are protected by 1CL-EMS encryption.',
-        article2: 'Data Sovereignty: User metrics are handled via Supabase/Mongo decentralized logic. No third-party data extraction is permitted.'
+        article2: 'Data Sovereignty: User metrics are handled via Supabase/Mongo decentralized logic. No third-party data extraction is permitted.',
+        rgpd: 'GDPR Compliance: You have the right to request access to your cryptographic identity data or its deletion from the EMS network.'
     },
     contactHub: {
         title: 'CONTACT HUB',
@@ -266,6 +267,27 @@ export const translations = {
         message: 'Encoded Message',
         send: 'Initialize Transmission',
         success: 'Message routed to 1CL EMS network.'
+    },
+    cookies: {
+        banner: 'Sovereign Sync requires cryptographic cookies to maintain your digital identity and session integrity.',
+        accept: 'ACKNOWLEDGE ALL',
+        deny: 'RESTRICTIVE ACCESS',
+        settings: 'SYNC PREFERENCES',
+        modalTitle: 'COOKIE ARCHITECTURE',
+        essential: 'Sovereign Protocol (Required)',
+        essentialDesc: 'Critical for session persistence and EMS gateway security.',
+        experience: 'Experience Sync',
+        experienceDesc: 'Personalizes animations, sound levels, and holographic UI.',
+        analytics: 'Network Metrics',
+        analyticsDesc: 'Anonymous data to optimize the 1CL ecosystem performance.',
+        save: 'COMMIT PREFERENCES'
+    },
+    accessibility: {
+        toggle: 'Accessibility Protocol',
+        highContrast: 'High Visibility / Contrast',
+        largeFont: 'Expanded Typography',
+        voiceAssist: 'EMS Voice Guidance',
+        w3cStatus: 'W3C-SOVEREIGN-CERTIFIED'
     },
     system: {
         version: '2.0.4-SOVEREIGN-SYNC'
@@ -525,7 +547,8 @@ export const translations = {
         sovereignty: 'Accord de Souveraineté',
         intro: 'L\'écosystème 1CL opère sous le Protocole Souverain. En accédant au Hub 1CL, vous acceptez les termes cryptographiques du réseau EMS.',
         article1: 'Propriété Intellectuelle : Tous les objets phygitaux et paysages sonores sont protégés par le chiffrement 1CL-EMS.',
-        article2: 'Souveraineté des Données : Les métriques utilisateur sont gérées via la logique décentralisée Supabase/Mongo.'
+        article2: 'Souveraineté des Données : Les métriques utilisateur sont gérées via la logique décentralisée Supabase/Mongo.',
+        rgpd: 'Conformité RGPD : Vous disposez d\'un droit d\'accès à votre identité cryptographique et de suppression de vos données du réseau EMS.'
     },
     contactHub: {
         title: 'CENTRE DE CONTACT',
@@ -536,6 +559,27 @@ export const translations = {
         message: 'Message Encodé',
         send: 'Initialiser la Transmission',
         success: 'Message routé vers le réseau 1CL EMS.'
+    },
+    cookies: {
+        banner: 'La Synchronisation Souveraine nécessite des cookies cryptographiques pour maintenir votre identité numérique.',
+        accept: 'TOUT ACCEPTER',
+        deny: 'ACCÈS RESTREINT',
+        settings: 'PRÉFÉRENCES SYNC',
+        modalTitle: 'ARCHITECTURE DES COOKIES',
+        essential: 'Protocole Souverain (Requis)',
+        essentialDesc: 'Indispensable pour la persistance de session et la sécurité.',
+        experience: 'Expérience Sync',
+        experienceDesc: 'Personnalise les animations, le son et l\'interface holographique.',
+        analytics: 'Métriques Réseau',
+        analyticsDesc: 'Données anonymes pour optimiser les performances de l\'écosystème 1CL.',
+        save: 'APPLIQUER LES PRÉFÉRENCES'
+    },
+    accessibility: {
+        toggle: 'Protocole d\'Accessibilité',
+        highContrast: 'Haute Visibilité / Contraste',
+        largeFont: 'Typographie Étendue',
+        voiceAssist: 'Guidage Vocal EMS',
+        w3cStatus: 'CERTIFIÉ-W3C-SOUVERAIN'
     },
     system: {
         version: '2.0.4-SOVEREIGN-SYNC'

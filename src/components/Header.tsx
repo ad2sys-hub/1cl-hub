@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Share2, Globe } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useSovereign } from '../hooks/useSovereign';
@@ -7,9 +7,17 @@ import { useSound } from '../hooks/useSound';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
-  const [showShareTooltip, setShowShareTooltip] = useState(false);
   const location = useLocation();
-  const { toggleSidebar, isVoiceConsoleActive, setVoiceConsoleActive, language, setLanguage, t } = useSovereign();
+  const { 
+    toggleSidebar, 
+    isVoiceConsoleActive, 
+    setVoiceConsoleActive, 
+    language, 
+    setLanguage, 
+    t,
+    accessibilityMode,
+    toggleAccessibility
+  } = useSovereign();
   const { playSound } = useSound();
   
   const navLinks = [
@@ -21,26 +29,7 @@ export default function Header() {
     { name: t('nav.faq'), path: '/faq' }
   ];
 
-  const handleShare = async () => {
-    playSound('click');
-    const shareData = {
-      title: t('share.title'),
-      text: t('share.text'),
-      url: 'https://ad2sys-hub.github.io/1cl-hub/'
-    };
 
-    if (navigator.share) {
-      try {
-        await navigator.share(shareData);
-      } catch (err) {
-        console.error("Share error:", err);
-      }
-    } else {
-      navigator.clipboard.writeText(shareData.url);
-      setShowShareTooltip(true);
-      setTimeout(() => setShowShareTooltip(false), 2000);
-    }
-  };
 
   return (
     <header className="fixed top-0 w-full z-50 glass-panel border-b border-white/5">
@@ -69,51 +58,35 @@ export default function Header() {
           </nav>
 
           <div className="hidden md:flex items-center gap-6">
-            {/* Share & Lang Group */}
-            <div className="flex items-center gap-3">
-               {/* Share Button */}
-               <div className="relative">
-                 <button 
-                  onClick={handleShare}
-                  className="text-gray-400 hover:text-clGold transition-colors p-1.5 border border-white/5 rounded-full hover:bg-clGold/10"
-                  title={t('nav.share')}
-                 >
-                   <Share2 size={16} />
-                 </button>
-                 <AnimatePresence>
-                   {showShareTooltip && (
-                     <motion.div 
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0 }}
-                        className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-clGold text-black text-[9px] px-2 py-0.5 rounded-sm whitespace-nowrap font-bold"
-                     >
-                       {t('share.success')}
-                     </motion.div>
-                   )}
-                 </AnimatePresence>
-               </div>
+            <div className="flex items-center bg-black/40 backdrop-blur-xl border border-white/10 rounded-full px-2 py-1 gap-4">
+              {/* Accessibility Toggle */}
+              <button 
+                onClick={() => { playSound('click'); toggleAccessibility(); }}
+                className={`w-8 h-8 rounded-full flex items-center justify-center text-[10px] font-bold transition-all ${accessibilityMode ? 'bg-clGold text-black' : 'text-gray-500 hover:text-white border border-white/5'}`}
+                title="Toggle Accessibility Protocol"
+                aria-label="Toggle Accessibility Protocol"
+              >
+                [A]
+              </button>
 
-               {/* Lang Switcher */}
-               <div className="flex items-center bg-black/30 border border-white/10 rounded-sm overflow-hidden text-[9px] font-mono tracking-tighter shadow-inner">
-                  <button 
-                    onClick={() => { playSound('click'); setLanguage('en'); }}
-                    className={`px-2 py-1 transition-colors flex items-center gap-1 ${language === 'en' ? 'bg-clGold text-black' : 'text-gray-500 hover:text-white'}`}
-                  >
-                    <Globe size={8} /> EN
-                  </button>
-                  <button 
-                    onClick={() => { playSound('click'); setLanguage('fr'); }}
-                    className={`px-2 py-1 transition-colors flex items-center gap-1 ${language === 'fr' ? 'bg-clGold text-black' : 'text-gray-500 hover:text-white'}`}
-                  >
-                    <Globe size={8} /> FR
-                  </button>
-               </div>
+              <div className="flex gap-2 border-l border-white/10 pl-4">
+                <button 
+                  onClick={() => { playSound('click'); setLanguage('en'); }}
+                  className={`text-[10px] tracking-widest transition-all ${language === 'en' ? 'text-clGold font-bold' : 'text-gray-400 hover:text-white'}`}
+                  aria-label="Switch to English"
+                >EN</button>
+                <button 
+                  onClick={() => { playSound('click'); setLanguage('fr'); }}
+                  className={`text-[10px] tracking-widest transition-all ${language === 'fr' ? 'text-clGold font-bold' : 'text-gray-400 hover:text-white'}`}
+                  aria-label="Passer en Français"
+                >FR</button>
+              </div>
             </div>
 
             <button 
                onClick={() => { playSound('click'); toggleSidebar(); }} 
                className="border border-clGold/50 text-clGold hover:bg-clGold hover:text-black transition-all duration-300 px-4 py-1 text-[10px] tracking-widest uppercase font-bold hologram-glow"
+               aria-label="Open Admin Portal"
             >
               {t('nav.admin')}
             </button>
@@ -121,20 +94,15 @@ export default function Header() {
                onClick={() => { playSound('click'); setVoiceConsoleActive(!isVoiceConsoleActive); }} 
                className={`text-lg transition-colors ${isVoiceConsoleActive ? 'text-clGold animate-pulse' : 'text-gray-500 hover:text-white'}`}
                title="Toggle Voice Commands"
+               aria-label="Toggle Voice Commands"
             >
               🎙
             </button>
           </div>
 
           {/* Mobile Menu Button & Action Group */}
-          <div className="md:hidden flex items-center gap-3">
-            <button 
-              onClick={handleShare}
-              className="text-gray-400 hover:text-clGold transition-colors p-1"
-              title={t('nav.share')}
-            >
-              <Share2 size={20} />
-            </button>
+            <div className="flex items-center gap-3">
+
 
             <div className="flex items-center bg-black/30 border border-white/10 rounded-sm overflow-hidden text-[9px]">
                <button onClick={() => { playSound('click'); setLanguage('en'); }} className={`px-2 py-1 ${language === 'en' ? 'bg-clGold text-black' : 'text-gray-500'}`}>EN</button>

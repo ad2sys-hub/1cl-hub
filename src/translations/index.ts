@@ -53,12 +53,6 @@ export const translations = {
         redirectArchive: "The 1CL Archive is structured into three paradigms: Essentials, Heritage, and Workshop Edition. Redirecting to the catalog...",
         connectedEMS: "CONNECTED TO EMS NET"
     },
-    footer: {
-        tagline: "Product by Chawblick Music",
-        copyright: "© 2026 1CL Collection",
-        legal: "LEGAL",
-        contact: "CONTACT"
-    },
     common: {
         sizeGuide: "Size Guide",
         hardware: "Hardware Signature",
@@ -248,6 +242,12 @@ export const translations = {
         iamPortal: 'IAM PORTAL',
         disconnect: 'Disconnect Session'
     },
+    footer: {
+        tagline: 'Sovereign Excellence in Phygital Fashion & Sound',
+        copyright: '© 2024 1CL Collection. All rights reserved.',
+        legal: 'Legal Notice',
+        contact: 'Contact Hub'
+    },
     system: {
         version: '2.0.4-SOVEREIGN-SYNC'
     }
@@ -303,12 +303,6 @@ export const translations = {
         initMap: "Initialisation de la carte 4D...",
         redirectArchive: "L'Archive 1CL est structurée en trois paradigmes : Essentials, Heritage, et Workshop Edition. Redirection vers le catalogue...",
         connectedEMS: "CONNECTÉ AU RÉSEAU EMS"
-    },
-    footer: {
-        tagline: "Produit par Chawblick Music",
-        copyright: "© 2026 1CL Collection",
-        legal: "LÉGAL",
-        contact: "CONTACT"
     },
     common: {
         sizeGuide: "Guide des Tailles",
@@ -498,6 +492,12 @@ export const translations = {
         dashboard: 'TABLEAU DE BORD EMS',
         iamPortal: 'PORTAIL IAM',
         disconnect: 'Déconnecter la Session'
+    },
+    footer: {
+        tagline: 'Excellence Souveraine - Mode Phygitale & Sonorités Premium',
+        copyright: '© 2024 1CL Collection. Tous droits réservés.',
+        legal: 'Mentions Légales',
+        contact: 'Contact Hub'
     },
     system: {
         version: '2.0.4-SOVEREIGN-SYNC'

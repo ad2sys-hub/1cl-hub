@@ -92,7 +92,7 @@ export default function IntelligentAgent() {
     <>
       {/* Floating Bubble */}
       <motion.div
-        className="fixed bottom-6 right-6 w-16 h-16 bg-clDarkGrey/80 backdrop-blur-md rounded-full border border-clGold/50 shadow-[0_0_20px_rgba(212,175,55,0.3)] flex items-center justify-center cursor-pointer z-50 hover:bg-clGold/20 transition-colors hologram-glow"
+        className="fixed bottom-10 left-10 w-20 h-20 bg-clDarkGrey/90 backdrop-blur-md rounded-full border-2 border-clGold shadow-[0_0_40px_rgba(212,175,55,0.5)] flex items-center justify-center cursor-pointer z-[100] hover:bg-clGold/30 transition-all hologram-glow"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         onHoverStart={() => playSound('hover')}
@@ -108,7 +108,7 @@ export default function IntelligentAgent() {
       <AnimatePresence>
         {isAgentOpen && (
           <motion.div
-            className="fixed bottom-24 right-6 w-80 bg-clDarkGrey/90 backdrop-blur-xl border border-white/10 rounded-lg shadow-2xl z-50 overflow-hidden flex flex-col hologram-container"
+            className="fixed bottom-36 left-10 w-[24rem] sm:w-[500px] h-[650px] bg-clBlack/95 backdrop-blur-3xl border border-clGold/30 rounded-2xl shadow-[0_0_100px_rgba(0,0,0,0.9)] z-[100] overflow-hidden flex flex-col hologram-container ring-1 ring-clGold/20"
             initial={{ opacity: 0, y: 50, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 50, scale: 0.9 }}
@@ -133,7 +133,7 @@ export default function IntelligentAgent() {
             </div>
 
             {/* Body */}
-            <div ref={chatBodyRef} className="p-4 h-64 overflow-y-auto space-y-4 relative z-10">
+            <div ref={chatBodyRef} className="p-8 h-full overflow-y-auto space-y-6 relative z-10 scrollbar-thin scrollbar-thumb-clGold/40 flex-grow font-light">
               {messages.map((m, i) => (
                 <div key={i} className={`text-sm p-3 rounded-lg max-w-[85%] ${m.sender === 'ai' ? 'bg-clGold/5 text-gray-300 border border-clGold/20 self-start mr-auto relative after:content-[""] after:w-1 after:h-full after:bg-clGold after:absolute after:left-0 after:top-0 h-auto' : 'bg-white/5 text-white self-end ml-auto text-right border border-white/5'}`}>
                   {m.text}

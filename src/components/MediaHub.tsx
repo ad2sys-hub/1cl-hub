@@ -57,7 +57,7 @@ export default function MediaHub() {
       {!isMediaHubOpen && (
         <motion.button
           onClick={() => setMediaHubOpen(true)}
-          className="fixed bottom-6 left-6 w-12 h-12 bg-clDarkGrey/80 backdrop-blur-md rounded-full border border-white/10 shadow-[0_0_15px_rgba(255,255,255,0.1)] flex items-center justify-center z-50 text-white hover:text-clGold transition-colors"
+          className="fixed bottom-10 right-10 w-12 h-12 bg-clDarkGrey/80 backdrop-blur-md rounded-full border border-white/10 shadow-[0_0_15px_rgba(255,255,255,0.1)] flex items-center justify-center z-[100] text-white hover:text-clGold transition-colors"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
         >

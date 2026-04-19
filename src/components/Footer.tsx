@@ -1,7 +1,7 @@
 import { useSovereign } from '../hooks/useSovereign';
 
 export default function Footer() {
-  const { t } = useSovereign();
+  const { t, setMediaHubOpen } = useSovereign();
 
   return (
     <footer className="border-t border-white/5 bg-clBlack pt-16 pb-8 px-4 sm:px-6 lg:px-8 mt-auto z-10 relative">
@@ -12,8 +12,15 @@ export default function Footer() {
           <p className="text-clChrome tracking-[0.2em] text-xs uppercase font-serif opacity-70">
             {t('footer.tagline')}
           </p>
-          <div className="flex justify-center opacity-80 hover:opacity-100 transition-opacity">
+          <div className="flex justify-center items-center gap-6 opacity-80 hover:opacity-100 transition-opacity">
             <img src="/1cl-hub/images/Logos/logo CL v.1.gold.png" alt="Chawblick" className="h-16 w-auto object-contain drop-shadow-[0_0_15px_rgba(212,175,55,0.3)]" />
+            <button 
+              onClick={() => setMediaHubOpen(true)}
+              className="w-10 h-10 border border-clGold/30 rounded-full flex items-center justify-center text-clGold hover:bg-clGold/10 transition-all hover:scale-110 shadow-[0_0_10px_rgba(212,175,55,0.1)]"
+              title="Sovereign Audio"
+            >
+              ♫
+            </button>
           </div>
         </div>
 

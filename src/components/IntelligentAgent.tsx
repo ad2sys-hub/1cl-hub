@@ -92,7 +92,7 @@ export default function IntelligentAgent() {
     <>
       {/* Floating Bubble */}
       <motion.div
-        className="fixed bottom-10 left-10 w-20 h-20 bg-clDarkGrey/90 backdrop-blur-md rounded-full border-2 border-clGold shadow-[0_0_40px_rgba(212,175,55,0.5)] flex items-center justify-center cursor-pointer z-[100] hover:bg-clGold/30 transition-all hologram-glow"
+        className="fixed bottom-32 right-10 px-6 h-12 bg-clDarkGrey/90 backdrop-blur-md rounded-full border-2 border-clGold shadow-[0_0_40px_rgba(212,175,55,0.5)] flex items-center justify-center cursor-pointer z-[100] hover:bg-clGold/30 transition-all hologram-glow"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         onHoverStart={() => playSound('hover')}
@@ -101,14 +101,14 @@ export default function IntelligentAgent() {
           toggleAgent();
         }}
       >
-        <span className="text-xl font-serif text-clGold glitch-text">IA</span>
+        <span className="text-xs font-serif text-clGold tracking-[0.2em] glitch-text">1CL-AGENT</span>
       </motion.div>
 
       {/* Chat Window */}
       <AnimatePresence>
         {isAgentOpen && (
           <motion.div
-            className="fixed bottom-36 left-10 w-[24rem] sm:w-[500px] h-[650px] bg-clBlack/95 backdrop-blur-3xl border border-clGold/30 rounded-2xl shadow-[0_0_100px_rgba(0,0,0,0.9)] z-[100] overflow-hidden flex flex-col hologram-container ring-1 ring-clGold/20"
+            className="fixed bottom-52 right-10 w-[24rem] sm:w-[500px] h-[650px] bg-clBlack/95 backdrop-blur-3xl border border-clGold/30 rounded-2xl shadow-[0_0_100px_rgba(0,0,0,0.9)] z-[100] overflow-hidden flex flex-col hologram-container ring-1 ring-clGold/20"
             initial={{ opacity: 0, y: 50, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 50, scale: 0.9 }}

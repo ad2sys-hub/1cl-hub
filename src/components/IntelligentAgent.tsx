@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence, useDragControls } from 'framer-motion';
 import { useSovereign } from '../hooks/useSovereign';
 import { useNavigate } from 'react-router-dom';
@@ -24,7 +24,7 @@ export default function IntelligentAgent() {
   const navigate = useNavigate();
 
   // TTS Helper
-  const speak = (text: string) => {
+  const speak = useCallback((text: string) => {
     if (subMode === 'mute') return;
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(text);
@@ -32,7 +32,7 @@ export default function IntelligentAgent() {
     utterance.rate = 0.95;
     utterance.pitch = 1.05;
     window.speechSynthesis.speak(utterance);
-  };
+  }, [language, subMode]);
 
   // Size Configuration Mapping
   const sizeStyles = {
@@ -285,7 +285,7 @@ export default function IntelligentAgent() {
                       onClick={() => { playSound('hover'); setSizeMode(m); }}
                       className={`text-[10px] px-2 py-1 rounded transition-colors ${sizeMode === m ? 'bg-clGold text-black font-bold' : 'text-gray-500 hover:text-white'}`}
                       aria-label={`Switch to ${m} size`}
-                      aria-pressed={sizeMode === m ? "true" : "false"}
+                      aria-pressed={sizeMode === m}
                     >
                       {m.toUpperCase().charAt(0)}
                     </button>

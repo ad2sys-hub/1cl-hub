@@ -12,6 +12,7 @@
 .cl-accessibility-mode .glass-panel,
 .cl-accessibility-mode .backdrop-blur-md,
 .cl-accessibility-mode .backdrop-blur-3xl {
+  -webkit-backdrop-filter: none !important;
   backdrop-filter: none !important;
   background: #000000 !important;
   border: 2px solid #FFD700 !important;

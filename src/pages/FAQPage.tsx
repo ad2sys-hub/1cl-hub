@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useSovereign } from '../hooks/useSovereign';
 import { 
-  ChevronDown, Shield, Database, Zap, UserCheck, 
+  ChevronDown, 
   Navigation, GitBranch, Layers, Lock, CreditCard, Accessibility, Box,
   type LucideIcon 
 } from 'lucide-react';

@@ -3,7 +3,7 @@ import { motion, AnimatePresence, useDragControls } from 'framer-motion';
 import { useSovereign } from '../hooks/useSovereign';
 import { useNavigate } from 'react-router-dom';
 import { useSound } from '../hooks/useSound';
-import { GripHorizontal, Zap, Settings, Type, ChevronDown } from 'lucide-react';
+import { GripHorizontal, Zap, Settings, Type, ChevronDown, Layers, Box, CreditCard } from 'lucide-react';
 
 export default function IntelligentAgent() {
   const { isAgentOpen, toggleAgent, toggleSidebar, language, t, accessibilityMode, toggleAccessibility, userData, updateUserData, isProfileConfigured, setProfileConfigured, agentMode, setAgentMode } = useSovereign();
@@ -57,7 +57,7 @@ export default function IntelligentAgent() {
         }, 1500);
       }, 1000);
     }
-  }, [isAgentOpen, isProfileConfigured]);
+  }, [isAgentOpen, isProfileConfigured, profilingStep, speak, t]);
 
   // Handle Command Logic
   const handleCommand = (text: string) => {
@@ -285,7 +285,7 @@ export default function IntelligentAgent() {
                       onClick={() => { playSound('hover'); setSizeMode(m); }}
                       className={`text-[10px] px-2 py-1 rounded transition-colors ${sizeMode === m ? 'bg-clGold text-black font-bold' : 'text-gray-500 hover:text-white'}`}
                       aria-label={`Switch to ${m} size`}
-                      aria-pressed={sizeMode === m}
+                      aria-pressed={sizeMode === m ? "true" : "false"}
                     >
                       {m.toUpperCase().charAt(0)}
                     </button>

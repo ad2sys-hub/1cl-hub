@@ -78,19 +78,43 @@ export default function ContactPage() {
                 >
                   <div>
                     <label className="block text-[10px] text-gray-500 uppercase tracking-widest mb-2">{t('contactHub.name')}</label>
-                    <input type="text" required className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-clGold/50 transition-all" />
+                    <input 
+                      type="text" 
+                      required 
+                      placeholder={t('contactHub.name')}
+                      title={t('contactHub.name')}
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-clGold/50 transition-all" 
+                    />
                   </div>
                   <div>
                     <label className="block text-[10px] text-gray-500 uppercase tracking-widest mb-2">{t('contactHub.email')}</label>
-                    <input type="email" required className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-clGold/50 transition-all" />
+                    <input 
+                      type="email" 
+                      required 
+                      placeholder={t('contactHub.email')}
+                      title={t('contactHub.email')}
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-clGold/50 transition-all" 
+                    />
                   </div>
                   <div>
                     <label className="block text-[10px] text-gray-500 uppercase tracking-widest mb-2">{t('contactHub.subject')}</label>
-                    <input type="text" required className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-clGold/50 transition-all" />
+                    <input 
+                      type="text" 
+                      required 
+                      placeholder={t('contactHub.subject')}
+                      title={t('contactHub.subject')}
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-clGold/50 transition-all" 
+                    />
                   </div>
                   <div>
                     <label className="block text-[10px] text-gray-500 uppercase tracking-widest mb-2">{t('contactHub.message')}</label>
-                    <textarea rows={4} required className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-clGold/50 transition-all resize-none"></textarea>
+                    <textarea 
+                      rows={4} 
+                      required 
+                      placeholder={t('contactHub.message')}
+                      title={t('contactHub.message')}
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-clGold/50 transition-all resize-none"
+                    ></textarea>
                   </div>
                   <button 
                     type="submit" 

@@ -244,7 +244,7 @@ export const translations = {
     },
     footer: {
         tagline: 'Sovereign Excellence in Phygital Fashion & Sound',
-        copyright: '© 2024 1CL Collection. All rights reserved.',
+        copyright: '© 2026 1CL Collection. All rights reserved.',
         legal: 'Legal Notice',
         contact: 'Contact Hub'
     },
@@ -495,7 +495,7 @@ export const translations = {
     },
     footer: {
         tagline: 'Excellence Souveraine - Mode Phygitale & Sonorités Premium',
-        copyright: '© 2024 1CL Collection. Tous droits réservés.',
+        copyright: '© 2026 1CL Collection. Tous droits réservés.',
         legal: 'Mentions Légales',
         contact: 'Contact Hub'
     },

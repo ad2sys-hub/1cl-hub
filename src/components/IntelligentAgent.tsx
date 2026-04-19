@@ -285,7 +285,7 @@ export default function IntelligentAgent() {
                       onClick={() => { playSound('hover'); setSizeMode(m); }}
                       className={`text-[10px] px-2 py-1 rounded transition-colors ${sizeMode === m ? 'bg-clGold text-black font-bold' : 'text-gray-500 hover:text-white'}`}
                       aria-label={`Switch to ${m} size`}
-                      aria-pressed={sizeMode === m}
+                      aria-current={sizeMode === m ? "page" : undefined}
                     >
                       {m.toUpperCase().charAt(0)}
                     </button>

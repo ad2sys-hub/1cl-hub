@@ -28,6 +28,13 @@ interface SovereignState {
   toggleAccessibility: () => void;
   cookieConsent: boolean | null;
   setCookieConsent: (v: boolean) => void;
+  // Autonomous Agent Intelligence
+  agentMode: 'auto' | 'manual' | 'text';
+  setAgentMode: (v: 'auto' | 'manual' | 'text') => void;
+  isProfileConfigured: boolean;
+  setProfileConfigured: (v: boolean) => void;
+  userData: { role?: string; codeName?: string; interactions: number };
+  updateUserData: (data: Partial<{ role?: string; codeName?: string; interactions: number }>) => void;
 }
 
 export const SovereignContext = createContext<SovereignState | undefined>(undefined);
@@ -93,6 +100,37 @@ export function SovereignProvider({ children }: { children: ReactNode }) {
     return () => subscription.unsubscribe();
   }, []);
 
+  // Autonomous Agent Intelligence States
+  const [agentMode, setAgentModeState] = useState<'auto' | 'manual' | 'text'>(() => {
+    const saved = localStorage.getItem('sovereign_agent_mode');
+    return (saved === 'auto' || saved === 'manual' || saved === 'text') ? saved : 'manual';
+  });
+  const [isProfileConfigured, setProfileConfiguredState] = useState<boolean>(() => {
+    return localStorage.getItem('sovereign_profile_set') === 'true';
+  });
+  const [userData, setUserData] = useState<{ role?: string; codeName?: string; interactions: number }>(() => {
+    const saved = localStorage.getItem('sovereign_user_data');
+    return saved ? JSON.parse(saved) : { interactions: 0 };
+  });
+
+  useEffect(() => {
+    localStorage.setItem('sovereign_agent_mode', agentMode);
+  }, [agentMode]);
+
+  useEffect(() => {
+    localStorage.setItem('sovereign_profile_set', isProfileConfigured.toString());
+  }, [isProfileConfigured]);
+
+  useEffect(() => {
+    localStorage.setItem('sovereign_user_data', JSON.stringify(userData));
+  }, [userData]);
+
+  const setAgentMode = (v: 'auto' | 'manual' | 'text') => setAgentModeState(v);
+  const setProfileConfigured = (v: boolean) => setProfileConfiguredState(v);
+  const updateUserData = (data: Partial<{ role?: string; codeName?: string; interactions: number }>) => {
+    setUserData(prev => ({ ...prev, ...data }));
+  };
+
   const toggleSidebar = () => setIsSidebarOpen(prev => !prev);
   const toggleAgent = () => setIsAgentOpen(prev => !prev);
   const toggleGlobalLoupe = () => setIsGlobalLoupeActive(prev => !prev);
@@ -133,9 +171,13 @@ export function SovereignProvider({ children }: { children: ReactNode }) {
       isAdminAuthenticated, setAdminAuthenticated, adminSession,
       language, setLanguage, t,
       accessibilityMode, toggleAccessibility,
-      cookieConsent, setCookieConsent
+      cookieConsent, setCookieConsent,
+      agentMode, setAgentMode,
+      isProfileConfigured, setProfileConfigured,
+      userData, updateUserData
     }}>
       {children}
     </SovereignContext.Provider>
   );
 }
+

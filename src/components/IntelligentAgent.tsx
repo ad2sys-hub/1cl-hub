@@ -3,13 +3,16 @@ import { motion, AnimatePresence, useDragControls } from 'framer-motion';
 import { useSovereign } from '../hooks/useSovereign';
 import { useNavigate } from 'react-router-dom';
 import { useSound } from '../hooks/useSound';
-import { GripHorizontal } from 'lucide-react';
+import { GripHorizontal, Zap, Settings, Type, ChevronDown } from 'lucide-react';
 
 export default function IntelligentAgent() {
-  const { isAgentOpen, toggleAgent, toggleSidebar, language, t, accessibilityMode, toggleAccessibility } = useSovereign();
+  const { isAgentOpen, toggleAgent, toggleSidebar, language, t, accessibilityMode, toggleAccessibility, userData, updateUserData, isProfileConfigured, setProfileConfigured, agentMode, setAgentMode } = useSovereign();
   const { playSound } = useSound();
   const dragControls = useDragControls();
   const [sizeMode, setSizeMode] = useState<'small' | 'medium' | 'middle' | 'full'>('medium');
+  const [isModeMenuOpen, setModeMenuOpen] = useState(false);
+  const [profilingStep, setProfilingStep] = useState(0);
+  const [interactions, setInteractions] = useState(userData.interactions || 0);
   const [messages, setMessages] = useState<{ text: string; sender: 'ai' | 'user' }[]>(() => [
     { text: t('agent.welcome'), sender: 'ai' }
   ]);
@@ -17,6 +20,33 @@ export default function IntelligentAgent() {
   const [isTyping, setIsTyping] = useState(false);
   const chatBodyRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
+
+  // Initial Profiling Trigger
+  useEffect(() => {
+    if (isAgentOpen && !isProfileConfigured && profilingStep === 0) {
+      setTimeout(() => {
+        setIsTyping(true);
+        setTimeout(() => {
+          setIsTyping(false);
+          setMessages(prev => [...prev, { text: t('agent.profile.welcome'), sender: 'ai' }]);
+          setMessages(prev => [...prev, { text: t('agent.profile.q1'), sender: 'ai' }]);
+          setProfilingStep(1);
+        }, 1500);
+      }, 1000);
+    }
+  }, [isAgentOpen, isProfileConfigured]);
+
+  // Auto-Optimization Observer
+  useEffect(() => {
+    if (agentMode === 'auto' && interactions > 5 && interactions % 10 === 0) {
+       setTimeout(() => {
+         setMessages(prev => [...prev, { 
+           text: "EMS[AUTO OPTIMIZE] : I have detected high interaction levels. Forcing system stabilization for better focus.", 
+           sender: 'ai' 
+         }]);
+       }, 5000);
+    }
+  }, [interactions, agentMode]);
 
   useEffect(() => {
     if (chatBodyRef.current) {
@@ -38,6 +68,37 @@ export default function IntelligentAgent() {
     const txt = inputVal.trim();
     const lower = txt.toLowerCase();
 
+    // Profiling Flow Logic
+    if (profilingStep > 0) {
+      setMessages(prev => [...prev, { text: txt, sender: 'user' }]);
+      setInputVal('');
+      setIsTyping(true);
+      
+      setTimeout(() => {
+        setIsTyping(false);
+        if (profilingStep === 1) {
+          updateUserData({ codeName: txt });
+          setMessages(prev => [...prev, { text: t('agent.profile.q2'), sender: 'ai' }]);
+          setProfilingStep(2);
+        } else if (profilingStep === 2) {
+          updateUserData({ role: txt.includes('A') ? 'Access' : 'Creative' });
+          if (txt.includes('A')) toggleAccessibility();
+          setMessages(prev => [...prev, { text: t('agent.profile.q3'), sender: 'ai' }]);
+          setProfilingStep(3);
+        } else if (profilingStep === 3) {
+          if (txt.includes('T')) setAgentMode('text');
+          setMessages(prev => [...prev, { text: t('agent.profile.complete'), sender: 'ai' }]);
+          setProfileConfigured(true);
+          setProfilingStep(0);
+        }
+      }, 1000);
+      return;
+    }
+
+    // Standard Logic
+    updateUserData({ interactions: interactions + 1 });
+    setInteractions(prev => prev + 1);
+    
     // 1CL Assist Logic
     if (lower.includes('assist') || lower.includes('aide') || lower.includes('w3c')) {
         setMessages(prev => [...prev, { text: txt, sender: 'user' }]);
@@ -156,11 +217,56 @@ export default function IntelligentAgent() {
                 )}
                 <div className="flex flex-col">
                   <h4 className="text-clGold font-serif text-sm glitch-text tracking-widest uppercase">1CL SOVEREIGN AGENT</h4>
-                  <p className="text-[10px] text-gray-500 uppercase tracking-widest">{t('agent.connectedEMS')}</p>
+                  <div className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
+                    <p className="text-[9px] text-gray-500 uppercase tracking-widest">{t('agent.connectedEMS')}</p>
+                  </div>
                 </div>
               </div>
 
               <div className="flex items-center gap-3">
+                {/* Mode Selector Dropdown */}
+                <div className="relative">
+                  <button 
+                    onClick={() => { playSound('click'); setModeMenuOpen(!isModeMenuOpen); }}
+                    className="flex items-center gap-2 bg-clGold/10 border border-clGold/30 rounded-lg px-3 py-1.5 text-[10px] text-clGold hover:bg-clGold/20 transition-all"
+                  >
+                    {agentMode === 'auto' && <Zap size={12} className="animate-pulse" />}
+                    {agentMode === 'manual' && <Settings size={12} />}
+                    {agentMode === 'text' && <Type size={12} />}
+                    <span className="font-bold tracking-widest">{t(`agent.modes.${agentMode}`)}</span>
+                    <ChevronDown size={10} className={`transition-transform duration-300 ${isModeMenuOpen ? 'rotate-180' : ''}`} />
+                  </button>
+
+                  <AnimatePresence>
+                    {isModeMenuOpen && (
+                      <motion.div 
+                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                        className="absolute right-0 top-full mt-2 w-40 bg-clBlack/95 border border-clGold/30 rounded-xl overflow-hidden shadow-2xl z-[120] backdrop-blur-3xl"
+                      >
+                        {(['auto', 'manual', 'text'] as const).map(mode => (
+                          <button
+                            key={mode}
+                            onClick={() => {
+                              playSound('click');
+                              setAgentMode(mode);
+                              setModeMenuOpen(false);
+                            }}
+                            className={`w-full flex items-center gap-3 px-4 py-3 text-[10px] tracking-widest transition-colors ${agentMode === mode ? 'bg-clGold/20 text-clGold' : 'text-gray-400 hover:bg-white/5 hover:text-white'}`}
+                          >
+                            {mode === 'auto' && <Zap size={12} />}
+                            {mode === 'manual' && <Settings size={12} />}
+                            {mode === 'text' && <Type size={12} />}
+                            {t(`agent.modes.${mode}`)}
+                          </button>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
                 {/* Size Controls */}
                 <div className="flex bg-white/5 rounded-lg border border-white/10 p-1 mr-2" role="group" aria-label="Agent Resizing Controls">
                   {(['small', 'medium', 'middle', 'full'] as const).map(m => (

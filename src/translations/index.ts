@@ -51,7 +51,19 @@ export const translations = {
         openLogistics: "Opening EMS Logistics center.",
         initMap: "Initializing 4D Path Map...",
         redirectArchive: "The 1CL Archive is structured into three paradigms: Essentials, Heritage, and Workshop Edition. Redirecting to the catalog...",
-        connectedEMS: "CONNECTED TO EMS NET"
+        connectedEMS: "CONNECTED TO EMS NET",
+        modes: {
+            auto: 'AUTO MODE',
+            manual: 'MANUAL MODE',
+            text: 'TEXT MODE'
+        },
+        profile: {
+            welcome: 'Initializing Sovereign Profile...',
+            q1: 'Specify your code name:',
+            q2: 'System priority: Design [D] or Accessibility [A]?',
+            q3: 'Communication mode: Vocal [V] or Text [T]?',
+            complete: 'Profile encrypted and saved. Deep Learning enabled.'
+        }
     },
     common: {
         sizeGuide: "Size Guide",
@@ -343,7 +355,19 @@ export const translations = {
         openLogistics: "Ouverture du centre logistique EMS.",
         initMap: "Initialisation de la carte 4D...",
         redirectArchive: "L'Archive 1CL est structurée en trois paradigmes : Essentials, Heritage, et Workshop Edition. Redirection vers le catalogue...",
-        connectedEMS: "CONNECTÉ AU RÉSEAU EMS"
+        connectedEMS: "CONNECTÉ AU RÉSEAU EMS",
+        modes: {
+            auto: 'MODE AUTO',
+            manual: 'MODE MANUEL',
+            text: 'MODE TEXTE'
+        },
+        profile: {
+            welcome: 'Initialisation de votre Profil Souverain...',
+            q1: 'Nom de code souhaité :',
+            q2: 'Priorité système : Design [D] ou Accessibilité [A] ?',
+            q3: 'Mode de communication : Vocal [V] ou Texte [T] ?',
+            complete: 'Profil crypté et sauvegardé. Apprentissage activé.'
+        }
     },
     common: {
         sizeGuide: "Guide des Tailles",

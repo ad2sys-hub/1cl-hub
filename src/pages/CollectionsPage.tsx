@@ -11,7 +11,7 @@ export default function CollectionsPage() {
   const [activeType, setActiveType] = useState('all');
   const [loading, setLoading] = useState(true);
 
-  const collections = ['All', 'Essentials', 'Heritage', 'Workshop Edition'];
+  const collections = ['All', 'Essentials', 'Heritage', 'Workshop Edition', 'Artist Exclusive'];
   const genders = [
     { id: 'All', label: t('catalog.all') },
     { id: 'Homme', label: t('catalog.men') },

@@ -96,11 +96,11 @@ export default function HomePage() {
             <img src="/1cl-hub/images/JacketSongs/Jacket_there-is-one thing-.png" alt="Simple Thing Jacket" className="w-full h-full object-cover rounded-sm grayscale group-hover:grayscale-0 transition-all duration-700" />
             <div className="absolute bottom-8 left-8 right-8">
               <h3 className="font-serif text-3xl text-white drop-shadow-lg">{t('home.masterpieceTitle')}</h3>
-              <p className="text-clGold tracking-widest text-xs mt-2 uppercase">Official Artist Collectible</p>
+              <p className="text-clGold tracking-widest text-xs mt-2 uppercase">{t('homeBadge.collectible')}</p>
             </div>
             {/* PARENTAL ADVISORY Tweak for album feel */}
             <div className="absolute top-8 left-8 border border-white px-2 py-1 text-[10px] font-bold tracking-widest bg-black/50 backdrop-blur-sm">
-              1CL EXPLICIT LUXURY
+              {t('homeBadge.explicit')}
             </div>
           </motion.div>
 

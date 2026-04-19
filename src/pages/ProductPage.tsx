@@ -5,13 +5,17 @@ import { useSovereign } from '../hooks/useSovereign';
 
 export default function ProductPage() {
   const { id } = useParams();
-  const { t } = useSovereign();
+  const { t, language } = useSovereign();
   const [product, setProduct] = useState<any>(null);
   const [activeVariant, setActiveVariant] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [inLookbook, setInLookbook] = useState(false);
   const [sizeGuideOpen, setSizeGuideOpen] = useState(false);
   const [specModalOpen, setSpecModalOpen] = useState(false);
+
+  const displayName = product ? (language === 'fr' && product.name_fr ? product.name_fr : product.name) : '';
+  const displayTagline = product ? (language === 'fr' && product.tagline_fr ? product.tagline_fr : product.tagline) : '';
+  const displayCollection = product ? t(`catalog.collections.${product.collection.toLowerCase().replace(' ', '')}`) : '';
 
   useEffect(() => {
     fetch('/1cl-hub/data/catalog.json')
@@ -27,7 +31,7 @@ export default function ProductPage() {
   }, [id]);
 
   if (loading) return <div className="min-h-screen flex items-center justify-center"><div className="animate-spin w-10 h-10 border-t-2 border-clGold rounded-full" /></div>;
-  if (!product) return <div className="min-h-screen flex items-center justify-center text-white font-serif text-2xl">Piece Not Found.</div>;
+  if (!product) return <div className="min-h-screen flex items-center justify-center text-white font-serif text-2xl">404 // {language === 'fr' ? 'Pièce Introuvable' : 'Piece Not Found'}</div>;
 
   return (
     <div className="pt-24 pb-20 px-4 min-h-screen">
@@ -63,15 +67,15 @@ export default function ProductPage() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <p className="text-clGold text-xs tracking-[0.3em] uppercase mb-4">{product.collection} // {product.type}</p>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif mb-6">{product.name}</h1>
-          <p className="text-gray-400 text-lg mb-10 italic">"{product.tagline}"</p>
+          <p className="text-clGold text-xs tracking-[0.3em] uppercase mb-4">{displayCollection} // {t(`catalog.types.${product.type}`)}</p>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif mb-6">{displayName}</h1>
+          <p className="text-gray-400 text-lg mb-10 italic">"{displayTagline}"</p>
 
           <div className="space-y-8 border-t border-white/10 pt-8">
             
             {/* Logo Variant Selection */}
             <div>
-              <p className="text-xs uppercase tracking-widest text-gray-500 mb-4">Hardware Signature</p>
+              <p className="text-xs uppercase tracking-widest text-gray-500 mb-4">{t('common.hardware')}</p>
               <div className="flex gap-4">
                 {product.variants.map((v: any) => (
                   <button
@@ -102,15 +106,15 @@ export default function ProductPage() {
                 onClick={() => setInLookbook(!inLookbook)}
                 className={`w-full py-5 border text-sm uppercase tracking-widest transition-all duration-300 ${inLookbook ? 'bg-white text-black border-white' : 'bg-transparent border-clGold text-clGold hover:bg-clGold/10 hover:shadow-[0_0_20px_rgba(212,175,55,0.3)]'}`}
               >
-                {inLookbook ? '✓ In Lookbook' : t('product.addToCart')}
+                {inLookbook ? t('common.lookbookAdded') : t('product.addToCart')}
               </button>
 
               <div className="flex gap-4">
                  <button onClick={() => setSizeGuideOpen(true)} className="w-1/2 py-3 border border-white/20 text-gray-300 hover:text-white hover:border-white text-xs uppercase tracking-widest transition-colors">
-                    Size Guide
+                    {t('common.sizeGuide')}
                  </button>
                  <button onClick={() => setSpecModalOpen(true)} className="w-1/2 py-3 border border-clChrome/30 text-clChrome hover:text-white hover:border-clChrome text-xs uppercase tracking-widest transition-colors">
-                    {t('product.specifications')}
+                    {t('common.specifications')}
                  </button>
               </div>
             </div>
@@ -128,8 +132,8 @@ export default function ProductPage() {
               <h2 className="text-2xl font-serif text-clGold text-center mb-6">{t('catalog.all')} // 1CL</h2>
               
               <h4 className="mb-2 text-white border-b border-white/10 pb-2">🧥 {t('catalog.types.jacket')} / {t('catalog.types.tshirt')}</h4>
-              <table className="w-full text-xs text-left text-gray-400 mb-6">
-                 <thead><tr className="text-gray-200 border-b border-white/5"><th className="py-2">Size</th><th>Chest (cm)</th><th>Length (cm)</th><th>Sleeves (cm)</th></tr></thead>
+               <table className="w-full text-xs text-left text-gray-400 mb-6">
+                 <thead><tr className="text-gray-200 border-b border-white/5"><th className="py-2">{language === 'fr' ? 'Taille' : 'Size'}</th><th>{language === 'fr' ? 'Poitrine' : 'Chest'} (cm)</th><th>{language === 'fr' ? 'Longueur' : 'Length'} (cm)</th><th>{language === 'fr' ? 'Manches' : 'Sleeves'} (cm)</th></tr></thead>
                  <tbody>
                     <tr className="border-b border-white/5"><td className="py-1">M</td><td>53–55</td><td>70–72</td><td>63–65</td></tr>
                     <tr className="border-b border-white/5"><td className="py-1">L</td><td>56–58</td><td>73–75</td><td>65–67</td></tr>
@@ -146,20 +150,30 @@ export default function ProductPage() {
             <motion.div className="absolute inset-0 bg-black/80 backdrop-blur-md" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setSpecModalOpen(false)} />
             <motion.div className="relative bg-[#111] border border-clChrome/50 w-full max-w-2xl max-h-[90vh] overflow-y-auto p-8" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }}>
               <button onClick={() => setSpecModalOpen(false)} className="absolute top-4 right-4 text-gray-400 hover:text-white">✕</button>
-              <h2 className="text-2xl font-serif text-clChrome text-center mb-6">{t('product.specifications')}</h2>
+              <h2 className="text-2xl font-serif text-clChrome text-center mb-6">{t('common.specifications')}</h2>
               
               <table className="w-full text-xs text-left text-gray-300">
                   <thead>
                       <tr className="border-b border-white/10 text-white">
-                          <th className="py-2">Element</th>
-                          <th>Location</th>
+                          <th className="py-2">{language === 'fr' ? 'Élément' : 'Element'}</th>
+                          <th>{language === 'fr' ? 'Emplacement' : 'Location'}</th>
                           <th>Dimensions</th>
-                          <th>Color/Thread</th>
+                          <th>{language === 'fr' ? 'Couleur/Fil' : 'Color/Thread'}</th>
                       </tr>
                   </thead>
                   <tbody>
-                      <tr className="border-b border-white/5"><td className="py-2">1CL Main Logo</td><td>Left Chest</td><td>80 mm x 75 mm</td><td className="text-clGold">Gold / Chrome</td></tr>
-                      <tr className="border-b border-white/5"><td className="py-2">Round Badge</td><td>Sleeve / Thigh</td><td>Ø 60 mm</td><td>Gold / Chrome</td></tr>
+                      <tr className="border-b border-white/5">
+                        <td className="py-2">{language === 'fr' ? 'Logo Principal 1CL' : '1CL Main Logo'}</td>
+                        <td>{language === 'fr' ? 'Poitrine Gauche' : 'Left Chest'}</td>
+                        <td>80 mm x 75 mm</td>
+                        <td className="text-clGold">{language === 'fr' ? 'Or / Chrome' : 'Gold / Chrome'}</td>
+                      </tr>
+                      <tr className="border-b border-white/5">
+                        <td className="py-2">{language === 'fr' ? 'Badge Rond' : 'Round Badge'}</td>
+                        <td>{language === 'fr' ? 'Manche / Cuisse' : 'Sleeve / Thigh'}</td>
+                        <td>Ø 60 mm</td>
+                        <td>{language === 'fr' ? 'Or / Chrome' : 'Gold / Chrome'}</td>
+                      </tr>
                   </tbody>
               </table>
               <div className="text-[10px] text-gray-500 uppercase tracking-widest text-center mt-8">{t('product.craftedIn')}</div>

@@ -4,7 +4,7 @@ import { useSovereign } from '../hooks/useSovereign';
 import { supabase } from '../lib/supabaseClient';
 
 export default function SidebarEMS({ openContractForge }: { openContractForge: () => void }) {
-  const { isSidebarOpen, toggleSidebar, toggleGlobalLoupe, setMediaHubOpen, isAdminAuthenticated, language, t } = useSovereign();
+  const { isSidebarOpen, toggleSidebar, toggleGlobalLoupe, setMediaHubOpen, isAdminAuthenticated, t } = useSovereign();
   const [clock, setClock] = useState("--:--:--");
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -32,7 +32,7 @@ export default function SidebarEMS({ openContractForge }: { openContractForge: (
        if (error) {
           setAuthError(error.message);
        } else {
-          alert(language === 'en' ? "Registration request sent! Check your email for verification." : "Demande d'inscription envoyée ! Vérifiez vos e-mails pour la validation.");
+          alert(t('sidebar.registrationSent'));
           setIsSignUp(false);
        }
     } else {
@@ -71,8 +71,8 @@ export default function SidebarEMS({ openContractForge }: { openContractForge: (
             {/* Header */}
             <div className="flex justify-between items-center mb-8 border-b border-white/5 pb-4">
                <div>
-                  <h3 className="text-clGold text-sm tracking-widest font-bold uppercase">{isAdminAuthenticated ? t('admin.dashboard') : t('admin.iamPortal')}</h3>
-                  <span className="text-[10px] text-gray-500 font-mono">{clock}</span>
+                   <h3 className="text-clGold text-sm tracking-widest font-bold uppercase">{isAdminAuthenticated ? t('sidebar.dashboard') : t('sidebar.iamPortal')}</h3>
+                   <span className="text-[10px] text-gray-500 font-mono">{clock}</span>
                </div>
                <button onClick={toggleSidebar} className="text-gray-400 hover:text-white transition-colors text-xl">✕</button>
             </div>
@@ -141,40 +141,40 @@ export default function SidebarEMS({ openContractForge }: { openContractForge: (
                   {/* KPIs */}
                   <div className="grid grid-cols-2 gap-2 mb-6">
                     <div className="bg-black/50 border border-white/5 p-3 rounded text-center">
-                      <span className="block text-[8px] text-gray-500 uppercase tracking-widest">{language === 'en' ? 'Global Stock' : 'Stock Global'}</span>
+                      <span className="block text-[8px] text-gray-500 uppercase tracking-widest">{t('sidebar.globalStock')}</span>
                       <b className="text-white text-xs">12,450 pcs</b>
                     </div>
                     <div className="bg-black/50 border border-white/5 p-3 rounded text-center">
-                      <span className="block text-[8px] text-gray-500 uppercase tracking-widest">{language === 'en' ? 'Forecast Q2' : 'Prévisions Q2'}</span>
+                      <span className="block text-[8px] text-gray-500 uppercase tracking-widest">{t('sidebar.forecastQ2')}</span>
                       <b className="text-clGold text-xs">+28% ROI</b>
                     </div>
                     <div className="bg-black/50 border border-white/5 p-3 rounded text-center">
-                      <span className="block text-[8px] text-gray-500 uppercase tracking-widest">{language === 'en' ? 'Active Flows' : 'Flux Actifs'}</span>
-                      <b className="text-white text-xs">14 Synced</b>
+                      <span className="block text-[8px] text-gray-500 uppercase tracking-widest">{t('sidebar.activeFlows')}</span>
+                      <b className="text-white text-xs">14 {t('sidebar.synced')}</b>
                     </div>
                     <div className="bg-black/50 border border-white/5 p-3 rounded text-center">
-                      <span className="block text-[8px] text-gray-500 uppercase tracking-widest">{language === 'en' ? 'Lead Time' : 'Délai Livr.'}</span>
-                      <b className="text-white text-xs">22 Days</b>
+                      <span className="block text-[8px] text-gray-500 uppercase tracking-widest">{t('sidebar.leadTime')}</span>
+                      <b className="text-white text-xs">22 {t('sidebar.days')}</b>
                     </div>
                   </div>
 
                   {/* Contract Forge */}
                   <div className="mb-6 bg-black/30 border border-white/10 p-4 rounded">
-                     <h4 className="text-[10px] text-clChrome uppercase tracking-widest mb-3 border-b border-white/5 pb-2">{language === 'en' ? 'Forge Contracts (PDF)' : 'Forge Contrats (PDF)'}</h4>
-                     <input type="text" placeholder={language === 'en' ? "Party B (Client/Supplier)" : "Partie B (Client/Fournisseur)"} className="w-full bg-black/50 border border-white/10 text-white text-[10px] p-2 mb-2 focus:outline-none focus:border-clGold/50" />
+                     <h4 className="text-[10px] text-clChrome uppercase tracking-widest mb-3 border-b border-white/5 pb-2">{t('sidebar.forgeContracts')}</h4>
+                     <input type="text" placeholder={t('sidebar.partyBPlaceholder')} className="w-full bg-black/50 border border-white/10 text-white text-[10px] p-2 mb-2 focus:outline-none focus:border-clGold/50" />
                      <select title="Contract Type" className="w-full bg-black/50 border border-white/10 text-white text-[10px] p-2 mb-3 focus:outline-none focus:border-clGold/50">
-                        <option value="client">{language === 'en' ? 'Final Client Contract' : 'Contrat Client Final'}</option>
-                        <option value="supplier">{language === 'en' ? 'Supplier Contract' : 'Contrat Fournisseur'}</option>
-                        <option value="transporter">{language === 'en' ? 'Transporter Contract' : 'Contrat Transporteur'}</option>
+                        <option value="client">{t('sidebar.contractClient')}</option>
+                        <option value="supplier">{t('sidebar.contractSupplier')}</option>
+                        <option value="transporter">{t('sidebar.contractTransporter')}</option>
                      </select>
                      <button onClick={() => { toggleSidebar(); openContractForge(); }} className="w-full bg-clGold text-black text-[9px] font-bold py-2 uppercase tracking-widest hover:bg-white transition-colors">
-                        {language === 'en' ? 'Generate Contract' : 'Générer Contrat'}
+                        {t('sidebar.generateContract')}
                      </button>
                   </div>
 
                   {/* Logistics Map SVG */}
                   <div className="mb-6 bg-black/30 border border-white/10 p-4 rounded text-center">
-                     <h4 className="text-[10px] text-clChrome uppercase tracking-widest mb-3">{language === 'en' ? 'Live Logistics Flow' : 'Flux Logistique Live'}</h4>
+                     <h4 className="text-[10px] text-clChrome uppercase tracking-widest mb-3">{t('sidebar.liveLogistics')}</h4>
                      <svg viewBox="0 0 800 400" className="w-full h-auto bg-black rounded border border-white/5 p-2">
                           <path d="M150,150 Q400,100 650,150" fill="none" stroke="rgba(212,175,55,0.8)" strokeWidth="2" strokeDasharray="5,5" />
                           <circle cx="150" cy="150" r="10" fill="#C0C0C0" />
@@ -182,25 +182,25 @@ export default function SidebarEMS({ openContractForge }: { openContractForge: (
                           <text x="130" y="210" fill="white" fontSize="40">Milan</text>
                           <text x="610" y="210" fill="white" fontSize="40">Hub 1CL</text>
                      </svg>
-                     <div className="mt-2 text-[9px] text-clGold tracking-widest uppercase">BATCH #102: IN TRANSIT (92%)</div>
+                     <div className="mt-2 text-[9px] text-clGold tracking-widest uppercase">{t('sidebar.batchStatus')}</div>
                   </div>
 
                   {/* Visual Overrides */}
                   <div className="mb-6">
-                     <h4 className="text-[10px] text-clChrome uppercase tracking-widest mb-3">{language === 'en' ? 'Visual Overrides' : 'Surplomb Visuel'}</h4>
+                     <h4 className="text-[10px] text-clChrome uppercase tracking-widest mb-3">{t('sidebar.visualOverrides')}</h4>
                      <div className="grid grid-cols-1 gap-2">
                         <button onClick={toggleGlobalLoupe} className="border border-clGold/30 text-clGold text-[9px] uppercase tracking-widest py-2 hover:bg-clGold/10 transition-colors">
-                          {language === 'en' ? 'Master Magnifier (x3)' : 'Loupe Maître (x3)'}
+                          {t('sidebar.masterMagnifier')}
                         </button>
                         <button onClick={() => setMediaHubOpen(true)} className="border border-white/10 text-gray-400 text-[9px] uppercase tracking-widest py-2 hover:bg-white/10 hover:text-white transition-colors">
-                          {language === 'en' ? 'Compact Media HUD' : 'HUD Média Compact'}
+                          {t('sidebar.compactMediaHud')}
                         </button>
                      </div>
                   </div>
 
                   <div className="w-full bg-black/50 border border-clGold/20 text-clGold text-[10px] font-bold py-3 mb-2 uppercase tracking-[0.2em] flex items-center justify-center gap-2">
                       <div className="w-2 h-2 bg-clGold rounded-full animate-pulse shadow-[0_0_8px_rgba(212,175,55,1)]" />
-                      {language === 'en' ? 'SOVEREIGN LINK: AUTOMATED' : 'SOVEREIGN LINK : AUTOMATISÉ'}
+                      {t('sidebar.sovereignLinkAuto')}
                   </div>
 
 

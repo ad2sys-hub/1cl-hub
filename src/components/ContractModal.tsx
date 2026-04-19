@@ -1,9 +1,11 @@
 import { useRef, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useSovereign } from '../hooks/useSovereign';
 
 export default function ContractModal({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isDrawing, setIsDrawing] = useState(false);
+  const { t } = useSovereign();
 
   useEffect(() => {
     if (isOpen && canvasRef.current) {
@@ -80,34 +82,34 @@ export default function ContractModal({ isOpen, onClose }: { isOpen: boolean, on
             {/* Header */}
             <div className="flex justify-between items-end border-b-2 border-black pb-4 mb-6">
               <div>
-                <h2 className="text-2xl font-serif text-black uppercase tracking-widest">CONTRAT DE PARTENARIAT</h2>
+                <h2 className="text-2xl font-serif text-black uppercase tracking-widest">{t('contract.title')}</h2>
                 <p className="text-sm font-mono text-gray-600">Date: {new Date().toLocaleDateString()}</p>
               </div>
               <div className="text-right">
                 <h3 className="text-lg font-serif text-black m-0">1CL COLLECTION</h3>
-                <p className="text-xs text-gray-500 tracking-wider">Ecosystème EMS@Path</p>
+                <p className="text-xs text-gray-500 tracking-wider">{t('contract.ecosystem')}</p>
               </div>
             </div>
 
             {/* Body */}
             <div className="text-black text-sm space-y-4 mb-8 font-serif leading-relaxed">
               <p>
-                Entre les soussignés :<br/>
-                <b>1CL Collection</b>, représenté par Chawblick Music, d'une part,<br/>
-                Et <b>Partie B</b>, d'autre part.
+                {t('contract.between')}<br/>
+                <b>1CL Collection</b>, {t('contract.representedBy')}<br/>
+                {t('contract.agreed')} <b>{t('contract.partyB')}</b>, {t('contract.otherPart')}
               </p>
-              <p>Il a été convenu et arrêté ce qui suit :</p>
+              <p>{t('contract.agreed')}</p>
               <ul className="list-disc pl-5 space-y-2">
-                 <li>Article 1: Objet du contrat de production Sovereign.</li>
-                 <li>Article 2: SLA Logistique et tolérances d'usine (Hub Milan).</li>
-                 <li>Article 3: Propriété Intellectuelle (Logo Or/Chrome).</li>
+                 <li>{t('contract.article1')}</li>
+                 <li>{t('contract.article2')}</li>
+                 <li>{t('contract.article3')}</li>
               </ul>
-              <p>Fait pour valoir ce que de droit.</p>
+              <p>{t('contract.legal')}</p>
             </div>
 
             {/* Signature Area */}
             <div className="bg-white border border-gray-300 p-4 relative">
-               <p className="absolute top-2 left-4 text-[10px] text-gray-400 font-mono tracking-widest">SIGNATURE ÉLECTRONIQUE (SOVEREIGN PAD)</p>
+               <p className="absolute top-2 left-4 text-[10px] text-gray-400 font-mono tracking-widest">{t('contract.signaturePad')}</p>
                <canvas 
                  ref={canvasRef}
                  width={500} 
@@ -126,14 +128,14 @@ export default function ContractModal({ isOpen, onClose }: { isOpen: boolean, on
             {/* Actions */}
             <div className="flex justify-between items-center mt-6">
               <button onClick={clearSignature} className="text-xs px-4 py-2 border border-gray-300 text-gray-600 hover:bg-gray-100 transition-colors uppercase tracking-widest font-bold">
-                 Effacer
+                 {t('contract.clear')}
               </button>
               <div className="flex gap-4">
                 <button onClick={() => window.print()} className="text-xs px-4 py-2 bg-gray-200 text-black hover:bg-gray-300 transition-colors uppercase tracking-widest font-bold">
-                   Imprimer PDF
+                   {t('contract.printPdf')}
                 </button>
-                <button onClick={() => { alert("Contrat certifié et envoyé (Mock n8n webhook)."); onClose(); }} className="text-xs px-6 py-2 bg-black text-clGold hover:text-white transition-colors uppercase tracking-widest font-bold">
-                   Certifier & Envoyer
+                <button onClick={() => { alert(t('contract.certifiedAlert')); onClose(); }} className="text-xs px-6 py-2 bg-black text-clGold hover:text-white transition-colors uppercase tracking-widest font-bold">
+                   {t('contract.certifyAndSend')}
                 </button>
               </div>
             </div>

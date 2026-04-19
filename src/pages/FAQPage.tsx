@@ -123,7 +123,7 @@ export default function FAQPage() {
                         
                         <div className="mt-6 flex gap-4">
                            <div className="h-px flex-grow bg-gradient-to-r from-clGold/40 to-transparent self-center"></div>
-                           <span className="text-[9px] text-clGold font-mono uppercase tracking-widest">Sovereign Protocol verified</span>
+                           <span className="text-[9px] text-clGold font-mono uppercase tracking-widest">{t('common.verified')}</span>
                         </div>
                       </div>
                     </motion.div>

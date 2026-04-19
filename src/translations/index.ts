@@ -46,7 +46,30 @@ export const translations = {
         sovereignLink: "The Sovereign Link is our secure bridge between Supabase (Identity) and MongoDB (Logistics). It ensures data integrity through Edge Functions.",
         iam: "IAM (Identity and Access Management) uses Supabase Auth and 2FA to ensure only authorized personnel can access the EMS Dashboard.",
         unknown: "Analyzing 1CL data... I do not have a specific answer. Try asking about the Vault, Logistics, or the Atelier.",
-        deconnect: "Security protocols activated. Administrative session revoked."
+        deconnect: "Security protocols activated. Administrative session revoked.",
+        accessVault: "Accessing the Vault digital gate...",
+        openLogistics: "Opening EMS Logistics center.",
+        initMap: "Initializing 4D Path Map...",
+        redirectArchive: "The 1CL Archive is structured into three paradigms: Essentials, Heritage, and Workshop Edition. Redirecting to the catalog...",
+        connectedEMS: "CONNECTED TO EMS NET"
+    },
+    footer: {
+        tagline: "Product by Chawblick Music",
+        copyright: "© 2026 1CL Collection",
+        legal: "LEGAL",
+        contact: "CONTACT"
+    },
+    common: {
+        sizeGuide: "Size Guide",
+        hardware: "Hardware Signature",
+        materials: "Materials",
+        lookbookAdded: "✓ In Lookbook",
+        specifications: "Specifications",
+        verified: "Sovereign Protocol verified",
+        status: "Status",
+        latency: "Latency",
+        sync: "Sync",
+        nominal: "Nominal"
     },
     catalog: {
         title: 'THE ARCHIVE',
@@ -67,7 +90,8 @@ export const translations = {
         collections: {
           essentials: 'Essentials',
           heritage: 'Heritage',
-          workshop: 'Workshop Edition'
+          workshopedition: 'Workshop Edition',
+          artistexclusive: 'Artist Exclusive'
         }
     },
     product: {
@@ -154,6 +178,76 @@ export const translations = {
         matrixCore: '1CL Matrix'
       }
     },
+    sidebar: {
+        dashboard: 'EMS DASHBOARD',
+        iamPortal: 'IAM PORTAL',
+        globalStock: 'Global Stock',
+        forecastQ2: 'Forecast Q2',
+        activeFlows: 'Active Flows',
+        leadTime: 'Lead Time',
+        synced: 'Synced',
+        days: 'Days',
+        forgeContracts: 'Forge Contracts (PDF)',
+        partyBPlaceholder: 'Party B (Client/Supplier)',
+        contractClient: 'Final Client Contract',
+        contractSupplier: 'Supplier Contract',
+        contractTransporter: 'Transporter Contract',
+        generateContract: 'Generate Contract',
+        liveLogistics: 'Live Logistics Flow',
+        batchStatus: 'BATCH #102: IN TRANSIT (92%)',
+        visualOverrides: 'Visual Overrides',
+        masterMagnifier: 'Master Magnifier (x3)',
+        compactMediaHud: 'Compact Media HUD',
+        sovereignLinkAuto: 'SOVEREIGN LINK: AUTOMATED',
+        registrationSent: 'Registration request sent! Check your email for verification.'
+    },
+    voice: {
+        listening: 'LISTENING FOR COMMANDS...',
+        executing: 'EXECUTING:',
+        notSupported: 'VOICE PROTOCOL NOT SUPPORTED IN BROWSER',
+        signalLost: 'SIGNAL LOST. RETRYING...'
+    },
+    media: {
+        spotify: 'Spotify',
+        eliteMp3: 'Elite MP3'
+    },
+    contract: {
+        title: 'PARTNERSHIP CONTRACT',
+        ecosystem: 'EMS@Path Ecosystem',
+        between: 'Between the undersigned:',
+        representedBy: 'represented by Chawblick Music, on one part,',
+        partyB: 'Party B',
+        otherPart: 'on the other part.',
+        agreed: 'The following has been agreed:',
+        article1: 'Article 1: Object of the Sovereign production contract.',
+        article2: 'Article 2: Logistics SLA and factory tolerances (Milan Hub).',
+        article3: 'Article 3: Intellectual Property (Gold/Chrome Logo).',
+        legal: 'Drawn up for legal purposes.',
+        signaturePad: 'ELECTRONIC SIGNATURE (SOVEREIGN PAD)',
+        clear: 'Clear',
+        printPdf: 'Print PDF',
+        certifyAndSend: 'Certify & Send',
+        certifiedAlert: 'Contract certified and sent (Mock n8n webhook).'
+    },
+    homeBadge: {
+        collectible: 'Official Artist Collectible',
+        explicit: '1CL EXPLICIT LUXURY'
+    },
+    auth: {
+        restricted: 'Restricted Zone',
+        identify: 'Identify to EMS Network',
+        email: 'Sovereign Email',
+        password: 'Access Key',
+        verify: 'Verify Identity',
+        signup: 'Request Access',
+        hasAccount: 'Already have access? Sign In',
+        noAccount: 'No account? Request Access'
+    },
+    admin: {
+        dashboard: 'EMS DASHBOARD',
+        iamPortal: 'IAM PORTAL',
+        disconnect: 'Disconnect Session'
+    },
     system: {
         version: '2.0.4-SOVEREIGN-SYNC'
     }
@@ -200,10 +294,33 @@ export const translations = {
         placeholder: "Message Sovereign...",
         whoAreYou: "Je suis The Curator, l'intelligence souveraine de l'écosystème 1CL. Ma mission est de veiller sur le lien entre le son et l'objet.",
         whatIs1CL: "1CL Collection est l'éclosion du Street-Luxe. Un univers où la musique de Chawblick rencontre l'artisanat textile d'exception.",
-        sovereignLink: "Le Sovereign Link est notre pont sécurisé entre Supabase (Identité) et MongoDB (Logistique). Il garantit l'intégrité des données via des Edge Functions.",
+        sovereignLink: "Le Sovereign Link est notre pont sécurisé entre Supabase (Identité) et MongoDB (Logistics). Il garantit l'intégrité des données via des Edge Functions.",
         iam: "L'IAM (Gestion des Identités et des Accès) utilise Supabase Auth et la 2FA pour garantir que seul le personnel autorisé accède au Dashboard EMS.",
         unknown: "Analyse des données 1CL en cours... Je n'ai pas de réponse précise. Essayez de me parler du Vault, de la Logistique ou de l'Atelier.",
-        deconnect: "Protocoles de sécurité activés. Session administrative révoquée."
+        deconnect: "Protocoles de sécurité activés. Session administrative révoquée.",
+        accessVault: "Accès au portail digital du Vault...",
+        openLogistics: "Ouverture du centre logistique EMS.",
+        initMap: "Initialisation de la carte 4D...",
+        redirectArchive: "L'Archive 1CL est structurée en trois paradigmes : Essentials, Heritage, et Workshop Edition. Redirection vers le catalogue...",
+        connectedEMS: "CONNECTÉ AU RÉSEAU EMS"
+    },
+    footer: {
+        tagline: "Produit par Chawblick Music",
+        copyright: "© 2026 1CL Collection",
+        legal: "LÉGAL",
+        contact: "CONTACT"
+    },
+    common: {
+        sizeGuide: "Guide des Tailles",
+        hardware: "Signature Hardware",
+        materials: "Matériaux",
+        lookbookAdded: "✓ Dans le Lookbook",
+        specifications: "Spécifications",
+        verified: "Protocole Sovereign vérifié",
+        status: "Statut",
+        latency: "Latence",
+        sync: "Sync",
+        nominal: "Nominal"
     },
     catalog: {
         title: 'L\'ARCHIVE',
@@ -224,7 +341,8 @@ export const translations = {
         collections: {
           essentials: 'Essentiels',
           heritage: 'Héritage',
-          workshop: 'Édition Atelier'
+          workshopedition: 'Édition Atelier',
+          artistexclusive: 'Exclusivités Artiste'
         }
     },
     product: {
@@ -310,6 +428,76 @@ export const translations = {
         sponsors: 'Partenariats',
         matrixCore: 'Matrice 1CL'
       }
+    },
+    sidebar: {
+        dashboard: 'TABLEAU DE BORD EMS',
+        iamPortal: 'PORTAIL IAM',
+        globalStock: 'Stock Global',
+        forecastQ2: 'Prévisions Q2',
+        activeFlows: 'Flux Actifs',
+        leadTime: 'Délai Livraison',
+        synced: 'Synchronisés',
+        days: 'Jours',
+        forgeContracts: 'Forge Contrats (PDF)',
+        partyBPlaceholder: 'Partie B (Client/Fournisseur)',
+        contractClient: 'Contrat Client Final',
+        contractSupplier: 'Contrat Fournisseur',
+        contractTransporter: 'Contrat Transporteur',
+        generateContract: 'Générer Contrat',
+        liveLogistics: 'Flux Logistique Live',
+        batchStatus: 'LOT #102 : EN TRANSIT (92%)',
+        visualOverrides: 'Surplomb Visuel',
+        masterMagnifier: 'Loupe Maître (x3)',
+        compactMediaHud: 'HUD Média Compact',
+        sovereignLinkAuto: 'SOVEREIGN LINK : AUTOMATISÉ',
+        registrationSent: 'Demande d\'inscription envoyée ! Vérifiez vos e-mails pour la validation.'
+    },
+    voice: {
+        listening: 'ÉCOUTE DES COMMANDES...',
+        executing: 'EXÉCUTION :',
+        notSupported: 'PROTOCOLE VOCAL NON SUPPORTÉ PAR LE NAVIGATEUR',
+        signalLost: 'SIGNAL PERDU. RECONNEXION...'
+    },
+    media: {
+        spotify: 'Spotify',
+        eliteMp3: 'MP3 Élite'
+    },
+    contract: {
+        title: 'CONTRAT DE PARTENARIAT',
+        ecosystem: 'Écosystème EMS@Path',
+        between: 'Entre les soussignés :',
+        representedBy: 'représenté par Chawblick Music, d\'une part,',
+        partyB: 'Partie B',
+        otherPart: 'd\'autre part.',
+        agreed: 'Il a été convenu et arrêté ce qui suit :',
+        article1: 'Article 1 : Objet du contrat de production Sovereign.',
+        article2: 'Article 2 : SLA Logistique et tolérances d\'usine (Hub Milan).',
+        article3: 'Article 3 : Propriété Intellectuelle (Logo Or/Chrome).',
+        legal: 'Fait pour valoir ce que de droit.',
+        signaturePad: 'SIGNATURE ÉLECTRONIQUE (SOVEREIGN PAD)',
+        clear: 'Effacer',
+        printPdf: 'Imprimer PDF',
+        certifyAndSend: 'Certifier & Envoyer',
+        certifiedAlert: 'Contrat certifié et envoyé (Mock n8n webhook).'
+    },
+    homeBadge: {
+        collectible: 'Pièce de Collection Artiste Officiel',
+        explicit: '1CL LUXE EXPLICITE'
+    },
+    auth: {
+        restricted: 'Zone Restreinte',
+        identify: 'Identifiez-vous au Réseau EMS',
+        email: 'E-mail Souverain',
+        password: 'Clé d\'Accès',
+        verify: 'Vérifier l\'Identité',
+        signup: 'Demander l\'Accès',
+        hasAccount: 'Déjà un accès ? Se connecter',
+        noAccount: 'Pas de compte ? Demander l\'Accès'
+    },
+    admin: {
+        dashboard: 'TABLEAU DE BORD EMS',
+        iamPortal: 'PORTAIL IAM',
+        disconnect: 'Déconnecter la Session'
     },
     system: {
         version: '2.0.4-SOVEREIGN-SYNC'

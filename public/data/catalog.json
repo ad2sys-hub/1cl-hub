@@ -2,781 +2,615 @@
   {
     "id": "TSH-BLK",
     "name": "Essential Black Logo T-Shirt",
+    "name_fr": "T-Shirt Noir Logo Essentiel",
     "collection": "Essentials",
     "type": "tshirt",
     "color": "black",
     "variants": [
-      {
-        "id": "TSH-BLK-GOLD",
-        "logo": "gold",
-        "image": "/images/PNG/1CL-TSH-BLK.png"
-      },
-      {
-        "id": "TSH-BLK-CHROME",
-        "logo": "chrome",
-        "image": "/images/PNG/1CL-TSH-BLK.png"
-      }
+      { "id": "TSH-BLK-GOLD", "logo": "gold", "image": "/images/PNG/1CL-TSH-BLK.png" },
+      { "id": "TSH-BLK-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-TSH-BLK.png" }
     ],
-    "tags": [
-      "unisex",
-      "street-luxe",
-      "1CL"
-    ],
+    "tags": ["unisex", "street-luxe", "1CL"],
     "tagline": "The foundation of absolute elegance.",
+    "tagline_fr": "La fondation de l'élégance absolue.",
     "gender": "Homme"
   },
   {
     "id": "TSH-WHI",
     "name": "Pure White Canvas T-Shirt",
+    "name_fr": "T-Shirt Blanc Canevas Pur",
     "collection": "Essentials",
     "type": "tshirt",
     "color": "white",
     "variants": [
-      {
-        "id": "TSH-WHI-GOLD",
-        "logo": "gold",
-        "image": "/images/PNG/1CL-TSH-WHI.png"
-      },
-      {
-        "id": "TSH-WHI-CHROME",
-        "logo": "chrome",
-        "image": "/images/PNG/1CL-TSH-WHI.png"
-      }
+      { "id": "TSH-WHI-GOLD", "logo": "gold", "image": "/images/PNG/1CL-TSH-WHI.png" },
+      { "id": "TSH-WHI-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-TSH-WHI.png" }
     ],
-    "tags": [
-      "unisex",
-      "sovereign",
-      "1CL"
-    ],
+    "tags": ["unisex", "sovereign", "1CL"],
     "tagline": "Sovereign purity.",
+    "tagline_fr": "Pureté souveraine.",
     "gender": "Femme"
   },
   {
     "id": "TSH-BEL",
     "name": "Sand Dune T-Shirt",
+    "name_fr": "T-Shirt Dune de Sable",
     "collection": "Essentials",
     "type": "tshirt",
     "color": "beige",
     "variants": [
-      {
-        "id": "TSH-BEL-GOLD",
-        "logo": "gold",
-        "image": "/images/PNG/1CL-TSH-BEL.png"
-      },
-      {
-        "id": "TSH-BEL-CHROME",
-        "logo": "chrome",
-        "image": "/images/PNG/1CL-TSH-BEL.png"
-      }
+      { "id": "TSH-BEL-GOLD", "logo": "gold", "image": "/images/PNG/1CL-TSH-BEL.png" },
+      { "id": "TSH-BEL-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-TSH-BEL.png" }
     ],
-    "tags": [
-      "unisex",
-      "sovereign",
-      "1CL"
-    ],
+    "tags": ["unisex", "sovereign", "1CL"],
     "tagline": "Earthy elegance.",
+    "tagline_fr": "Élégance terreuse.",
     "gender": "Femme"
   },
   {
     "id": "TSH-BLU",
     "name": "Deep Ocean T-Shirt",
+    "name_fr": "T-Shirt Océan Profond",
     "collection": "Essentials",
     "type": "tshirt",
     "color": "blue",
     "variants": [
-      {
-        "id": "TSH-BLU-GOLD",
-        "logo": "gold",
-        "image": "/images/PNG/1CL-TSH-BLU.png"
-      },
-      {
-        "id": "TSH-BLU-CHROME",
-        "logo": "chrome",
-        "image": "/images/PNG/1CL-TSH-BLU.png"
-      }
+      { "id": "TSH-BLU-GOLD", "logo": "gold", "image": "/images/PNG/1CL-TSH-BLU.png" },
+      { "id": "TSH-BLU-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-TSH-BLU.png" }
     ],
-    "tags": [
-      "unisex",
-      "sovereign",
-      "1CL"
-    ],
+    "tags": ["unisex", "sovereign", "1CL"],
     "tagline": "Abyssal depth.",
+    "tagline_fr": "Profondeur abyssale.",
     "gender": "Homme"
   },
   {
     "id": "TSH-GLD",
     "name": "Imperial Gold T-Shirt",
+    "name_fr": "T-Shirt Or Impérial",
     "collection": "Essentials",
     "type": "tshirt",
     "color": "gold",
     "variants": [
-      {
-        "id": "TSH-GLD-GOLD",
-        "logo": "gold",
-        "image": "/images/PNG/1CL-TSH-GLD.png"
-      },
-      {
-        "id": "TSH-GLD-CHROME",
-        "logo": "chrome",
-        "image": "/images/PNG/1CL-TSH-GLD.png"
-      }
+      { "id": "TSH-GLD-GOLD", "logo": "gold", "image": "/images/PNG/1CL-TSH-GLD.png" },
+      { "id": "TSH-GLD-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-TSH-GLD.png" }
     ],
-    "tags": [
-      "unisex",
-      "sovereign",
-      "1CL"
-    ],
+    "tags": ["unisex", "sovereign", "1CL"],
     "tagline": "Radiant sovereignty.",
+    "tagline_fr": "Souveraineté radiante.",
     "gender": "Unisex"
   },
   {
     "id": "TSH-GREY",
     "name": "Concrete Grey T-Shirt",
+    "name_fr": "T-Shirt Gris Béton",
     "collection": "Essentials",
     "type": "tshirt",
     "color": "grey",
     "variants": [
-      {
-        "id": "TSH-GREY-GOLD",
-        "logo": "gold",
-        "image": "/images/PNG/1CL-TSH-GREY.png"
-      },
-      {
-        "id": "TSH-GREY-CHROME",
-        "logo": "chrome",
-        "image": "/images/PNG/1CL-TSH-GREY.png"
-      }
+      { "id": "TSH-GREY-GOLD", "logo": "gold", "image": "/images/PNG/1CL-TSH-GREY.png" },
+      { "id": "TSH-GREY-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-TSH-GREY.png" }
     ],
-    "tags": [
-      "unisex",
-      "sovereign",
-      "1CL"
-    ],
+    "tags": ["unisex", "sovereign", "1CL"],
     "tagline": "Urban camouflage.",
+    "tagline_fr": "Camouflage urbain.",
     "gender": "Homme"
   },
   {
     "id": "TSH-GRN",
     "name": "Forest Green T-Shirt",
+    "name_fr": "T-Shirt Vert Forêt",
     "collection": "Essentials",
     "type": "tshirt",
     "color": "green",
     "variants": [
-      {
-        "id": "TSH-GRN-GOLD",
-        "logo": "gold",
-        "image": "/images/PNG/1CL-TSH-GRN.png"
-      },
-      {
-        "id": "TSH-GRN-CHROME",
-        "logo": "chrome",
-        "image": "/images/PNG/1CL-TSH-GRN.png"
-      }
+      { "id": "TSH-GRN-GOLD", "logo": "gold", "image": "/images/PNG/1CL-TSH-GRN.png" },
+      { "id": "TSH-GRN-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-TSH-GRN.png" }
     ],
-    "tags": [
-      "unisex",
-      "sovereign",
-      "1CL"
-    ],
+    "tags": ["unisex", "sovereign", "1CL"],
     "tagline": "Natural prestige.",
+    "tagline_fr": "Prestige naturel.",
     "gender": "Unisex"
   },
   {
     "id": "TSH-RED",
     "name": "Crimson T-Shirt",
+    "name_fr": "T-Shirt Cramoisi",
     "collection": "Essentials",
     "type": "tshirt",
     "color": "red",
     "variants": [
-      {
-        "id": "TSH-RED-GOLD",
-        "logo": "gold",
-        "image": "/images/PNG/1CL-TSH-RED.png"
-      },
-      {
-        "id": "TSH-RED-CHROME",
-        "logo": "chrome",
-        "image": "/images/PNG/1CL-TSH-RED.png"
-      }
+      { "id": "TSH-RED-GOLD", "logo": "gold", "image": "/images/PNG/1CL-TSH-RED.png" },
+      { "id": "TSH-RED-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-TSH-RED.png" }
     ],
-    "tags": [
-      "unisex",
-      "sovereign",
-      "1CL"
-    ],
+    "tags": ["unisex", "sovereign", "1CL"],
     "tagline": "The pulse of the streets.",
+    "tagline_fr": "Le pouls de la rue.",
     "gender": "Unisex"
   },
   {
     "id": "PUL-GLD",
     "name": "Gold Edition Pullover",
+    "name_fr": "Pull Édition Or",
     "collection": "Heritage",
     "type": "pull",
     "color": "gold",
     "variants": [
-      {
-        "id": "PUL-GLD-GOLD",
-        "logo": "gold",
-        "image": "/images/PNG/1CL-PUL-GLD.png"
-      },
-      {
-        "id": "PUL-GLD-CHROME",
-        "logo": "chrome",
-        "image": "/images/PNG/1CL-PUL-GLD.png"
-      }
+      { "id": "PUL-GLD-GOLD", "logo": "gold", "image": "/images/PNG/1CL-PUL-GLD.png" },
+      { "id": "PUL-GLD-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-PUL-GLD.png" }
     ],
-    "tags": [
-      "heritage",
-      "gold",
-      "comfort"
-    ],
+    "tags": ["heritage", "gold", "comfort"],
     "tagline": "One Link, All Legacy.",
+    "tagline_fr": "Un Lien, Tout Héritage.",
     "gender": "Unisex"
   },
   {
     "id": "PUL-BLK",
     "name": "Onyx Black Pullover",
+    "name_fr": "Pull Noir Onyx",
     "collection": "Heritage",
     "type": "pull",
     "color": "black",
     "variants": [
-      {
-        "id": "PUL-BLK-GOLD",
-        "logo": "gold",
-        "image": "/images/PNG/1CL-PUL-BLK1.png"
-      },
-      {
-        "id": "PUL-BLK-CHROME",
-        "logo": "chrome",
-        "image": "/images/PNG/1CL-PUL-BLK1.png"
-      }
+      { "id": "PUL-BLK-GOLD", "logo": "gold", "image": "/images/PNG/1CL-PUL-BLK1.png" },
+      { "id": "PUL-BLK-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-PUL-BLK1.png" }
     ],
-    "tags": [
-      "heritage",
-      "onyx",
-      "comfort"
-    ],
+    "tags": ["heritage", "onyx", "comfort"],
     "tagline": "The Real Link.",
+    "tagline_fr": "Le Lien Réel.",
     "gender": "Homme"
   },
   {
     "id": "PUL-BEI",
     "name": "Desert Sand Pullover",
+    "name_fr": "Pull Sable du Désert",
     "collection": "Heritage",
     "type": "pull",
     "color": "beige",
     "variants": [
-      {
-        "id": "PUL-BEI-GOLD",
-        "logo": "gold",
-        "image": "/images/PNG/1CL-PUL-BEI.png"
-      },
-      {
-        "id": "PUL-BEI-CHROME",
-        "logo": "chrome",
-        "image": "/images/PNG/1CL-PUL-BEI.png"
-      }
+      { "id": "PUL-BEI-GOLD", "logo": "gold", "image": "/images/PNG/1CL-PUL-BEI.png" },
+      { "id": "PUL-BEI-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-PUL-BEI.png" }
     ],
-    "tags": [
-      "heritage",
-      "onyx",
-      "comfort"
-    ],
+    "tags": ["heritage", "onyx", "comfort"],
     "tagline": "Warmth in the storm.",
+    "tagline_fr": "Chaleur dans la tempête.",
     "gender": "Femme"
   },
   {
     "id": "PUL-GREY",
     "name": "Monochrome Pullover",
+    "name_fr": "Pull Monochrome",
     "collection": "Heritage",
     "type": "pull",
     "color": "grey",
     "variants": [
-      {
-        "id": "PUL-GREY-GOLD",
-        "logo": "gold",
-        "image": "/images/PNG/1CL-PUL-GREY1.png"
-      },
-      {
-        "id": "PUL-GREY-CHROME",
-        "logo": "chrome",
-        "image": "/images/PNG/1CL-PUL-GREY2.png"
-      }
+      { "id": "PUL-GREY-GOLD", "logo": "gold", "image": "/images/PNG/1CL-PUL-GREY1.png" },
+      { "id": "PUL-GREY-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-PUL-GREY2.png" }
     ],
-    "tags": [
-      "heritage",
-      "onyx",
-      "comfort"
-    ],
+    "tags": ["heritage", "onyx", "comfort"],
     "tagline": "Brutalist comfort.",
+    "tagline_fr": "Confort brutaliste.",
     "gender": "Homme"
   },
   {
     "id": "PUL-GRN",
     "name": "Evergreen Pullover",
+    "name_fr": "Pull Vert Eternel",
     "collection": "Heritage",
     "type": "pull",
     "color": "green",
     "variants": [
-      {
-        "id": "PUL-GRN-GOLD",
-        "logo": "gold",
-        "image": "/images/PNG/1CL-PUL-GRN1.png"
-      },
-      {
-        "id": "PUL-GRN-CHROME",
-        "logo": "chrome",
-        "image": "/images/PNG/1CL-PUL-GRN2.png"
-      }
+      { "id": "PUL-GRN-GOLD", "logo": "gold", "image": "/images/PNG/1CL-PUL-GRN1.png" },
+      { "id": "PUL-GRN-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-PUL-GRN2.png" }
     ],
-    "tags": [
-      "heritage",
-      "onyx",
-      "comfort"
-    ],
+    "tags": ["heritage", "onyx", "comfort"],
     "tagline": "Rooted in sovereignty.",
+    "tagline_fr": "Enraciné dans la souveraineté.",
     "gender": "Unisex"
   },
   {
     "id": "PUL-RED",
     "name": "Bloodline Pullover",
+    "name_fr": "Pull Lignée",
     "collection": "Heritage",
     "type": "pull",
     "color": "red",
     "variants": [
-      {
-        "id": "PUL-RED-GOLD",
-        "logo": "gold",
-        "image": "/images/PNG/1CL-PUL-RED.png"
-      },
-      {
-        "id": "PUL-RED-CHROME",
-        "logo": "chrome",
-        "image": "/images/PNG/1CL-PUL-RED.png"
-      }
+      { "id": "PUL-RED-GOLD", "logo": "gold", "image": "/images/PNG/1CL-PUL-RED.png" },
+      { "id": "PUL-RED-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-PUL-RED.png" }
     ],
-    "tags": [
-      "heritage",
-      "onyx",
-      "comfort"
-    ],
+    "tags": ["heritage", "onyx", "comfort"],
     "tagline": "The beating heart of 1CL.",
+    "tagline_fr": "Le cœur battant de 1CL.",
     "gender": "Unisex"
   },
   {
     "id": "PUL-WHI",
     "name": "Snowfall Pullover",
+    "name_fr": "Pull Chute de Neige",
     "collection": "Heritage",
     "type": "pull",
     "color": "white",
     "variants": [
-      {
-        "id": "PUL-WHI-GOLD",
-        "logo": "gold",
-        "image": "/images/PNG/1CL-PUL-WHI.png"
-      },
-      {
-        "id": "PUL-WHI-CHROME",
-        "logo": "chrome",
-        "image": "/images/PNG/1CL-PUL-WHI.png"
-      }
+      { "id": "PUL-WHI-GOLD", "logo": "gold", "image": "/images/PNG/1CL-PUL-WHI.png" },
+      { "id": "PUL-WHI-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-PUL-WHI.png" }
     ],
-    "tags": [
-      "heritage",
-      "onyx",
-      "comfort"
-    ],
+    "tags": ["heritage", "onyx", "comfort"],
     "tagline": "Pristine execution.",
+    "tagline_fr": "Exécution immaculée.",
     "gender": "Femme"
   },
   {
     "id": "VST-BEL",
     "name": "Beige Shell Jacket",
+    "name_fr": "Veste Coque Beige",
     "collection": "Workshop Edition",
     "type": "jacket",
     "color": "beige",
     "variants": [
-      {
-        "id": "VST-BEL-GOLD",
-        "logo": "gold",
-        "image": "/images/PNG/1CL-VST-BEI-Gold.png"
-      },
-      {
-        "id": "VST-BEL-CHROME",
-        "logo": "chrome",
-        "image": "/images/PNG/1CL-VST-BEI-chrome.png"
-      }
+      { "id": "VST-BEL-GOLD", "logo": "gold", "image": "/images/PNG/1CL-VST-BEI-Gold.png" },
+      { "id": "VST-BEL-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-VST-BEI-chrome.png" },
+      { "id": "VST-BEL-GLD-NEW", "logo": "gold", "image": "/images/PNG/1CL-VST-BEL-GLD.png" },
+      { "id": "VST-BEL-NAV-NEW", "logo": "chrome", "image": "/images/PNG/1CL-VST-BEL-NAV.png" },
+      { "id": "VST-BEL-BLK-NEW", "logo": "chrome", "image": "/images/PNG/1CL-VST-BEL-BLK.png" },
+      { "id": "VST-BEL-GRN-NEW", "logo": "chrome", "image": "/images/PNG/1CL-VST-BEL-GRN.png" }
     ],
-    "tags": [
-      "workshop",
-      "technical",
-      "outerwear"
-    ],
+    "tags": ["workshop", "technical", "outerwear"],
     "tagline": "Crafted in the Atelier.",
+    "tagline_fr": "Confectionné à l'Atelier.",
     "gender": "Femme"
   },
   {
     "id": "VST-BLK",
     "name": "Matte Black Armor",
+    "name_fr": "Armure Noir Mat",
     "collection": "Workshop Edition",
     "type": "jacket",
     "color": "black",
     "variants": [
-      {
-        "id": "VST-BLK-GOLD",
-        "logo": "gold",
-        "image": "/images/PNG/1CL-VST-BLK.png"
-      },
-      {
-        "id": "VST-BLK-CHROME",
-        "logo": "chrome",
-        "image": "/images/PNG/1CL-VST-BLK2.png"
-      }
+      { "id": "VST-BLK-GOLD", "logo": "gold", "image": "/images/PNG/1CL-VST-BLK.png" },
+      { "id": "VST-BLK-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-VST-BLK2.png" }
     ],
-    "tags": [
-      "workshop",
-      "stealth",
-      "outerwear"
-    ],
+    "tags": ["workshop", "stealth", "outerwear"],
     "tagline": "Uncompromising defense.",
+    "tagline_fr": "Défense sans compromis.",
     "gender": "Homme"
   },
   {
     "id": "VST-BLU",
     "name": "Midnight Blue Jacket",
+    "name_fr": "Veste Bleu Minuit",
     "collection": "Workshop Edition",
     "type": "jacket",
     "color": "blue",
     "variants": [
-      {
-        "id": "VST-BLU-GOLD",
-        "logo": "gold",
-        "image": "/images/PNG/1CL-VST-BLU.png"
-      },
-      {
-        "id": "VST-BLU-CHROME",
-        "logo": "chrome",
-        "image": "/images/PNG/1CL-VST-BLU.png"
-      }
+      { "id": "VST-BLU-GOLD", "logo": "gold", "image": "/images/PNG/1CL-VST-BLU.png" },
+      { "id": "VST-BLU-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-VST-BLU.png" }
     ],
-    "tags": [
-      "workshop",
-      "technical",
-      "outerwear"
-    ],
+    "tags": ["workshop", "technical", "outerwear"],
     "tagline": "Nighttime operations.",
+    "tagline_fr": "Opérations nocturnes.",
     "gender": "Homme"
   },
   {
     "id": "VST-GLD",
     "name": "Solid Gold Puffer",
+    "name_fr": "Puffer Or Massif",
     "collection": "Workshop Edition",
     "type": "jacket",
     "color": "gold",
     "variants": [
-      {
-        "id": "VST-GLD-GOLD",
-        "logo": "gold",
-        "image": "/images/PNG/1CL-VST-GLD.png"
-      },
-      {
-        "id": "VST-GLD-CHROME",
-        "logo": "chrome",
-        "image": "/images/PNG/1CL-VST-GLD.png"
-      }
+      { "id": "VST-GLD-GOLD", "logo": "gold", "image": "/images/PNG/1CL-VST-GLD.png" },
+      { "id": "VST-GLD-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-VST-GLD.png" }
     ],
-    "tags": [
-      "workshop",
-      "stealth",
-      "outerwear"
-    ],
+    "tags": ["workshop", "stealth", "outerwear"],
     "tagline": "Visible luxury.",
+    "tagline_fr": "Luxe visible.",
     "gender": "Unisex"
   },
   {
     "id": "VST-GRN",
     "name": "Military Green Shell",
+    "name_fr": "Coque Vert Militaire",
     "collection": "Workshop Edition",
     "type": "jacket",
     "color": "green",
     "variants": [
-      {
-        "id": "VST-GRN-GOLD",
-        "logo": "gold",
-        "image": "/images/PNG/1CL-VST-GRN.png"
-      },
-      {
-        "id": "VST-GRN-CHROME",
-        "logo": "chrome",
-        "image": "/images/PNG/1CL-VST-GRN.png"
-      }
+      { "id": "VST-GRN-GOLD", "logo": "gold", "image": "/images/PNG/1CL-VST-GRN.png" },
+      { "id": "VST-GRN-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-VST-GRN.png" }
     ],
-    "tags": [
-      "workshop",
-      "stealth",
-      "outerwear"
-    ],
+    "tags": ["workshop", "stealth", "outerwear"],
     "tagline": "Tactical aesthetics.",
+    "tagline_fr": "Esthétique tactique.",
     "gender": "Unisex"
   },
   {
     "id": "VST-RED",
     "name": "Cardinal Red Armor",
+    "name_fr": "Armure Rouge Cardinal",
     "collection": "Workshop Edition",
     "type": "jacket",
     "color": "red",
     "variants": [
-      {
-        "id": "VST-RED-GOLD",
-        "logo": "gold",
-        "image": "/images/PNG/1CL-VST-RED.png"
-      },
-      {
-        "id": "VST-RED-CHROME",
-        "logo": "chrome",
-        "image": "/images/PNG/1CL-VST-RED.png"
-      }
+      { "id": "VST-RED-GOLD", "logo": "gold", "image": "/images/PNG/1CL-VST-RED.png" },
+      { "id": "VST-RED-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-VST-RED.png" }
     ],
-    "tags": [
-      "workshop",
-      "stealth",
-      "outerwear"
-    ],
+    "tags": ["workshop", "stealth", "outerwear"],
     "tagline": "Make a statement.",
+    "tagline_fr": "Affirmez-vous.",
     "gender": "Unisex"
   },
   {
     "id": "VST-WHI",
     "name": "Arctic White Jacket",
+    "name_fr": "Veste Blanc Arctique",
     "collection": "Workshop Edition",
     "type": "jacket",
     "color": "white",
     "variants": [
-      {
-        "id": "VST-WHI-GOLD",
-        "logo": "gold",
-        "image": "/images/PNG/1CL-VST-WHI.png"
-      },
-      {
-        "id": "VST-WHI-CHROME",
-        "logo": "chrome",
-        "image": "/images/PNG/1CL-VST-WHI.png"
-      }
+      { "id": "VST-WHI-GOLD", "logo": "gold", "image": "/images/PNG/1CL-VST-WHI.png" },
+      { "id": "VST-WHI-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-VST-WHI.png" }
     ],
-    "tags": [
-      "workshop",
-      "stealth",
-      "outerwear"
-    ],
+    "tags": ["workshop", "stealth", "outerwear"],
     "tagline": "Absolute Zero.",
+    "tagline_fr": "Zéro Absolu.",
     "gender": "Femme"
   },
   {
     "id": "JOG-RED",
     "name": "Royal Red Jogger",
+    "name_fr": "Jogging Rouge Royal",
     "collection": "Heritage",
     "type": "jogger",
     "color": "red",
     "variants": [
-      {
-        "id": "JOG-RED-GOLD",
-        "logo": "gold",
-        "image": "/images/PNG/1CL-JOG-RED-Gold.png"
-      },
-      {
-        "id": "JOG-RED-CHROME",
-        "logo": "chrome",
-        "image": "/images/PNG/1CL-JOG-RED.png"
-      }
+      { "id": "JOG-RED-GOLD", "logo": "gold", "image": "/images/PNG/1CL-JOG-RED-Gold.png" },
+      { "id": "JOG-RED-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-JOG-RED.png" }
     ],
-    "tags": [
-      "heritage",
-      "royal",
-      "bottoms"
-    ],
+    "tags": ["heritage", "royal", "bottoms"],
     "tagline": "The pulse of the streets.",
+    "tagline_fr": "Le pouls de la rue.",
     "gender": "Unisex"
   },
   {
     "id": "JOG-BEI",
     "name": "Dune Jogger",
+    "name_fr": "Jogging Dune",
     "collection": "Heritage",
     "type": "jogger",
     "color": "beige",
     "variants": [
-      {
-        "id": "JOG-BEI-GOLD",
-        "logo": "gold",
-        "image": "/images/PNG/CL-JOG-BEI.png"
-      },
-      {
-        "id": "JOG-BEI-CHROME",
-        "logo": "chrome",
-        "image": "/images/PNG/1CL-JOG-BEI-chrome.png"
-      }
+      { "id": "JOG-BEI-GOLD", "logo": "gold", "image": "/images/PNG/CL-JOG-BEI.png" },
+      { "id": "JOG-BEI-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-JOG-BEI-chrome.png" }
     ],
-    "tags": [
-      "heritage",
-      "royal",
-      "bottoms"
-    ],
+    "tags": ["heritage", "royal", "bottoms"],
     "tagline": "Effortless movement.",
+    "tagline_fr": "Mouvement sans effort.",
     "gender": "Femme"
   },
   {
     "id": "JOG-BLK",
     "name": "Onyx Jogger",
+    "name_fr": "Jogging Onyx",
     "collection": "Heritage",
     "type": "jogger",
     "color": "black",
     "variants": [
-      {
-        "id": "JOG-BLK-GOLD",
-        "logo": "gold",
-        "image": "/images/PNG/1CL-JOG-BLK.png"
-      },
-      {
-        "id": "JOG-BLK-CHROME",
-        "logo": "chrome",
-        "image": "/images/PNG/1CL-JOG-BLK.png"
-      }
+      { "id": "JOG-BLK-GOLD", "logo": "gold", "image": "/images/PNG/1CL-JOG-BLK.png" },
+      { "id": "JOG-BLK-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-JOG-BLK.png" }
     ],
-    "tags": [
-      "heritage",
-      "royal",
-      "bottoms"
-    ],
+    "tags": ["heritage", "royal", "bottoms"],
     "tagline": "Stealth agility.",
+    "tagline_fr": "Agilité furtive.",
     "gender": "Homme"
   },
   {
     "id": "JOG-BLU",
     "name": "Azure Jogger",
+    "name_fr": "Jogging Azur",
     "collection": "Heritage",
     "type": "jogger",
     "color": "blue",
     "variants": [
-      {
-        "id": "JOG-BLU-GOLD",
-        "logo": "gold",
-        "image": "/images/PNG/1CL-JOG-BLU-Gold.png"
-      },
-      {
-        "id": "JOG-BLU-CHROME",
-        "logo": "chrome",
-        "image": "/images/PNG/1CL-JOG-BLU-Gold.png"
-      }
+      { "id": "JOG-BLU-GOLD", "logo": "gold", "image": "/images/PNG/1CL-JOG-BLU-Gold.png" },
+      { "id": "JOG-BLU-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-JOG-BLU-Gold.png" }
     ],
-    "tags": [
-      "heritage",
-      "royal",
-      "bottoms"
-    ],
+    "tags": ["heritage", "royal", "bottoms"],
     "tagline": "Deep state comfort.",
+    "tagline_fr": "Confort d'État profond.",
     "gender": "Homme"
   },
   {
     "id": "JOG-GLD",
     "name": "Imperial Gold Jogger",
+    "name_fr": "Jogging Or Impérial",
     "collection": "Heritage",
     "type": "jogger",
     "color": "gold",
     "variants": [
-      {
-        "id": "JOG-GLD-GOLD",
-        "logo": "gold",
-        "image": "/images/PNG/1CL-JOG-GLD.png"
-      },
-      {
-        "id": "JOG-GLD-CHROME",
-        "logo": "chrome",
-        "image": "/images/PNG/1CL-JOG-GLD.png"
-      }
+      { "id": "JOG-GLD-GOLD", "logo": "gold", "image": "/images/PNG/1CL-JOG-GLD.png" },
+      { "id": "JOG-GLD-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-JOG-GLD.png" }
     ],
-    "tags": [
-      "heritage",
-      "royal",
-      "bottoms"
-    ],
+    "tags": ["heritage", "royal", "bottoms"],
     "tagline": "Luminous standard.",
+    "tagline_fr": "Standard lumineux.",
     "gender": "Unisex"
   },
   {
     "id": "JOG-GRN",
     "name": "Forest Jogger",
+    "name_fr": "Jogging Forêt",
     "collection": "Heritage",
     "type": "jogger",
     "color": "green",
     "variants": [
-      {
-        "id": "JOG-GRN-GOLD",
-        "logo": "gold",
-        "image": "/images/PNG/1CL-JOG-GRN.png"
-      },
-      {
-        "id": "JOG-GRN-CHROME",
-        "logo": "chrome",
-        "image": "/images/PNG/1CL-JOG-GRN.png"
-      }
+      { "id": "JOG-GRN-GOLD", "logo": "gold", "image": "/images/PNG/1CL-JOG-GRN.png" },
+      { "id": "JOG-GRN-CHROME", "logo": "chrome", "image": "/images/PNG/1CL-JOG-GRN.png" }
     ],
-    "tags": [
-      "heritage",
-      "royal",
-      "bottoms"
-    ],
+    "tags": ["heritage", "royal", "bottoms"],
     "tagline": "Grounded luxury.",
+    "tagline_fr": "Luxe ancré.",
     "gender": "Unisex"
   },
   {
     "id": "JOG-WHI",
     "name": "Arctic Jogger",
+    "name_fr": "Jogging Arctique",
     "collection": "Heritage",
     "type": "jogger",
     "color": "white",
     "variants": [
-      {
-        "id": "JOG-WHI-GOLD",
-        "logo": "gold",
-        "image": "/images/PNG/CL-JOG-WHI.png"
-      },
-      {
-        "id": "JOG-WHI-CHROME",
-        "logo": "chrome",
-        "image": "/images/PNG/CL-JOG-WHI.png"
-      }
+      { "id": "JOG-WHI-GOLD", "logo": "gold", "image": "/images/PNG/CL-JOG-WHI.png" },
+      { "id": "JOG-WHI-CHROME", "logo": "chrome", "image": "/images/PNG/CL-JOG-WHI.png" }
     ],
-    "tags": [
-      "heritage",
-      "royal",
-      "bottoms"
-    ],
+    "tags": ["heritage", "royal", "bottoms"],
     "tagline": "Pure canvas.",
+    "tagline_fr": "Canevas pur.",
     "gender": "Femme"
   },
   {
     "id": "ART-SIMP1",
     "name": "Simple Thing Jacket I",
-    "collection": "Workshop Edition",
+    "name_fr": "Veste Simple Thing I",
+    "collection": "Artist Exclusive",
     "type": "jacket",
     "color": "black",
     "variants": [
-      {
-        "id": "ART-SIMP1-GOLD",
-        "logo": "gold",
-        "image": "/images/JacketSongs/Jacket_there-is-one thing-.png"
-      },
-      {
-        "id": "ART-SIMP1-CHROME",
-        "logo": "chrome",
-        "image": "/images/JacketSongs/Jacket_there-is-one thing-.png"
-      }
+      { "id": "ART-SIMP1-GOLD", "logo": "gold", "image": "/images/JacketSongs/Jacket_there-is-one thing-.png" },
+      { "id": "ART-SIMP1-CHROME", "logo": "chrome", "image": "/images/JacketSongs/Jacket_there-is-one thing-.png" }
     ],
-    "tags": [
-      "artist",
-      "chawblick",
-      "exclusive"
-    ],
+    "tags": ["artist", "chawblick", "exclusive"],
     "tagline": "There Is Just a Simple Thing",
+    "tagline_fr": "Il y a juste une chose simple",
     "gender": "Homme"
+  },
+  {
+    "id": "ART-WHEN1",
+    "name": "When I See This Jacket",
+    "name_fr": "Veste When I See This",
+    "collection": "Artist Exclusive",
+    "type": "jacket",
+    "color": "custom",
+    "variants": [{ "id": "ART-WHEN1-GOLD", "logo": "gold", "image": "/images/JacketSongs/when i see this _jacket.png" }],
+    "tags": ["artist", "exclusive", "song-inspired"],
+    "tagline": "Visions in the fabric.",
+    "tagline_fr": "Visions dans le tissu.",
+    "gender": "Unisex"
+  },
+  {
+    "id": "ART-KILL1",
+    "name": "Your Actions Kill Me Jacket",
+    "name_fr": "Veste Your Actions Kill Me",
+    "collection": "Artist Exclusive",
+    "type": "jacket",
+    "color": "custom",
+    "variants": [{ "id": "ART-KILL1-CHROME", "logo": "chrome", "image": "/images/JacketSongs/your actions kill me _instru_jacket.png" }],
+    "tags": ["artist", "exclusive", "instrumental"],
+    "tagline": "The silence of the stitch.",
+    "tagline_fr": "Le silence de la couture.",
+    "gender": "Unisex"
+  },
+  {
+    "id": "ART-BOO1",
+    "name": "She Is My Boo Jacket",
+    "name_fr": "Veste She Is My Boo",
+    "collection": "Artist Exclusive",
+    "type": "jacket",
+    "color": "custom",
+    "variants": [{ "id": "ART-BOO1-GOLD", "logo": "gold", "image": "/images/JacketSongs/she is my boo_jacket1.png" }],
+    "tags": ["artist", "exclusive", "1CL"],
+    "tagline": "A love letter in leather.",
+    "tagline_fr": "Une lettre d'amour en cuir.",
+    "gender": "Femme"
+  },
+  {
+    "id": "ART-BOO2",
+    "name": "She Is My Boo Alt",
+    "name_fr": "Veste She Is My Boo Alt",
+    "collection": "Artist Exclusive",
+    "type": "jacket",
+    "color": "custom",
+    "variants": [{ "id": "ART-BOO2-CHROME", "logo": "chrome", "image": "/images/JacketSongs/she is my boo_jacket2.png" }],
+    "tags": ["artist", "exclusive", "variant"],
+    "tagline": "The other side of the link.",
+    "tagline_fr": "L'autre côté du lien.",
+    "gender": "Femme"
+  },
+  {
+    "id": "ART-EYES1",
+    "name": "I See In Your Eyes Jacket",
+    "name_fr": "Veste I See In Your Eyes",
+    "collection": "Artist Exclusive",
+    "type": "jacket",
+    "color": "custom",
+    "variants": [{ "id": "ART-EYES1-GOLD", "logo": "gold", "image": "/images/JacketSongs/i see in yer eyes_jacket.png" }],
+    "tags": ["artist", "exclusive"],
+    "tagline": "Observational luxury.",
+    "tagline_fr": "Luxe observationnel.",
+    "gender": "Unisex"
+  },
+  {
+    "id": "ART-EYES2",
+    "name": "I See In Your Eyes Alt",
+    "name_fr": "Veste I See In Your Eyes Alt",
+    "collection": "Artist Exclusive",
+    "type": "jacket",
+    "color": "custom",
+    "variants": [{ "id": "ART-EYES2-CHROME", "logo": "chrome", "image": "/images/JacketSongs/i see in yer eyes_jacket2.png" }],
+    "tags": ["artist", "exclusive", "variant"],
+    "tagline": "Depth perceived.",
+    "tagline_fr": "Profondeur perçue.",
+    "gender": "Unisex"
+  },
+  {
+    "id": "ART-CIV1",
+    "name": "Civilian Service Jacket",
+    "name_fr": "Veste Civilian Service",
+    "collection": "Artist Exclusive",
+    "type": "jacket",
+    "color": "custom",
+    "variants": [{ "id": "ART-CIV1-GOLD", "logo": "gold", "image": "/images/JacketSongs/civilian service_jacket.png" }],
+    "tags": ["artist", "exclusive", "civilian"],
+    "tagline": "Service with sovereignty.",
+    "tagline_fr": "Service avec souveraineté.",
+    "gender": "Homme"
+  },
+  {
+    "id": "ART-CIV2",
+    "name": "Civilian Service Shell",
+    "name_fr": "Coque Civilian Service",
+    "collection": "Artist Exclusive",
+    "type": "jacket",
+    "color": "custom",
+    "variants": [{ "id": "ART-CIV2-CHROME", "logo": "chrome", "image": "/images/JacketSongs/civilian service_jacket1.png" }],
+    "tags": ["artist", "exclusive", "shell"],
+    "tagline": "Tactical artistry.",
+    "tagline_fr": "Art sensoriel tactique.",
+    "gender": "Homme"
+  },
+  {
+    "id": "ART-CIV3",
+    "name": "Civilian Service Pro",
+    "name_fr": "Veste Civilian Service Pro",
+    "collection": "Artist Exclusive",
+    "type": "jacket",
+    "color": "custom",
+    "variants": [{ "id": "ART-CIV3-GOLD", "logo": "gold", "image": "/images/JacketSongs/civilian service_jacket3.png" }],
+    "tags": ["artist", "exclusive", "pro"],
+    "tagline": "Advanced sovereign gear.",
+    "tagline_fr": "Équipement souverain avancé.",
+    "gender": "Homme"
+  },
+  {
+    "id": "ART-SIMP2",
+    "name": "Simple Thing Jacket II",
+    "name_fr": "Veste Simple Thing II",
+    "collection": "Artist Exclusive",
+    "type": "jacket",
+    "color": "custom",
+    "variants": [{ "id": "ART-SIMP2-CHROME", "logo": "chrome", "image": "/images/JacketSongs/Jacket_there-is-one thing2-.png" }],
+    "tags": ["artist", "exclusive", "legacy"],
+    "tagline": "The continuation of simple elegance.",
+    "tagline_fr": "La suite de l'élégance simple.",
+    "gender": "Unisex"
   }
 ]

@@ -52,16 +52,16 @@ export default function IntelligentAgent() {
           setMessages(prev => [...prev, { text: t('agent.deconnect'), sender: 'ai' }]);
           found = true;
       } else if (lower.includes(mapping.vault[language])) {
-          setMessages(prev => [...prev, { text: language === 'en' ? "Accessing the Vault digital gate..." : "Accès au portail digital du Vault...", sender: 'ai' }]);
+          setMessages(prev => [...prev, { text: t('agent.accessVault'), sender: 'ai' }]);
           navigate('/');
           setTimeout(() => document.getElementById("vaultPortal")?.scrollIntoView({ behavior: 'smooth' }), 500);
           found = true;
       } else if (lower.includes(mapping.logistics[language])) {
-          setMessages(prev => [...prev, { text: language === 'en' ? "Opening EMS Logistics center." : "Ouverture du centre logistique EMS.", sender: 'ai' }]);
+          setMessages(prev => [...prev, { text: t('agent.openLogistics'), sender: 'ai' }]);
           toggleSidebar();
           found = true;
       } else if (lower.includes(mapping.map[language])) {
-          setMessages(prev => [...prev, { text: language === 'en' ? "Initializing 4D Path Map..." : "Initialisation de la carte 4D...", sender: 'ai' }]);
+          setMessages(prev => [...prev, { text: t('agent.initMap'), sender: 'ai' }]);
           navigate('/map');
           found = true;
       } else if (lower.includes(mapping.link[language])) {
@@ -77,9 +77,7 @@ export default function IntelligentAgent() {
           setMessages(prev => [...prev, { text: t('agent.whatIs1CL'), sender: 'ai' }]);
           found = true;
       } else if (lower.includes(mapping.collection[language]) || lower.includes("archive") || lower.includes(mapping.clothes[language])) {
-          setMessages(prev => [...prev, { text: language === 'en' 
-            ? "The 1CL Archive is structured into three paradigms: Essentials (Core), Heritage (Legacy), and Workshop Edition (Technical). Redirecting to the catalog..." 
-            : "L'Archive 1CL est structurée en trois paradigmes : Essentials (Base), Heritage (Héritage), et Workshop Edition (Technique). Redirection vers le catalogue...", sender: 'ai' }]);
+          setMessages(prev => [...prev, { text: t('agent.redirectArchive'), sender: 'ai' }]);
           setTimeout(() => navigate('/collections'), 2000);
           found = true;
       }
@@ -123,7 +121,7 @@ export default function IntelligentAgent() {
             <div className="bg-black/50 p-4 border-b border-clGold/30 flex justify-between items-center relative z-10">
               <div>
                 <h4 className="text-clGold font-serif text-sm glitch-text">SOVEREIGN IA</h4>
-                <p className="text-[10px] text-gray-500 uppercase tracking-widest">{language === 'en' ? 'CONNECTED TO EMS NET' : 'CONNECTÉ AU RÉSEAU EMS'}</p>
+                <p className="text-[10px] text-gray-500 uppercase tracking-widest">{t('agent.connectedEMS')}</p>
               </div>
               <button 
                 onClick={() => {

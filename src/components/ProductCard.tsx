@@ -12,18 +12,22 @@ interface Variant {
 interface Product {
   id: string;
   name: string;
+  name_fr?: string;
   collection: string;
   type: string;
   color: string;
   variants: Variant[];
   tags: string[];
   tagline: string;
+  tagline_fr?: string;
 }
 
 export default function ProductCard({ product }: { product: Product }) {
-  const { t } = useSovereign();
+  const { t, language } = useSovereign();
   const [activeVariant, setActiveVariant] = useState(product.variants[0]);
   const [isHovered, setIsHovered] = useState(false);
+
+  const displayName = language === 'fr' && product.name_fr ? product.name_fr : product.name;
 
   return (
     <motion.div 
@@ -56,8 +60,8 @@ export default function ProductCard({ product }: { product: Product }) {
       <div className="p-5 flex flex-col flex-grow">
         <div className="flex justify-between items-start mb-2">
           <div>
-            <p className="text-gray-500 text-[10px] tracking-widest uppercase mb-1">{product.collection}</p>
-            <h3 className="text-white font-serif tracking-wide">{product.name}</h3>
+            <p className="text-gray-500 text-[10px] tracking-widest uppercase mb-1">{t(`catalog.collections.${product.collection.toLowerCase().replace(' ', '')}`)}</p>
+            <h3 className="text-white font-serif tracking-wide">{displayName}</h3>
           </div>
         </div>
 

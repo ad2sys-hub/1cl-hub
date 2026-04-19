@@ -3,8 +3,8 @@ import { useSovereign } from '../hooks/useSovereign';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function VoiceConsole() {
-  const { isVoiceConsoleActive, toggleAgent, toggleSidebar, setMediaHubOpen, unlockVault } = useSovereign();
-  const [displayText, setDisplayText] = useState("LISTENING FOR COMMANDS...");
+  const { isVoiceConsoleActive, toggleAgent, toggleSidebar, setMediaHubOpen, unlockVault, language, t } = useSovereign();
+  const [displayText, setDisplayText] = useState(t('voice.listening'));
   
   useEffect(() => {
     // Only initialize if supported and active
@@ -13,17 +13,17 @@ export default function VoiceConsole() {
     // Type casting for webkit speech
     const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
     if (!SpeechRecognition) {
-      setDisplayText("VOICE PROTOCOL NOT SUPPORTED IN BROWSER");
+      setDisplayText(t('voice.notSupported'));
       return;
     }
 
     const recognition = new SpeechRecognition();
     recognition.continuous = true;
-    recognition.lang = 'fr-FR'; // or en-US
+    recognition.lang = language === 'fr' ? 'fr-FR' : 'en-US';
 
     recognition.onresult = (e: any) => {
       const cmd = e.results[e.results.length - 1][0].transcript.toLowerCase() as string;
-      setDisplayText(`EXECUTING: ${cmd.toUpperCase()}`);
+      setDisplayText(`${t('voice.executing')} ${cmd.toUpperCase()}`);
       
       // Smart Bridge mapping to Context
       if (cmd.includes('aide') || cmd.includes('help')) {
@@ -32,7 +32,7 @@ export default function VoiceConsole() {
       if (cmd.includes('admin') || cmd.includes('gestion')) {
         toggleSidebar();
       }
-      if (cmd.includes('musique') || cmd.includes('media')) {
+      if (cmd.includes('musique') || cmd.includes('media') || cmd.includes('music')) {
         setMediaHubOpen(true);
       }
       if (cmd.includes('vault') || cmd.includes('coffre')) {
@@ -40,13 +40,13 @@ export default function VoiceConsole() {
       }
 
       setTimeout(() => {
-        setDisplayText("LISTENING FOR COMMANDS...");
+        setDisplayText(t('voice.listening'));
       }, 3000);
     };
 
     recognition.onerror = () => {
-       setDisplayText("SIGNAL LOST. RETRYING...");
-       setTimeout(() => { setDisplayText("LISTENING FOR COMMANDS..."); }, 1500);
+       setDisplayText(t('voice.signalLost'));
+       setTimeout(() => { setDisplayText(t('voice.listening')); }, 1500);
     };
 
     recognition.start();
@@ -54,7 +54,7 @@ export default function VoiceConsole() {
     return () => {
       recognition.stop();
     };
-  }, [isVoiceConsoleActive, toggleAgent, toggleSidebar, setMediaHubOpen, unlockVault]);
+  }, [isVoiceConsoleActive, language, toggleAgent, toggleSidebar, setMediaHubOpen, unlockVault, t]);
 
   return (
     <AnimatePresence>

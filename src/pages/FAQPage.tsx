@@ -1,7 +1,11 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useSovereign } from '../hooks/useSovereign';
-import { ChevronDown, Shield, Database, Zap, UserCheck, type LucideIcon } from 'lucide-react';
+import { 
+  ChevronDown, Shield, Database, Zap, UserCheck, 
+  Navigation, GitBranch, Layers, Lock, CreditCard, Accessibility, Box,
+  type LucideIcon 
+} from 'lucide-react';
 
 interface FAQEntry {
   id: string;
@@ -13,43 +17,73 @@ interface FAQEntry {
 
 const faqData: FAQEntry[] = [
   {
-    id: 'sovereign-link',
-    icon: Zap,
-    category: { en: 'Infrastructure', fr: 'Infrastructure' },
-    question: { en: 'What is the Sovereign Link?', fr: "Qu'est-ce que le Sovereign Link ?" },
+    id: 'nav-1',
+    icon: Navigation,
+    category: { en: 'Navigation', fr: 'Navigation' },
+    question: { en: 'How to navigate the 4D Ecosystem?', fr: 'Comment naviguer dans l\'Écosystème 4D ?' },
     answer: { 
-      en: 'The Sovereign Link is a secure bridge between our frontend interface and the MongoDB Data API. It uses Supabase Edge Functions to ensure that sensitive API keys are never exposed to the client browser, maintaining a Zero-Trust architecture.',
-      fr: "Le Sovereign Link est un pont sécurisé entre notre interface frontend et l'API MongoDB. Il utilise les Edge Functions de Supabase pour garantir que les clés API sensibles ne sont jamais exposées au navigateur client, maintenant ainsi une architecture Zero-Trust."
+      en: 'Use voice commands like "1CL, open the dashboard" or "show modules". You can also use the holographic Map4D to jump between collection nodes and factory centers.',
+      fr: 'Utilisez les commandes vocales comme "1CL, ouvre le tableau de bord" ou "montre les modules". Vous pouvez aussi utiliser la Carte 4D holographique pour naviguer entre les nœuds de collection.'
     }
   },
   {
-    id: 'iam-auth',
-    icon: UserCheck,
-    category: { en: 'Security', fr: 'Sécurité' },
-    question: { en: 'How is administrative access secured?', fr: "Comment l'accès administratif est-il sécurisé ?" },
+    id: 'workflow-1',
+    icon: GitBranch,
+    category: { en: 'Workflows', fr: 'Workflows' },
+    question: { en: 'How to orchestrate a new workflow?', fr: 'Comment orchestrer un nouveau workflow ?' },
     answer: { 
-      en: 'We utilize Supabase IAM (Identity and Access Management) with optional 2FA. Every administrative session is cryptographically verified against our private database records before the EMS dashboard is unlocked.',
-      fr: "Nous utilisons Supabase IAM (Identity and Access Management) avec 2FA optionnelle. Chaque session administrative est vérifiée de manière cryptographique par rapport à nos enregistrements privés avant que le dashboard EMS ne soit déverrouillé."
+      en: 'Command 1CL-bot: "1CL, create a workflow". The orchestrator (MPC-ANES) will open, allowing you to connect Supabase, MongoDB, and Stripe nodes into a seamless logic chain.',
+      fr: 'Commandez au bot : "1CL, crée un workflow". L\'orchestrateur (MPC-ANES) s\'ouvrira, vous permettant de connecter les nœuds Supabase, MongoDB et Stripe.'
     }
   },
   {
-    id: 'mongodb-sync',
-    icon: Database,
-    category: { en: 'Data', fr: 'Données' },
-    question: { en: 'How does the MongoDB synchronization work?', fr: "Comment fonctionne la synchronisation MongoDB ?" },
+    id: 'ems-1',
+    icon: Layers,
+    category: { en: 'EMS@ Modules', fr: 'Modules EMS@' },
+    question: { en: 'What are the available EMS@ modules?', fr: 'Quels sont les modules EMS@ disponibles ?' },
     answer: { 
-      en: 'When the "Force Sync" is triggered, a payload is sent to our Deno Edge Function. This serverless microservice validates the session, encrypts the log entry, and pushes it to the MongoDB Global Cluster via the Data API bridge.',
-      fr: "Lorsque la 'Force Sync' est déclenchée, une charge utile est envoyée à notre Edge Function Deno. Ce microservice serverless valide la session, chiffre l'entrée de log et la pousse vers le Cluster Global MongoDB via le pont Data API."
+      en: 'Primary modules include Iyason-1CL (Data Flow), MyCarriere (Professional Profiling), ChawblickMusic (Ticketing/Events), and CyberSec (Safety Audit).',
+      fr: 'Les modules principaux incluent Iyason-1CL (Flux de données), MyCarrière (Profilage Pro), ChawblickMusic (Billetterie/Événements) et CyberSec (Audit de Sécurité).'
     }
   },
   {
-    id: 'system-audit',
-    icon: Shield,
-    category: { en: 'Monitoring', fr: 'Monitoring' },
-    question: { en: 'Where can I find the system audit logs?', fr: "Où puis-je trouver les logs d'audit du système ?" },
+    id: 'access-1',
+    icon: Lock,
+    category: { en: 'Access & IAM', fr: 'Accès & Autorisations' },
+    question: { en: 'How to manage user roles?', fr: 'Comment gérer les rôles utilisateur ?' },
     answer: { 
-      en: 'Full audit logs are displayable in the "Admin Sidebar" after a successful sync. For deep forensics, administrators can access the Supabase Management Console directly.',
-      fr: "Les logs d'audit complets sont affichables dans la 'Sidebar Admin' après une synchronisation réussie. Pour une analyse médico-légale approfondie, les administrateurs peuvent accéder directement à la Console de Gestion Supabase."
+      en: 'Use the "IAM Portal" in the admin dashboard. You can add roles, modify access levels, or revoke cryptographic keys in real-time through the Sovereign Link.',
+      fr: 'Utilisez le "Portail IAM" dans le dashboard admin. Vous pouvez ajouter des rôles, modifier les niveaux d\'accès ou révoquer des clés cryptographiques en temps réel.'
+    }
+  },
+  {
+    id: 'payment-1',
+    icon: CreditCard,
+    category: { en: 'Payments', fr: 'Paiements' },
+    question: { en: 'Is the payment gateway secure?', fr: 'Le portail de paiement est-il sécurisé ?' },
+    answer: { 
+      en: 'Yes. 1CL utilizes verified Stripe and PayPal redirections. No sensitive financial data is stored on our local nodes, ensuring maximum sovereignty.',
+      fr: 'Oui. 1CL utilise des redirections Stripe et PayPal certifiées. Aucune donnée financière sensible n\'est stockée sur nos nœuds locaux.'
+    }
+  },
+  {
+    id: 'w3c-1',
+    icon: Accessibility,
+    category: { en: 'Accessibility', fr: 'Accessibilité' },
+    question: { en: 'How to activate assistive modes?', fr: 'Comment activer les modes d\'assistance ?' },
+    answer: { 
+      en: 'System protocols: "Mode Guide" (interactive aid), "Mode Assist" (full accessibility), and "Mode Moovie" (vocal narration). Use the [A] header toggle for immediate contrast.',
+      fr: 'Protocoles système : "Mode Guide" (aide interactive), "Mode Assist" (accessibilité totale) et "Mode Moovie" (narration vocale).'
+    }
+  },
+  {
+    id: 'infra-1',
+    icon: Box,
+    category: { en: 'Terraform / Infra', fr: 'Terraform / Infrastructure' },
+    question: { en: 'How is the infrastructure deployed?', fr: 'Comment l\'infrastructure est-elle déployée ?' },
+    answer: { 
+      en: 'Our global architecture is defined via Terraform. 1CL-bot can check environment status, verify plan compliance, and trigger state updates via secure orchestration jobs.',
+      fr: 'Notre architecture globale est définie via Terraform. 1CL-bot peut vérifier l\'état de l\'environnement et déclencher des mises à jour via des jobs d\'orchestration.'
     }
   }
 ];

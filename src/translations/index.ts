@@ -63,6 +63,21 @@ export const translations = {
             q2: 'System priority: Design [D] or Accessibility [A]?',
             q3: 'Communication mode: Vocal [V] or Text [T]?',
             complete: 'Profile encrypted and saved. Deep Learning enabled.'
+        },
+        responses: {
+            modeMoovie: 'Moovie Mode active. Visual narration and real-time actions enabled.',
+            modeMute: 'Mute Mode active. Audio feedback suspended. Text-only protocol.',
+            modeGuide: 'Guide Mode active. System assistance engaged.',
+            modeAssist: 'Assist Mode active. Universal accessibility protocols running.',
+            workflowStart: 'Initiating Workflow Orchestrator (MPC-ANES)...',
+            workflowStep: 'Adding step to logic chain...',
+            workflowConnect: 'Connecting workflow to sovereign database...',
+            workflowPublish: 'Publishing workflow to EMS production node.',
+            emsIyason: 'Opening Iyason-1CL data portal...',
+            emsCareer: 'Generating professional profile in MyCarriere...',
+            emsMusic: 'Accessing ChawblickMusic ticketing and events...',
+            paymentStripe: 'Redirecting to Stripe payment gateway...',
+            paymentPaypal: 'Redirecting to PayPal payment gateway...'
         }
     },
     common: {
@@ -147,14 +162,14 @@ export const translations = {
         }
     },
     philosophy: {
-        title: '1CL — 1st Class Obsession',
-        subtitle: 'We are not just a clothing brand. We are an ecosystem. A sovereign physical manifestation of auditory art.',
-        pillar1Title: 'Authenticity',
-        pillar1Text: 'We do not follow trends. In the studio or the atelier, the process is pure. Every stitch, every beat, is born from a raw desire to create something real.',
-        pillar2Title: 'Connection',
-        pillar2Text: "The physical garment is 'The Real Link'. It bridges the gap between the music we create and the community that lives it. A wearable extension of the Chawblick universe.",
-        pillar3Title: 'Legacy',
-        pillar3Text: 'One Link, All Legacy. Clothes that age with you. Music that stays with you. We are building the sovereign archives of tomorrow.'
+        title: '1CL — Absolute Excellence',
+        subtitle: 'We are not just a brand. We are an ecosystem. A sovereign phygital manifestation of auditory art.',
+        pillar1Title: 'Sovereignty',
+        pillar1Text: 'Every module, workflow, and action is controllable, traceable, and reversible. The user always maintains absolute control.',
+        pillar2Title: 'Universal Accessibility',
+        pillar2Text: 'The system adapts to everyone: voice, text, guide, assist, and W3C modes. The 1CL ecosystem is usable by all, without exception.',
+        pillar3Title: 'Intelligent Orchestration',
+        pillar3Text: '1CL-bot interprets intent, proposes actions, and automates tasks by connecting EMS@, Terraform, Docker, and Supabase modules.'
     },
     faq: {
         title: 'FREQUENTLY ASKED QUESTIONS',
@@ -367,6 +382,21 @@ export const translations = {
             q2: 'Priorité système : Design [D] ou Accessibilité [A] ?',
             q3: 'Mode de communication : Vocal [V] ou Texte [T] ?',
             complete: 'Profil crypté et sauvegardé. Apprentissage activé.'
+        },
+        responses: {
+            modeMoovie: 'Mode Moovie activé. Narration vocale et actions en temps réel.',
+            modeMute: 'Mode Mute activé. Réponses textuelles uniquement.',
+            modeGuide: 'Mode Guide activé. Assistance interactive engagée.',
+            modeAssist: 'Mode Assist activé. Accessibilité totale W3C.',
+            workflowStart: 'Ouverture de l\'orchestrateur (MPC-ANES)...',
+            workflowStep: 'Ajout d\'une étape au workflow...',
+            workflowConnect: 'Connexion du workflow à la base de données souveraine...',
+            workflowPublish: 'Publication du workflow sur le nœud de production EMS.',
+            emsIyason: 'Ouverture du portail Iyason-1CL...',
+            emsCareer: 'Génération de fiche MyCarrière...',
+            emsMusic: 'Accès à la billetterie ChawblickMusic...',
+            paymentStripe: 'Redirection vers Stripe...',
+            paymentPaypal: 'Redirection vers PayPal...'
         }
     },
     common: {
@@ -452,13 +482,13 @@ export const translations = {
     },
     philosophy: {
         title: '1CL — Obsession de 1ère Classe',
-        subtitle: 'Nous ne sommes pas seulement une marque de vêtements. Nous sommes un écosystème. Une manifestation physique souveraine de l\'art auditif.',
-        pillar1Title: 'Authenticité',
-        pillar1Text: 'Nous ne suivons pas les tendances. En studio ou à l\'atelier, le processus est pur. Chaque point de couture, chaque beat, naît d\'un désir brut de créer quelque chose de vrai.',
-        pillar2Title: 'Connexion',
-        pillar2Text: 'Le vêtement physique est "Le Lien Réel". Il comble le fossé entre la musique que nous créons et la communauté qui la vit. Une extension portable de l\'univers Chawblick.',
-        pillar3Title: 'Héritage',
-        pillar3Text: 'Un Lien, Tout Héritage. Des vêtements qui vieillissent avec vous. Une musique qui reste avec vous. Nous construisons les archives souveraines de demain.'
+        subtitle: 'Nous ne sommes pas seulement une marque. Nous sommes un écosystème. Une manifestation physique souveraine de l\'art auditif.',
+        pillar1Title: 'Souveraineté',
+        pillar1Text: 'Chaque module, chaque workflow, chaque action est contrôlable, traçable et réversible. L’utilisateur garde toujours la main.',
+        pillar2Title: 'Accessibilité universelle',
+        pillar2Text: 'Le système s’adapte à tous : mode vocal, mode texte, mode guide, mode assist, mode W3C. L’écosystème 1CL doit être utilisable par chacun, sans exception.',
+        pillar3Title: 'Orchestration intelligente',
+        pillar3Text: '1CL‑bot interprète les intentions, propose des actions, automatise les tâches et connecte les modules EMS@, Terraform, et Supabase.',
     },
     faq: {
         title: 'FOIRE AUX QUESTIONS',

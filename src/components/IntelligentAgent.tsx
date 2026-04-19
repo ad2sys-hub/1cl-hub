@@ -13,6 +13,8 @@ export default function IntelligentAgent() {
   const [isModeMenuOpen, setModeMenuOpen] = useState(false);
   const [profilingStep, setProfilingStep] = useState(0);
   const [interactions, setInteractions] = useState(userData.interactions || 0);
+  const [subMode, setSubMode] = useState<'normal' | 'moovie' | 'mute' | 'guide'>('normal');
+
   const [messages, setMessages] = useState<{ text: string; sender: 'ai' | 'user' }[]>(() => [
     { text: t('agent.welcome'), sender: 'ai' }
   ]);
@@ -21,38 +23,16 @@ export default function IntelligentAgent() {
   const chatBodyRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
-  // Initial Profiling Trigger
-  useEffect(() => {
-    if (isAgentOpen && !isProfileConfigured && profilingStep === 0) {
-      setTimeout(() => {
-        setIsTyping(true);
-        setTimeout(() => {
-          setIsTyping(false);
-          setMessages(prev => [...prev, { text: t('agent.profile.welcome'), sender: 'ai' }]);
-          setMessages(prev => [...prev, { text: t('agent.profile.q1'), sender: 'ai' }]);
-          setProfilingStep(1);
-        }, 1500);
-      }, 1000);
-    }
-  }, [isAgentOpen, isProfileConfigured]);
-
-  // Auto-Optimization Observer
-  useEffect(() => {
-    if (agentMode === 'auto' && interactions > 5 && interactions % 10 === 0) {
-       setTimeout(() => {
-         setMessages(prev => [...prev, { 
-           text: "EMS[AUTO OPTIMIZE] : I have detected high interaction levels. Forcing system stabilization for better focus.", 
-           sender: 'ai' 
-         }]);
-       }, 5000);
-    }
-  }, [interactions, agentMode]);
-
-  useEffect(() => {
-    if (chatBodyRef.current) {
-      chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
-    }
-  }, [messages, isTyping]);
+  // TTS Helper
+  const speak = (text: string) => {
+    if (subMode === 'mute') return;
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = language === 'fr' ? 'fr-FR' : 'en-US';
+    utterance.rate = 0.95;
+    utterance.pitch = 1.05;
+    window.speechSynthesis.speak(utterance);
+  };
 
   // Size Configuration Mapping
   const sizeStyles = {
@@ -62,18 +42,110 @@ export default function IntelligentAgent() {
     full: "top-0 left-0 w-full h-full rounded-none"
   };
 
+  // Initial Profiling Trigger
+  useEffect(() => {
+    if (isAgentOpen && !isProfileConfigured && profilingStep === 0) {
+      setTimeout(() => {
+        setIsTyping(true);
+        setTimeout(() => {
+          setIsTyping(false);
+          const welcomeMsg = t('agent.profile.welcome');
+          setMessages(prev => [...prev, { text: welcomeMsg, sender: 'ai' }]);
+          setMessages(prev => [...prev, { text: t('agent.profile.q1'), sender: 'ai' }]);
+          speak(welcomeMsg);
+          setProfilingStep(1);
+        }, 1500);
+      }, 1000);
+    }
+  }, [isAgentOpen, isProfileConfigured]);
+
+  // Handle Command Logic
+  const handleCommand = (text: string) => {
+    const lower = text.toLowerCase().trim();
+    let response = "";
+
+    // 1. Modes de fonctionnement
+    if (lower.includes('moovie')) {
+        setSubMode('moovie');
+        response = t('agent.responses.modeMoovie');
+    } else if (lower.includes('mute')) {
+        setSubMode('mute');
+        response = t('agent.responses.modeMute');
+    } else if (lower.includes('guide moi')) {
+        setSubMode('guide');
+        response = t('agent.responses.modeGuide');
+    } else if (lower.includes('assiste') || lower.includes('w3c')) {
+        toggleAccessibility();
+        response = t('agent.responses.modeAssist');
+    }
+
+    // 2. Commandes Générales
+    else if (lower.includes('tableau de bord')) {
+        toggleSidebar();
+        response = "Accès au Dashboard EMS accordé.";
+    } else if (lower.includes('modules')) {
+        navigate('/collections');
+        response = "Analyse des modules du catalogue 1CL.";
+    } else if (lower.includes('synchronise')) {
+        response = "Synchronisation avec le lien souverain Supabase/Mongo...";
+    }
+
+    // 3. Workflow Orchestration
+    else if (lower.includes('crée un workflow')) {
+        response = t('agent.responses.workflowStart');
+    } else if (lower.includes('ajoute une étape')) {
+        response = t('agent.responses.workflowStep');
+    } else if (lower.includes('connecte ce workflow')) {
+        response = t('agent.responses.workflowConnect');
+    }
+
+    // 4. Modules EMS@
+    else if (lower.includes('iyason')) {
+        navigate('/admin');
+        response = t('agent.responses.emsIyason');
+    } else if (lower.includes('carrière') || lower.includes('studiopro')) {
+        navigate('/contact');
+        response = t('agent.responses.emsCareer');
+    } else if (lower.includes('chawblickmusic') || lower.includes('billetterie')) {
+        navigate('/collections');
+        response = t('agent.responses.emsMusic');
+    }
+
+    // 5. Paiements
+    else if (lower.includes('stripe')) {
+        response = t('agent.responses.paymentStripe');
+        setTimeout(() => window.open('https://stripe.com', '_blank'), 2000);
+    } else if (lower.includes('paypal')) {
+        response = t('agent.responses.paymentPaypal');
+        setTimeout(() => window.open('https://paypal.com', '_blank'), 2000);
+    }
+
+    if (response) {
+        setIsTyping(true);
+        setTimeout(() => {
+            setIsTyping(false);
+            setMessages(prev => [...prev, { text: response, sender: 'ai' }]);
+            speak(response);
+        }, 800);
+        return true;
+    }
+    return false;
+  };
+
   const handleSend = () => {
     if (!inputVal.trim()) return;
     playSound('click');
     const txt = inputVal.trim();
-    const lower = txt.toLowerCase();
+
+    setMessages(prev => [...prev, { text: txt, sender: 'user' }]);
+    setInputVal('');
+
+    // Try Command First
+    if (handleCommand(txt)) return;
 
     // Profiling Flow Logic
     if (profilingStep > 0) {
-      setMessages(prev => [...prev, { text: txt, sender: 'user' }]);
-      setInputVal('');
       setIsTyping(true);
-      
       setTimeout(() => {
         setIsTyping(false);
         if (profilingStep === 1) {
@@ -95,79 +167,17 @@ export default function IntelligentAgent() {
       return;
     }
 
-    // Standard Logic
+    // Standard Logic Fallback
     updateUserData({ interactions: interactions + 1 });
     setInteractions(prev => prev + 1);
     
-    // 1CL Assist Logic
-    if (lower.includes('assist') || lower.includes('aide') || lower.includes('w3c')) {
-        setMessages(prev => [...prev, { text: txt, sender: 'user' }]);
-        setMessages(prev => [...prev, { text: t('accessibility.toggle'), sender: 'ai' }]);
-        if (!accessibilityMode) toggleAccessibility();
-        setInputVal('');
-        return;
-    }
-
-    setMessages(prev => [...prev, { text: txt, sender: 'user' }]);
-    setInputVal('');
     setIsTyping(true);
-
     setTimeout(() => {
       setIsTyping(false);
-      let found = false;
-      const lower = txt.toLowerCase();
-      
-      const mapping = {
-          vault: { en: "vault", fr: "vault" },
-          logistics: { en: "logistics", fr: "logistique" },
-          map: { en: "map", fr: "carte" },
-          iam: { en: "iam", fr: "iam" },
-          link: { en: "sovereign", fr: "sovereign" },
-          who: { en: "who", fr: "qui" },
-          brand: { en: "1cl", fr: "1cl" },
-          lock: { en: "lock", fr: "déconnecter" },
-          collection: { en: "collection", fr: "collection" },
-          clothes: { en: "clothes", fr: "vêtement" }
-      };
-
-      if (lower.includes(mapping.lock[language])) {
-          setMessages(prev => [...prev, { text: t('agent.deconnect'), sender: 'ai' }]);
-          found = true;
-      } else if (lower.includes(mapping.vault[language])) {
-          setMessages(prev => [...prev, { text: t('agent.accessVault'), sender: 'ai' }]);
-          navigate('/');
-          setTimeout(() => document.getElementById("vaultPortal")?.scrollIntoView({ behavior: 'smooth' }), 500);
-          found = true;
-      } else if (lower.includes(mapping.logistics[language])) {
-          setMessages(prev => [...prev, { text: t('agent.openLogistics'), sender: 'ai' }]);
-          toggleSidebar();
-          found = true;
-      } else if (lower.includes(mapping.map[language])) {
-          setMessages(prev => [...prev, { text: t('agent.initMap'), sender: 'ai' }]);
-          navigate('/map');
-          found = true;
-      } else if (lower.includes(mapping.link[language])) {
-          setMessages(prev => [...prev, { text: t('agent.sovereignLink'), sender: 'ai' }]);
-          found = true;
-      } else if (lower.includes(mapping.iam[language])) {
-          setMessages(prev => [...prev, { text: t('agent.iam'), sender: 'ai' }]);
-          found = true;
-      } else if (lower.includes(mapping.who[language])) {
-          setMessages(prev => [...prev, { text: t('agent.whoAreYou'), sender: 'ai' }]);
-          found = true;
-      } else if (lower.includes(mapping.brand[language])) {
-          setMessages(prev => [...prev, { text: t('agent.whatIs1CL'), sender: 'ai' }]);
-          found = true;
-      } else if (lower.includes(mapping.collection[language]) || lower.includes("archive") || lower.includes(mapping.clothes[language])) {
-          setMessages(prev => [...prev, { text: t('agent.redirectArchive'), sender: 'ai' }]);
-          setTimeout(() => navigate('/collections'), 2000);
-          found = true;
-      }
-      
-      if (!found) {
-        setMessages(prev => [...prev, { text: t('agent.unknown'), sender: 'ai' }]);
-      }
-    }, 1500);
+      const reply = t('agent.unknown');
+      setMessages(prev => [...prev, { text: reply, sender: 'ai' }]);
+      speak(reply);
+    }, 1200);
   };
 
   return (
@@ -296,8 +306,40 @@ export default function IntelligentAgent() {
             {/* Body */}
             <div ref={chatBodyRef} className="p-8 h-full overflow-y-auto space-y-6 relative z-10 scrollbar-thin scrollbar-thumb-clGold/40 flex-grow font-light">
               {messages.map((m, i) => (
-                <div key={i} className={`text-sm p-4 rounded-lg max-w-[85%] ${m.sender === 'ai' ? 'bg-clGold/5 text-gray-300 border border-clGold/20 self-start mr-auto relative after:content-[""] after:w-1 after:h-full after:bg-clGold after:absolute after:left-0 after:top-0' : 'bg-white/5 text-white self-end ml-auto text-right border border-white/5'}`}>
-                  {m.text}
+                <div key={i} className={`flex flex-col ${m.sender === 'ai' ? 'items-start mr-auto' : 'items-end ml-auto'} w-full`}>
+                  <div className={`text-sm p-4 rounded-lg max-w-[85%] ${m.sender === 'ai' ? 'bg-clGold/5 text-gray-300 border border-clGold/20 relative after:content-[""] after:w-1 after:h-full after:bg-clGold after:absolute after:left-0 after:top-0' : 'bg-white/5 text-white text-right border border-white/5'}`}>
+                    {m.text}
+                  </div>
+                  
+                  {/* Workflow Visualizer */}
+                  {m.text.includes('MPC-ANES') && m.sender === 'ai' && (
+                    <motion.div 
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="mt-4 p-4 bg-black/60 border border-clGold/30 rounded-xl w-full max-w-[300px] space-y-3"
+                    >
+                      <div className="flex items-center justify-between border-b border-clGold/20 pb-2 mb-2">
+                        <span className="text-[10px] text-clGold font-mono uppercase tracking-widest">Job Node: ANES-PROD</span>
+                        <Zap size={10} className="text-clGold animate-pulse" />
+                      </div>
+                      <div className="space-y-2">
+                        {[
+                          { icon: Layers, label: 'Iyason-1CL Link', status: 'connected' },
+                          { icon: Box, label: 'Terraform State', status: 'ready' },
+                          { icon: CreditCard, label: 'Stripe API', status: 'pending' }
+                        ].map((job, idx) => (
+                          <div key={idx} className="flex items-center gap-3 text-[10px] text-gray-400 group hover:text-white transition-colors">
+                            <job.icon size={12} className="group-hover:text-clGold" />
+                            <span>{job.label}</span>
+                            <div className={`ml-auto w-1.5 h-1.5 rounded-full ${job.status === 'connected' ? 'bg-green-500' : job.status === 'ready' ? 'bg-clGold' : 'bg-gray-600 animate-pulse'}`} />
+                          </div>
+                        ))}
+                      </div>
+                      <button className="w-full py-2 mt-2 bg-clGold/10 hover:bg-clGold text-clGold hover:text-black text-[9px] uppercase tracking-widest font-bold border border-clGold/30 transition-all rounded">
+                        Publish to Network
+                      </button>
+                    </motion.div>
+                  )}
                 </div>
               ))}
               {isTyping && (

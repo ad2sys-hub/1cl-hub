@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence, useDragControls } from 'framer-motion';
 import { useSovereign } from '../hooks/useSovereign';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useSound } from '../hooks/useSound';
 import { GripHorizontal, Zap, Settings, Type, ChevronDown, Layers, Box, CreditCard, Send, Sparkles } from 'lucide-react';
 import catalog from '../../public/data/catalog.json';

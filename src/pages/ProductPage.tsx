@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useSovereign } from '../hooks/useSovereign';
 
 export default function ProductPage() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const { t, language } = useSovereign();
   const [product, setProduct] = useState<any>(null);
   const [activeVariant, setActiveVariant] = useState<any>(null);

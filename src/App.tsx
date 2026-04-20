@@ -19,6 +19,7 @@ import MVPProductPage from './pages/MVPProductPage';
 import DTSMatrixPage from './pages/DTSMatrixPage';
 import DTSProductPage from './pages/DTSProductPage';
 import CheckoutPage from './pages/CheckoutPage';
+import LookbookPage from './pages/LookbookPage';
 
 // Layout
 import MainLayout from './layouts/MainLayout';
@@ -44,6 +45,7 @@ function AnimatedRoutes() {
           <Route path="/dts" element={<DTSMatrixPage />} />
           <Route path="/dts/:id" element={<DTSProductPage />} />
           <Route path="/checkout/:id" element={<CheckoutPage />} />
+          <Route path="/lookbook" element={<LookbookPage />} />
         </Route>
       </Routes>
     </AnimatePresence>

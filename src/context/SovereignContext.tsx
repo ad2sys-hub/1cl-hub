@@ -38,6 +38,9 @@ interface SovereignState {
   // Payment Status
   paymentStatus: { stripe: 'online' | 'offline' | 'pending'; paypal: 'online' | 'offline' | 'pending' };
   refreshPaymentStatus: () => void;
+  // Lookbook
+  lookbookItems: string[];
+  toggleLookbookItem: (id: string) => void;
 }
 
 export const SovereignContext = createContext<SovereignState | undefined>(undefined);
@@ -121,6 +124,19 @@ export function SovereignProvider({ children }: { children: ReactNode }) {
     paypal: 'online'
   });
 
+  const [lookbookItems, setLookbookItems] = useState<string[]>(() => {
+    const saved = localStorage.getItem('sovereign_lookbook');
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  const toggleLookbookItem = (id: string) => {
+    setLookbookItems(prev => {
+      const next = prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id];
+      localStorage.setItem('sovereign_lookbook', JSON.stringify(next));
+      return next;
+    });
+  };
+
   const refreshPaymentStatus = () => {
     setPaymentStatus({ stripe: 'pending', paypal: 'pending' });
     setTimeout(() => {
@@ -190,7 +206,8 @@ export function SovereignProvider({ children }: { children: ReactNode }) {
       agentMode, setAgentMode,
       isProfileConfigured, setProfileConfigured,
       userData, updateUserData,
-      paymentStatus, refreshPaymentStatus
+      paymentStatus, refreshPaymentStatus,
+      lookbookItems, toggleLookbookItem
     }}>
       {children}
     </SovereignContext.Provider>

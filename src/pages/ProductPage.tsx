@@ -6,11 +6,11 @@ import { useSovereign } from '../hooks/useSovereign';
 export default function ProductPage() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { t, language } = useSovereign();
+  const { t, language, lookbookItems, toggleLookbookItem } = useSovereign();
   const [product, setProduct] = useState<any>(null);
   const [activeVariant, setActiveVariant] = useState<any>(null);
   const [loading, setLoading] = useState(true);
-  const [inLookbook, setInLookbook] = useState(false);
+  const inLookbook = product ? lookbookItems.includes(product.id) : false;
   const [sizeGuideOpen, setSizeGuideOpen] = useState(false);
   const [specModalOpen, setSpecModalOpen] = useState(false);
 
@@ -104,7 +104,7 @@ export default function ProductPage() {
             {/* Action */}
             <div className="pt-8 space-y-4">
               <button 
-                onClick={() => setInLookbook(!inLookbook)}
+                onClick={() => toggleLookbookItem(product.id)}
                 className={`w-full py-5 border text-sm uppercase tracking-widest transition-all duration-300 ${inLookbook ? 'bg-white text-black border-white' : 'bg-transparent border-clGold text-clGold hover:bg-clGold/10'}`}
               >
                 {inLookbook ? t('common.lookbookAdded') : t('product.addToCart')}

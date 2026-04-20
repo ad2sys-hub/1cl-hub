@@ -4,7 +4,7 @@ import { useSovereign } from '../hooks/useSovereign';
 import { supabase } from '../lib/supabaseClient';
 
 export default function SidebarEMS({ openContractForge }: { openContractForge: () => void }) {
-  const { isSidebarOpen, toggleSidebar, toggleGlobalLoupe, setMediaHubOpen, isAdminAuthenticated, t } = useSovereign();
+  const { isSidebarOpen, toggleSidebar, toggleGlobalLoupe, setMediaHubOpen, isAdminAuthenticated, userData, language, t } = useSovereign();
   const [clock, setClock] = useState("--:--:--");
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -195,6 +195,15 @@ export default function SidebarEMS({ openContractForge }: { openContractForge: (
                         <button onClick={() => setMediaHubOpen(true)} className="border border-white/10 text-gray-400 text-[9px] uppercase tracking-widest py-2 hover:bg-white/10 hover:text-white transition-colors">
                           {t('sidebar.compactMediaHud')}
                         </button>
+                        {(userData.role === 'Iyason' || userData.role === 'Chawblick') && (
+                          <button 
+                            onClick={() => { toggleSidebar(); window.location.hash = '#/lookbook'; }} 
+                            className="w-full border border-clGold/50 text-clGold text-[9px] font-bold uppercase tracking-widest py-3 flex items-center justify-center gap-2 hover:bg-clGold hover:text-black transition-all shadow-[0_0_15px_rgba(212,175,55,0.2)] mt-2"
+                          >
+                            <div className="w-1.5 h-1.5 bg-clGold rounded-full animate-pulse" />
+                            Générateur de Lookbook
+                          </button>
+                        )}
                      </div>
                   </div>
 

@@ -316,8 +316,74 @@ export const translations = {
         voiceAssist: 'EMS Voice Guidance',
         w3cStatus: 'W3C-SOVEREIGN-CERTIFIED'
     },
+    mvp: {
+      title: 'MVP — More than a title, a mindset',
+      subtitle: 'The 1CL Excellence Experience',
+      lookbook: {
+        title: 'THE SIGNATURE LOOKS',
+        look1: 'URBAN ARMOR',
+        look1Desc: 'A structured look for those who dominate the city.',
+        look2: 'DYNAMIC CHILL',
+        look2Desc: 'Perfect transition between training and relaxation.',
+        look3: 'MVP LAYERING',
+        look3Desc: 'Play with textures and layers for maximum relief.'
+      },
+      philosophy: {
+        title: 'THE MVP SPIRIT',
+        item1Title: 'MOVEMENT',
+        item1Msg: 'Movement. Vision. Performance. Don\'t just follow the pace, set it.',
+        item2Title: 'RESILIENCE',
+        item2Msg: 'Mindset. Value. Perseverance. Designed for those who never stop.',
+        item3Title: 'IDENTITY',
+        item3Msg: 'Mandate. Victory. Prestige. Wear your ambition like a second skin.'
+      },
+      product: {
+        material: 'Material',
+        materialDesc: 'Organic cotton and breathable mesh for optimal thermal comfort.',
+        cut: 'Cut',
+        cutDesc: '"Athletic Fit" – adjusted at shoulders, relaxed at the waist.',
+        details: 'Details',
+        detailsDesc: '3M reflective logos, invisible zip pockets, anti-irritation flat seams.',
+        experience: 'THE EXPERIENCE',
+        experienceQuote: '"It\'s not just a t-shirt. It\'s the centerpiece of your daily gear. Tested by athletes, validated by the street."',
+        cta: 'ADD TO MY ARMOR — 89€'
+      },
+      agent: {
+        welcome: 'Hi! I\'m your 1cl style coach. One doesn\'t choose to be an MVP, one becomes one. Watch how we craft excellence, then tell me what you need.'
+      }
+    },
+    dts: {
+      title: 'EMS@DTS MATRIX',
+      subtitle: 'DOMINATE YOUR DESTINY',
+      modules: {
+        civilian: {
+          name: 'EMS@CivilianPocket',
+          tag: 'The Invisible Weapon',
+          mvp: 'Mastery. Versatility. Practical. Don’t just carry objects, carry your ambition.'
+        },
+        iyason: {
+          name: 'EMS@Iyason',
+          tag: 'Athlete’s Sanctuary',
+          mvp: 'Meditation. Vitality. Plenitude. True power lies in the balance between effort and care.'
+        },
+        echo: {
+          name: 'EMS@EchoDuFutur',
+          tag: 'The Advance Frequency',
+          mvp: 'Modernity. Vanguardism. Propulsion. Be the echo the future is already hearing.'
+        },
+        cinephile: {
+          name: 'EMS@Cinéphile',
+          tag: 'The Script of Your Life',
+          mvp: 'Direction. Vision. Protagonist. If your life were a movie, would you wear this for the final scene?'
+        }
+      },
+      agent: {
+        welcome: 'Welcome to the 1CL Hub. I am your multi-dimensional guide. Choose your frequency: Do you want the discretion of Civilian, the serenity of Iyason, the boldness of Echo, or the charisma of Cinéphile? Click, I execute.',
+        status: 'MATRIX SYNCHRONIZATION: 100%'
+      }
+    },
     system: {
-        version: '2.0.4-SOVEREIGN-SYNC'
+      version: '2.5.0-DTS-MATRIX'
     }
   },
   fr: {
@@ -635,8 +701,74 @@ export const translations = {
         voiceAssist: 'Guidage Vocal EMS',
         w3cStatus: 'CERTIFIÉ-W3C-SOUVERAIN'
     },
+    mvp: {
+      title: 'MVP — Plus qu’un titre, un état d’esprit',
+      subtitle: 'L’Expérience d’Excellence 1CL',
+      lookbook: {
+        title: 'LES ENSEMBLES SIGNATURE',
+        look1: 'L’ARMURE URBAINE',
+        look1Desc: 'Un look structuré pour celui qui domine la ville.',
+        look2: 'LE CHILL DYNAMIQUE',
+        look2Desc: 'Transition parfaite entre l’entraînement et la détente.',
+        look3: 'LE LAYERING MVP',
+        look3Desc: 'Joue sur les textures et les superpositions pour un relief maximal.'
+      },
+      philosophy: {
+        title: 'L’ESPRIT MVP',
+        item1Title: 'LE MOUVEMENT',
+        item1Msg: 'Mouvement. Vision. Performance. Ne vous contentez pas de suivre le rythme, imposez-le.',
+        item2Title: 'LA RÉSILIENCE',
+        item2Msg: 'Mentalité. Valeur. Persévérance. Conçu pour ceux qui ne s’arrêtent jamais.',
+        item3Title: 'L’IDENTITÉ',
+        item3Msg: 'Mandat. Victoire. Prestige. Portez votre ambition comme une seconde peau.',
+      },
+      product: {
+        material: 'Matière',
+        materialDesc: 'Coton organique et mesh respirant pour un confort thermique optimal.',
+        cut: 'Coupe',
+        cutDesc: '"Athletic Fit" – ajustée aux épaules, relax au niveau de la taille.',
+        details: 'Détails',
+        detailsDesc: 'Logos réfléchissants 3M, poches zippées invisibles, coutures plates anti-irritation.',
+        experience: 'L’EXPÉRIENCE',
+        experienceQuote: '"Ce n’est pas qu’un t-shirt. C’est la pièce maîtresse de votre équipement quotidien. Testé par des athlètes, validé par la rue."',
+        cta: 'AJOUTER À MON ARMURE — 89€'
+      },
+      agent: {
+        welcome: 'Salut ! Je suis ton coach de style 1cl. On ne choisit pas d’être un MVP, on le devient. Regarde comment on fabrique l’excellence, puis dis-moi ce qu’il te faut.'
+      }
+    },
+    dts: {
+      title: 'MATRICE EMS@DTS',
+      subtitle: 'DOMINE TON DESTIN',
+      modules: {
+        civilian: {
+          name: 'EMS@CivilianPocket',
+          tag: 'L’Arme Invisible',
+          mvp: 'Maîtrise. Versatilité. Pratique. Ne transportez pas seulement vos objets, transportez votre ambition.'
+        },
+        iyason: {
+          name: 'EMS@Iyason',
+          tag: 'Le Sanctuaire de l’Athlète',
+          mvp: 'Méditation. Vitalité. Plénitude. La vraie puissance réside dans l’équilibre entre l’effort et le soin.'
+        },
+        echo: {
+          name: 'EMS@EchoDuFutur',
+          tag: 'La Fréquence d’Avance',
+          mvp: 'Modernité. Vanguardisme. Propulsion. Soyez l’écho que le futur entend déjà.'
+        },
+        cinephile: {
+          name: 'EMS@Cinéphile',
+          tag: 'Le Script de votre Vie',
+          mvp: 'Mise en scène. Vision. Protagoniste. Si votre vie était un film, porteriez-vous cet habit pour la scène finale ?'
+        }
+      },
+      agent: {
+        welcome: 'Bienvenue dans le Hub 1CL. Je suis votre guide multi-dimensionnel. Choisissez votre fréquence : Voulez-vous la discrétion de Civilian, la sérénité d’Iyason, l’audace d’Echo, ou le charisme de Cinéphile ? Cliquez, j’exécute.',
+        status: 'SYNCHRONISATION MATRICIELLE : 100%'
+      }
+    },
     system: {
-        version: '2.0.4-SOVEREIGN-SYNC'
+      version: '2.5.0-DTS-MATRIX'
     }
   }
 };

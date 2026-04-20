@@ -212,4 +212,21 @@
     51% { text-shadow: 2px 0 rgba(212, 175, 55, 0.4), -2px 0 rgba(192, 192, 192, 0.4); }
     52% { text-shadow: none; }
   }
+  /* ───────────────────────────────────────────────
+     DTS Module System Utility Classes
+     ─────────────────────────────────────────────── */
+  .dts-color-civilian { --module-color: #6B7280; --module-color-alpha: rgba(107, 114, 128, 0.2); }
+  .dts-color-iyason { --module-color: #3B82F6; --module-color-alpha: rgba(59, 130, 246, 0.2); }
+  .dts-color-echo { --module-color: #A855F7; --module-color-alpha: rgba(168, 85, 247, 0.2); }
+  .dts-color-cinephile { --module-color: #D4AF37; --module-color-alpha: rgba(212, 175, 55, 0.2); }
+
+  .dts-pos-0 { transform: translate(-50%, -50%) rotate(0deg) translate(220px) rotate(0deg); }
+  .dts-pos-90 { transform: translate(-50%, -50%) rotate(90deg) translate(220px) rotate(-90deg); }
+  .dts-pos-180 { transform: translate(-50%, -50%) rotate(180deg) translate(220px) rotate(-180deg); }
+  .dts-pos-270 { transform: translate(-50%, -50%) rotate(270deg) translate(220px) rotate(-270deg); }
+
+  .dts-filter-civilian { filter: contrast(1.2) brightness(0.8); }
+  .dts-filter-iyason { filter: blur(2px) grayscale(0.5); }
+  .dts-filter-echo { filter: hue-rotate(270deg) contrast(1.5); }
+  .dts-filter-cinephile { filter: sepia(0.3) contrast(1.1); }
 }

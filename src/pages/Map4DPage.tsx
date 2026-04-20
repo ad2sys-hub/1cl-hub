@@ -19,7 +19,12 @@ export default function Map4DPage() {
     { id: 2, title: t('map4d.nodes.philosophy'), path: '/philosophy', x: 70, y: 20, size: 100, desc: '1st Class Obsession' },
     { id: 3, title: t('map4d.nodes.workshop'), path: '/collections', x: 80, y: 70, size: 70, desc: 'Atelier Mode' },
     { id: 4, title: t('map4d.nodes.sponsors'), path: '/sponsors', x: 30, y: 80, size: 90, desc: 'Partner Hub' },
-    { id: 5, title: t('map4d.nodes.matrixCore'), path: '/', x: 50, y: 50, size: 120, desc: 'The Core' },
+    { id: 5, title: t('map4d.nodes.matrixCore'), path: '/dts', x: 50, y: 50, size: 120, desc: 'DTS GLOBAL MATRIX' },
+    // DTS Pipelines
+    { id: 6, title: 'Civilian', path: '/dts/civilian', x: 15, y: 60, size: 60, desc: 'Tactical Utility' },
+    { id: 7, title: 'Iyason', path: '/dts/iyason', x: 85, y: 35, size: 60, desc: 'Healing Sanctuary' },
+    { id: 8, title: 'Echo', path: '/dts/echo', x: 75, y: 85, size: 60, desc: 'Echo Future' },
+    { id: 9, title: 'Cinéphile', path: '/dts/cinephile', x: 35, y: 15, size: 60, desc: 'Story Script' },
   ];
 
   return (
@@ -48,6 +53,13 @@ export default function Map4DPage() {
           <motion.line x1="70%" y1="20%" x2="50%" y2="50%" stroke="#D4AF37" strokeWidth="1" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.5 }} />
           <motion.line x1="80%" y1="70%" x2="50%" y2="50%" stroke="#D4AF37" strokeWidth="1" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.5 }} />
           <motion.line x1="30%" y1="80%" x2="50%" y2="50%" stroke="#D4AF37" strokeWidth="1" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.5 }} />
+          
+          {/* DTS Pipelines Visualized */}
+          <motion.line x1="15%" y1="60%" x2="50%" y2="50%" stroke="#6B7280" strokeWidth="0.5" strokeDasharray="4,4" animate={{ opacity: [0.2, 0.5, 0.2] }} transition={{ duration: 2, repeat: Infinity }} />
+          <motion.line x1="85%" y1="35%" x2="50%" y2="50%" stroke="#3B82F6" strokeWidth="0.5" strokeDasharray="4,4" animate={{ opacity: [0.2, 0.5, 0.2] }} transition={{ duration: 2, repeat: Infinity }} />
+          <motion.line x1="75%" y1="85%" x2="50%" y2="50%" stroke="#A855F7" strokeWidth="0.5" strokeDasharray="4,4" animate={{ opacity: [0.2, 0.5, 0.2] }} transition={{ duration: 2, repeat: Infinity }} />
+          <motion.line x1="35%" y1="15%" x2="50%" y2="50%" stroke="#D4AF37" strokeWidth="0.5" strokeDasharray="4,4" animate={{ opacity: [0.2, 0.5, 0.2] }} transition={{ duration: 2, repeat: Infinity }} />
+
           <motion.line x1="20%" y1="30%" x2="30%" y2="80%" stroke="#C0C0C0" strokeWidth="1" strokeDasharray="5,5" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 2 }} />
           <motion.line x1="70%" y1="20%" x2="80%" y2="70%" stroke="#C0C0C0" strokeWidth="1" strokeDasharray="5,5" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 2 }} />
         </svg>

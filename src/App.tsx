@@ -14,6 +14,10 @@ import Map4DPage from './pages/Map4DPage';
 import FAQPage from './pages/FAQPage';
 import LegalPage from './pages/LegalPage';
 import ContactPage from './pages/ContactPage';
+import MVPExperience from './pages/MVPExperience';
+import MVPProductPage from './pages/MVPProductPage';
+import DTSMatrixPage from './pages/DTSMatrixPage';
+import DTSProductPage from './pages/DTSProductPage';
 
 // Layout
 import MainLayout from './layouts/MainLayout';
@@ -34,6 +38,10 @@ function AnimatedRoutes() {
           <Route path="/faq" element={<FAQPage />} />
           <Route path="/legal" element={<LegalPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/mvp" element={<MVPExperience />} />
+          <Route path="/mvp/product/:id" element={<MVPProductPage />} />
+          <Route path="/dts" element={<DTSMatrixPage />} />
+          <Route path="/dts/:id" element={<DTSProductPage />} />
         </Route>
       </Routes>
     </AnimatePresence>

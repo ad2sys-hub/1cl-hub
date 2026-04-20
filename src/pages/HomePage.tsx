@@ -81,6 +81,40 @@ export default function HomePage() {
         </motion.div>
       </section>
 
+      {/* 1.5. MVP Campaign Teaser */}
+      <section className="relative py-20 px-4 bg-clBlack">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          className="max-w-6xl mx-auto glass-panel p-1 border border-clGold/20 rounded-sm overflow-hidden group cursor-pointer"
+        >
+          <Link to="/mvp" className="relative block aspect-[21/9] md:aspect-[3/1]">
+            <div className="absolute inset-0 bg-[url('/1cl-hub/images/Logos/logo CL v.1.gold.png')] bg-center bg-no-repeat bg-contain opacity-5 group-hover:opacity-10 transition-opacity" />
+            <div className="absolute inset-0 bg-gradient-to-r from-clBlack via-transparent to-clBlack z-10" />
+            
+            <div className="absolute inset-0 flex flex-col items-center justify-center z-20 text-center px-6">
+              <motion.span 
+                animate={{ opacity: [0.4, 1, 0.4] }}
+                transition={{ duration: 3, repeat: Infinity }}
+                className="text-clGold text-[10px] tracking-[0.6em] uppercase mb-4"
+              >
+                {t('mvp.subtitle')}
+              </motion.span>
+              <h2 className="text-3xl md:text-5xl font-serif text-white mb-8 tracking-tighter italic">
+                {t('mvp.title')}
+              </h2>
+              <button className="px-10 py-3 bg-clGold/10 border border-clGold/50 text-clGold hover:bg-clGold hover:text-black transition-all text-xs tracking-[0.3em] uppercase">
+                {t('hero.explore')}
+              </button>
+            </div>
+
+            {/* Animated scanline for the teaser */}
+            <div className="absolute top-0 left-0 w-full h-px bg-clGold/20 animate-scanline z-30" />
+          </Link>
+        </motion.div>
+      </section>
+
       {/* 2. Highlight Block: "There Is Just a Simple Thing" */}
       <section className="relative py-32 px-4 bg-gradient-to-b from-clBlack via-clDarkGrey to-clBlack border-y border-white/5">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
@@ -132,7 +166,7 @@ export default function HomePage() {
             <p className="text-gray-500 tracking-widest uppercase text-sm mb-12">{t('home.campaign')}</p>
             <div className="w-full aspect-video border border-clGold/30 p-2 glass-panel shadow-[0_0_30px_rgba(212,175,55,0.1)]">
                <video className="w-full h-full object-cover" controls poster="/1cl-hub/images/Logos/logo CL v.1.gold.png">
-                  <source src="/1cl-hub/video/Descriptions_de_vidéos_publicitaires_CL.mp4" type="video/mp4" />
+                  <source src="/1cl-hub/video/In alliance with Chawblick Music.mp4" type="video/mp4" />
                </video>
             </div>
          </div>

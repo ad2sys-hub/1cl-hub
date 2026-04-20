@@ -11,12 +11,13 @@ export default function IntelligentAgent() {
   const dragControls = useDragControls();
   const [sizeMode, setSizeMode] = useState<'small' | 'medium' | 'middle' | 'full'>('medium');
   const [isModeMenuOpen, setModeMenuOpen] = useState(false);
+  const [isSubModeMenuOpen, setSubModeMenuOpen] = useState(false);
   const [profilingStep, setProfilingStep] = useState(0);
   const [interactions, setInteractions] = useState(userData.interactions || 0);
   const [subMode, setSubMode] = useState<'normal' | 'moovie' | 'mute' | 'guide'>('normal');
 
   const [messages, setMessages] = useState<{ text: string; sender: 'ai' | 'user' }[]>(() => [
-    { text: t('agent.welcome'), sender: 'ai' }
+    { text: t('dts.agent.welcome'), sender: 'ai' }
   ]);
   const [inputVal, setInputVal] = useState('');
   const [isTyping, setIsTyping] = useState(false);
@@ -36,9 +37,9 @@ export default function IntelligentAgent() {
 
   // Size Configuration Mapping
   const sizeStyles = {
-    small: "bottom-20 right-4 md:right-10 w-[min(90vw,350px)] h-[min(500px,70vh)]",
-    medium: "bottom-20 right-4 md:right-10 w-[min(90vw,550px)] h-[min(750px,80vh)]",
-    middle: "bottom-6 right-4 md:right-10 w-[min(95vw,900px)] h-[85vh]",
+    small: "bottom-40 right-4 md:right-10 w-[min(90vw,350px)] h-[min(500px,70vh)]",
+    medium: "bottom-40 right-4 md:right-10 w-[min(90vw,550px)] h-[min(750px,80vh)]",
+    middle: "bottom-40 right-4 md:right-10 w-[min(95vw,900px)] h-[85vh]",
     full: "top-0 left-0 w-full h-full rounded-none"
   };
 
@@ -200,13 +201,11 @@ export default function IntelligentAgent() {
       <AnimatePresence>
         {isAgentOpen && (
           <motion.div
-            layout
             drag={sizeMode !== 'full'}
             dragControls={dragControls}
             dragListener={false}
             dragMomentum={false}
-            dragConstraints={{ top: 0, left: 0, right: 0, bottom: 0 }}
-            className={`fixed ${sizeStyles[sizeMode]} bg-clBlack/95 backdrop-blur-3xl border border-clGold/30 rounded-2xl shadow-[0_0_100px_rgba(0,0,0,0.9)] z-[110] overflow-hidden flex flex-col hologram-container ring-1 ring-clGold/20 transition-all duration-300 ease-in-out`}
+            className={`fixed ${sizeStyles[sizeMode]} bg-clBlack/95 backdrop-blur-3xl border border-clGold/30 rounded-2xl shadow-[0_0_100px_rgba(0,0,0,0.9)] z-[110] overflow-hidden flex flex-col hologram-container ring-1 ring-clGold/20 transition-all duration-300 ease-in-out max-h-[85vh]`}
             initial={{ opacity: 0, y: 50, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 50, scale: 0.9 }}
@@ -235,7 +234,43 @@ export default function IntelligentAgent() {
               </div>
 
               <div className="flex items-center gap-3">
-                {/* Mode Selector Dropdown */}
+                {/* 1. Sub-Mode Selector (Normal, Moovie, etc.) */}
+                <div className="relative">
+                  <button 
+                    onClick={() => { playSound('click'); setSubModeMenuOpen(!isSubModeMenuOpen); }}
+                    className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-lg px-3 py-1.5 text-[10px] text-clChrome hover:bg-white/10 transition-all"
+                  >
+                    <span className="font-bold tracking-widest uppercase">{subMode}</span>
+                    <ChevronDown size={10} className={`transition-transform duration-300 ${isSubModeMenuOpen ? 'rotate-180' : ''}`} />
+                  </button>
+
+                  <AnimatePresence>
+                    {isSubModeMenuOpen && (
+                      <motion.div 
+                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                        className="absolute left-0 top-full mt-2 w-40 bg-clBlack/95 border border-clGold/30 rounded-xl overflow-hidden shadow-2xl z-[120] backdrop-blur-3xl"
+                      >
+                        {(['normal', 'moovie', 'mute', 'guide'] as const).map(mode => (
+                          <button
+                            key={mode}
+                            onClick={() => {
+                              playSound('click');
+                              setSubMode(mode);
+                              setSubModeMenuOpen(false);
+                            }}
+                            className={`w-full flex items-center justify-start gap-3 px-4 py-3 text-[10px] tracking-widest transition-colors ${subMode === mode ? 'bg-clGold/20 text-clGold' : 'text-gray-400 hover:bg-white/5 hover:text-white'}`}
+                          >
+                            {mode.toUpperCase()}
+                          </button>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+                {/* 2. Agent Mode Selector (Auto, Manual, etc.) */}
                 <div className="relative">
                   <button 
                     onClick={() => { playSound('click'); setModeMenuOpen(!isModeMenuOpen); }}
@@ -247,6 +282,7 @@ export default function IntelligentAgent() {
                     <span className="font-bold tracking-widest">{t(`agent.modes.${agentMode}`)}</span>
                     <ChevronDown size={10} className={`transition-transform duration-300 ${isModeMenuOpen ? 'rotate-180' : ''}`} />
                   </button>
+...
 
                   <AnimatePresence>
                     {isModeMenuOpen && (
@@ -305,50 +341,67 @@ export default function IntelligentAgent() {
 
             {/* Body */}
             <div ref={chatBodyRef} className="p-8 h-full overflow-y-auto space-y-6 relative z-10 scrollbar-thin scrollbar-thumb-clGold/40 flex-grow font-light">
-              {messages.map((m, i) => (
-                <div key={i} className={`flex flex-col ${m.sender === 'ai' ? 'items-start mr-auto' : 'items-end ml-auto'} w-full`}>
-                  <div className={`text-sm p-4 rounded-lg max-w-[85%] ${m.sender === 'ai' ? 'bg-clGold/5 text-gray-300 border border-clGold/20 relative after:content-[""] after:w-1 after:h-full after:bg-clGold after:absolute after:left-0 after:top-0' : 'bg-white/5 text-white text-right border border-white/5'}`}>
-                    {m.text}
+              
+              {/* Immersive MVP Background Reel */}
+              <div className="absolute inset-0 z-0 opacity-20 pointer-events-none overflow-hidden">
+                <video 
+                  autoPlay 
+                  muted 
+                  loop 
+                  playsInline 
+                  className="w-full h-full object-cover scale-110 blur-[1.5px]"
+                >
+                  <source src="/1cl-hub/video/In alliance with Chawblick Music.mp4" type="video/mp4" />
+                </video>
+                <div className="absolute inset-0 bg-gradient-to-b from-clBlack via-transparent to-clBlack opacity-80" />
+              </div>
+
+              <div className="relative z-10 space-y-6">
+                {messages.map((m, i) => (
+                  <div key={i} className={`flex flex-col ${m.sender === 'ai' ? 'items-start mr-auto' : 'items-end ml-auto'} w-full`}>
+                    <div className={`text-sm p-4 rounded-lg max-w-[85%] ${m.sender === 'ai' ? 'bg-clGold/10 text-gray-200 border border-clGold/20 relative after:content-[""] after:w-1 after:h-full after:bg-clGold after:absolute after:left-0 after:top-0' : 'bg-white/5 text-white text-right border border-white/5'}`}>
+                      {m.text}
+                    </div>
+                    
+                    {/* Workflow Visualizer */}
+                    {m.text.includes('MPC-ANES') && m.sender === 'ai' && (
+                      <motion.div 
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="mt-4 p-4 bg-black/60 border border-clGold/30 rounded-xl w-full max-w-[300px] space-y-3"
+                      >
+                        <div className="flex items-center justify-between border-b border-clGold/20 pb-2 mb-2">
+                          <span className="text-[10px] text-clGold font-mono uppercase tracking-widest">Job Node: ANES-PROD</span>
+                          <Zap size={10} className="text-clGold animate-pulse" />
+                        </div>
+                        <div className="space-y-2">
+                          {[
+                            { icon: Layers, label: 'Iyason-1CL Link', status: 'connected' },
+                            { icon: Box, label: 'Terraform State', status: 'ready' },
+                            { icon: CreditCard, label: 'Stripe API', status: 'pending' }
+                          ].map((job, idx) => (
+                            <div key={idx} className="flex items-center gap-3 text-[10px] text-gray-400 group hover:text-white transition-colors">
+                              <job.icon size={12} className="group-hover:text-clGold" />
+                              <span>{job.label}</span>
+                              <div className={`ml-auto w-1.5 h-1.5 rounded-full ${job.status === 'connected' ? 'bg-green-500' : job.status === 'ready' ? 'bg-clGold' : 'bg-gray-600 animate-pulse'}`} />
+                            </div>
+                          ))}
+                        </div>
+                        <button className="w-full py-2 mt-2 bg-clGold/10 hover:bg-clGold text-clGold hover:text-black text-[9px] uppercase tracking-widest font-bold border border-clGold/30 transition-all rounded">
+                          Publish to Network
+                        </button>
+                      </motion.div>
+                    )}
                   </div>
-                  
-                  {/* Workflow Visualizer */}
-                  {m.text.includes('MPC-ANES') && m.sender === 'ai' && (
-                    <motion.div 
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="mt-4 p-4 bg-black/60 border border-clGold/30 rounded-xl w-full max-w-[300px] space-y-3"
-                    >
-                      <div className="flex items-center justify-between border-b border-clGold/20 pb-2 mb-2">
-                        <span className="text-[10px] text-clGold font-mono uppercase tracking-widest">Job Node: ANES-PROD</span>
-                        <Zap size={10} className="text-clGold animate-pulse" />
-                      </div>
-                      <div className="space-y-2">
-                        {[
-                          { icon: Layers, label: 'Iyason-1CL Link', status: 'connected' },
-                          { icon: Box, label: 'Terraform State', status: 'ready' },
-                          { icon: CreditCard, label: 'Stripe API', status: 'pending' }
-                        ].map((job, idx) => (
-                          <div key={idx} className="flex items-center gap-3 text-[10px] text-gray-400 group hover:text-white transition-colors">
-                            <job.icon size={12} className="group-hover:text-clGold" />
-                            <span>{job.label}</span>
-                            <div className={`ml-auto w-1.5 h-1.5 rounded-full ${job.status === 'connected' ? 'bg-green-500' : job.status === 'ready' ? 'bg-clGold' : 'bg-gray-600 animate-pulse'}`} />
-                          </div>
-                        ))}
-                      </div>
-                      <button className="w-full py-2 mt-2 bg-clGold/10 hover:bg-clGold text-clGold hover:text-black text-[9px] uppercase tracking-widest font-bold border border-clGold/30 transition-all rounded">
-                        Publish to Network
-                      </button>
-                    </motion.div>
-                  )}
-                </div>
-              ))}
-              {isTyping && (
-                <div className="bg-clGold/5 text-gray-300 border border-clGold/20 p-3 rounded-lg self-start mr-auto flex gap-1 items-center">
-                  <span className="w-1.5 h-1.5 bg-clGold rounded-full animate-bounce [animation-delay:-0.3s]"></span>
-                  <span className="w-1.5 h-1.5 bg-clGold rounded-full animate-bounce [animation-delay:-0.15s]"></span>
-                  <span className="w-1.5 h-1.5 bg-clGold rounded-full animate-bounce"></span>
-                </div>
-              )}
+                ))}
+                {isTyping && (
+                  <div className="bg-clGold/5 text-gray-300 border border-clGold/20 p-3 rounded-lg self-start mr-auto flex gap-1 items-center">
+                    <span className="w-1.5 h-1.5 bg-clGold rounded-full animate-bounce [animation-delay:-0.3s]"></span>
+                    <span className="w-1.5 h-1.5 bg-clGold rounded-full animate-bounce [animation-delay:-0.15s]"></span>
+                    <span className="w-1.5 h-1.5 bg-clGold rounded-full animate-bounce"></span>
+                  </div>
+                )}
+              </div>
             </div>
 
             {/* Footer / Input */}

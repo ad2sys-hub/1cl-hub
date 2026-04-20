@@ -26,6 +26,7 @@ export default function Header() {
     { name: t('nav.philosophy'), path: '/philosophy' },
     { name: t('nav.sponsors'), path: '/sponsors' },
     { name: t('nav.map'), path: '/map' },
+    { name: 'EMS@DTS MATRIX', path: '/dts' },
     { name: t('nav.faq'), path: '/faq' }
   ];
 

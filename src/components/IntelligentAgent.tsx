@@ -7,7 +7,7 @@ import { GripHorizontal, Zap, Settings, Type, ChevronDown, Layers, Box, CreditCa
 import catalog from '../../public/data/catalog.json';
 
 export default function IntelligentAgent() {
-  const { isAgentOpen, toggleAgent, toggleSidebar, language, t, accessibilityMode, toggleAccessibility, userData, updateUserData, isProfileConfigured, setProfileConfigured, agentMode, setAgentMode } = useSovereign();
+  const { isAgentOpen, toggleAgent, toggleSidebar, language, t, accessibilityMode, toggleAccessibility, userData, updateUserData, isProfileConfigured, setProfileConfigured, agentMode, setAgentMode, paymentStatus, refreshPaymentStatus } = useSovereign();
   const { playSound } = useSound();
   const dragControls = useDragControls();
   const [sizeMode, setSizeMode] = useState<'small' | 'medium' | 'middle' | 'full'>('medium');
@@ -113,13 +113,11 @@ export default function IntelligentAgent() {
         response = t('agent.responses.emsMusic');
     }
 
-    // 5. Paiements
-    else if (lower.includes('stripe')) {
-        response = t('agent.responses.paymentStripe');
-        setTimeout(() => window.open('https://stripe.com', '_blank'), 2000);
-    } else if (lower.includes('paypal')) {
-        response = t('agent.responses.paymentPaypal');
-        setTimeout(() => window.open('https://paypal.com', '_blank'), 2000);
+    else if (lower.includes('synchronise') || lower.includes('paiement') || lower.includes('payment')) {
+        refreshPaymentStatus();
+        response = language === 'fr' 
+          ? "Synchronisation des passerelles de paiement Stripe & PayPal... Analyse du flux MPC."
+          : "Synchronizing Stripe & PayPal payment gateways... Analyzing MPC flow.";
     }
 
     if (response) {
@@ -453,7 +451,8 @@ export default function IntelligentAgent() {
                           {[
                             { icon: Layers, label: 'Iyason-1CL Link', status: 'connected' },
                             { icon: Box, label: 'Terraform State', status: 'ready' },
-                            { icon: CreditCard, label: 'Stripe API', status: 'pending' }
+                            { icon: CreditCard, label: 'Stripe API', status: paymentStatus.stripe === 'online' ? 'connected' : 'pending' },
+                            { icon: CreditCard, label: 'PayPal API', status: paymentStatus.paypal === 'online' ? 'connected' : 'pending' }
                           ].map((job, idx) => (
                             <div key={idx} className="flex items-center gap-3 text-[10px] text-gray-400 group hover:text-white transition-colors">
                               <job.icon size={12} className="group-hover:text-clGold" />
@@ -462,8 +461,11 @@ export default function IntelligentAgent() {
                             </div>
                           ))}
                         </div>
-                        <button className="w-full py-2 mt-2 bg-clGold/10 hover:bg-clGold text-clGold hover:text-black text-[9px] uppercase tracking-widest font-bold border border-clGold/30 transition-all rounded">
-                          Publish to Network
+                        <button 
+                          onClick={() => { playSound('click'); refreshPaymentStatus(); }}
+                          className="w-full py-2 mt-2 bg-clGold/10 hover:bg-clGold text-clGold hover:text-black text-[9px] uppercase tracking-widest font-bold border border-clGold/30 transition-all rounded"
+                        >
+                          {paymentStatus.stripe === 'pending' ? 'Synchronizing...' : 'Re-Sync Gateways'}
                         </button>
                       </motion.div>
                     )}

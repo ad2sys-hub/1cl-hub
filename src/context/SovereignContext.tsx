@@ -35,6 +35,9 @@ interface SovereignState {
   setProfileConfigured: (v: boolean) => void;
   userData: { role?: string; codeName?: string; interactions: number };
   updateUserData: (data: Partial<{ role?: string; codeName?: string; interactions: number }>) => void;
+  // Payment Status
+  paymentStatus: { stripe: 'online' | 'offline' | 'pending'; paypal: 'online' | 'offline' | 'pending' };
+  refreshPaymentStatus: () => void;
 }
 
 export const SovereignContext = createContext<SovereignState | undefined>(undefined);
@@ -113,6 +116,18 @@ export function SovereignProvider({ children }: { children: ReactNode }) {
     return saved ? JSON.parse(saved) : { interactions: 0 };
   });
 
+  const [paymentStatus, setPaymentStatus] = useState<{ stripe: 'online' | 'offline' | 'pending'; paypal: 'online' | 'offline' | 'pending' }>({
+    stripe: 'online',
+    paypal: 'online'
+  });
+
+  const refreshPaymentStatus = () => {
+    setPaymentStatus({ stripe: 'pending', paypal: 'pending' });
+    setTimeout(() => {
+      setPaymentStatus({ stripe: 'online', paypal: 'online' });
+    }, 2000);
+  };
+
   useEffect(() => {
     localStorage.setItem('sovereign_agent_mode', agentMode);
   }, [agentMode]);
@@ -174,7 +189,8 @@ export function SovereignProvider({ children }: { children: ReactNode }) {
       cookieConsent, setCookieConsent,
       agentMode, setAgentMode,
       isProfileConfigured, setProfileConfigured,
-      userData, updateUserData
+      userData, updateUserData,
+      paymentStatus, refreshPaymentStatus
     }}>
       {children}
     </SovereignContext.Provider>

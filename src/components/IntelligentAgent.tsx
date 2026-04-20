@@ -3,7 +3,8 @@ import { motion, AnimatePresence, useDragControls } from 'framer-motion';
 import { useSovereign } from '../hooks/useSovereign';
 import { useNavigate } from 'react-router-dom';
 import { useSound } from '../hooks/useSound';
-import { GripHorizontal, Zap, Settings, Type, ChevronDown, Layers, Box, CreditCard } from 'lucide-react';
+import { GripHorizontal, Zap, Settings, Type, ChevronDown, Layers, Box, CreditCard, Send, Sparkles } from 'lucide-react';
+import catalog from '../../public/data/catalog.json';
 
 export default function IntelligentAgent() {
   const { isAgentOpen, toggleAgent, toggleSidebar, language, t, accessibilityMode, toggleAccessibility, userData, updateUserData, isProfileConfigured, setProfileConfigured, agentMode, setAgentMode } = useSovereign();
@@ -16,7 +17,7 @@ export default function IntelligentAgent() {
   const [interactions, setInteractions] = useState(userData.interactions || 0);
   const [subMode, setSubMode] = useState<'normal' | 'moovie' | 'mute' | 'guide'>('normal');
 
-  const [messages, setMessages] = useState<{ text: string; sender: 'ai' | 'user' }[]>(() => [
+  const [messages, setMessages] = useState<{ text: string; sender: 'ai' | 'user'; insight?: any }[]>(() => [
     { text: t('dts.agent.welcome'), sender: 'ai' }
   ]);
   const [inputVal, setInputVal] = useState('');
@@ -133,6 +134,41 @@ export default function IntelligentAgent() {
     return false;
   };
 
+  // Style Suggestion Engine
+  const getMayaInsight = (query: string) => {
+    const q = query.toLowerCase();
+    
+    // 1. Keyword Mapping
+    const match = catalog.find(p => 
+      q.includes(p.id.toLowerCase()) || 
+      q.includes(p.name.toLowerCase()) ||
+      p.tags?.some(t => q.includes(t.toLowerCase())) ||
+      q.includes(p.type.toLowerCase())
+    );
+
+    if (match) {
+      return {
+        type: 'suggestion',
+        item: match,
+        note: language === 'fr' 
+          ? `Maya : "Je vois que vous appréciez le style ${match.collection}. Je vous recommande particulièrement la pièce ${match.name_fr}."`
+          : `Maya: "I see you appreciate the ${match.collection} aesthetic. I highly recommend the ${match.name} for your sovereign wardrobe."`
+      };
+    }
+
+    // 2. Generic Style Tip if no match
+    if (q.includes('style') || q.includes('look') || q.includes('souverain')) {
+      return {
+        type: 'tip',
+        note: language === 'fr'
+          ? "Conseil d'Aura : 'La véritable souveraineté réside dans le contraste entre le Chrome Minimal et l'Or Impérial.'"
+          : "Sovereign Tip: 'True sovereignty lies in the contrast between Minimal Chrome and Imperial Gold.'"
+      };
+    }
+
+    return null;
+  };
+
   const handleSend = () => {
     if (!inputVal.trim()) return;
     playSound('click');
@@ -140,6 +176,9 @@ export default function IntelligentAgent() {
 
     setMessages(prev => [...prev, { text: txt, sender: 'user' }]);
     setInputVal('');
+
+    // Trigger Maya's "Intuition"
+    const insight = getMayaInsight(txt);
 
     // Try Command First
     if (handleCommand(txt)) return;
@@ -175,9 +214,13 @@ export default function IntelligentAgent() {
     setIsTyping(true);
     setTimeout(() => {
       setIsTyping(false);
-      const reply = t('agent.unknown');
-      setMessages(prev => [...prev, { text: reply, sender: 'ai' }]);
-      speak(reply);
+      const responses = language === 'fr' 
+        ? ["Analyse des données EMS en cours...", "Souveraineté confirmée.", "Comment puis-je optimiser votre expérience ?"]
+        : ["Analyzing EMS data streams...", "Sovereignty confirmed.", "How can I optimize your experience today?"];
+      
+      const response = responses[Math.floor(Math.random() * responses.length)];
+      setMessages(prev => [...prev, { text: response, sender: 'ai', insight: insight }]);
+      speak(response);
     }, 1200);
   };
 
@@ -361,6 +404,38 @@ export default function IntelligentAgent() {
                   <div key={i} className={`flex flex-col ${m.sender === 'ai' ? 'items-start mr-auto' : 'items-end ml-auto'} w-full`}>
                     <div className={`text-sm p-4 rounded-lg max-w-[85%] ${m.sender === 'ai' ? 'bg-clGold/10 text-gray-200 border border-clGold/20 relative after:content-[""] after:w-1 after:h-full after:bg-clGold after:absolute after:left-0 after:top-0' : 'bg-white/5 text-white text-right border border-white/5'}`}>
                       {m.text}
+
+                      {/* Maya Intelligence Insights */}
+                      {m.insight && (
+                        <motion.div 
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          className="mt-3 pt-3 border-t border-clGold/10 flex flex-col gap-2"
+                        >
+                          <div className="flex items-center gap-1.5 text-clGold">
+                            <Sparkles size={12} className="animate-pulse" />
+                            <span className="text-[9px] font-bold tracking-widest uppercase italic font-sans">Maya Insight</span>
+                          </div>
+                          <p className="text-[11px] text-gray-400 italic">
+                            {m.insight.note}
+                          </p>
+                          
+                          {m.insight.type === 'suggestion' && (
+                            <div className="mt-1 flex items-center gap-3 bg-clGold/5 p-2 rounded-lg border border-clGold/20">
+                              <img src={m.insight.item.variants[0].image} alt="" className="w-10 h-10 object-contain" />
+                              <div className="flex flex-col">
+                                <span className="text-[10px] font-bold text-white uppercase">{language === 'fr' ? m.insight.item.name_fr : m.insight.item.name}</span>
+                                <button 
+                                  onClick={() => navigate(`/product/${m.insight.item.id}`)}
+                                  className="text-[9px] text-clGold hover:underline mt-1 text-left"
+                                >
+                                  {language === 'fr' ? 'Découvrir la pièce' : 'Discover this piece'} →
+                                </button>
+                              </div>
+                            </div>
+                          )}
+                        </motion.div>
+                      )}
                     </div>
                     
                     {/* Workflow Visualizer */}

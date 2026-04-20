@@ -44,6 +44,8 @@ export default function IntelligentAgent() {
     full: "top-0 left-0 w-full h-full rounded-none"
   };
 
+  const location = useLocation();
+
   // Initial Profiling Trigger
   useEffect(() => {
     if (isAgentOpen && !isProfileConfigured && profilingStep === 0) {
@@ -60,6 +62,20 @@ export default function IntelligentAgent() {
       }, 1000);
     }
   }, [isAgentOpen, isProfileConfigured, profilingStep, speak, t]);
+
+  // Checkout Awareness
+  useEffect(() => {
+    if (location.pathname.includes('/checkout') && isAgentOpen) {
+       const msg = language === 'fr' 
+         ? "Tunnel de paiement sécurisé ANES détecté. Je surveille l'intégrité de votre transaction MPC en temps réel."
+         : "Secure ANES payment tunnel detected. I am monitoring your MPC transaction integrity in real-time.";
+       
+       if (!messages.some(m => m.text === msg)) {
+         setMessages(prev => [...prev, { text: msg, sender: 'ai' }]);
+         speak(msg);
+       }
+    }
+  }, [location.pathname, isAgentOpen, language, speak]);
 
   // Handle Command Logic
   const handleCommand = (text: string) => {

@@ -104,9 +104,16 @@ export default function ProductPage() {
             <div className="pt-8 space-y-4">
               <button 
                 onClick={() => setInLookbook(!inLookbook)}
-                className={`w-full py-5 border text-sm uppercase tracking-widest transition-all duration-300 ${inLookbook ? 'bg-white text-black border-white' : 'bg-transparent border-clGold text-clGold hover:bg-clGold/10 hover:shadow-[0_0_20px_rgba(212,175,55,0.3)]'}`}
+                className={`w-full py-5 border text-sm uppercase tracking-widest transition-all duration-300 ${inLookbook ? 'bg-white text-black border-white' : 'bg-transparent border-clGold text-clGold hover:bg-clGold/10'}`}
               >
                 {inLookbook ? t('common.lookbookAdded') : t('product.addToCart')}
+              </button>
+
+              <button 
+                onClick={() => navigate(`/checkout/${product.id}`)}
+                className="w-full py-5 bg-clGold text-clBlack font-bold text-sm uppercase tracking-[0.3em] hover:bg-white hover:shadow-[0_0_30px_rgba(212,175,55,0.6)] transition-all duration-500"
+              >
+                {language === 'fr' ? 'Achat Souverain Rapide' : 'Sovereign Quick Buy'}
               </button>
 
               <div className="flex gap-4">
